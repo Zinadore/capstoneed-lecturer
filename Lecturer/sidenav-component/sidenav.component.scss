@@ -1,0 +1,65 @@
+@import "../../../style/global-variables";
+
+/* Sidebar Styles */
+// Sidenav colors
+
+$sidenav-link-color: #646464;
+$sidenav-link-hover-color: #f0f0f0;
+$sidenav-link-active-color: #4285f4;
+$sidenav-divider-color: #b0b0b0;
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-nav li {
+  text-indent: 10px;
+  line-height: 40px;
+}
+
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  color: $sidenav-link-color;
+}
+
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color: $sidenav-link-color;
+  background: $sidenav-link-hover-color;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+.sidebar-nav li.active a {
+  color: $sidenav-link-active-color;
+}
+
+.sidebar-nav > .sidebar-brand {
+  font-size: 18px;
+  height: $navbar-height;
+  background-color: white;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.sidebar-nav > .sidebar-brand a {
+  color: #000000;
+  padding-top: 0.35rem;
+  padding-bottom: 0.25rem;
+  margin-left: 1rem;
+  font-size: 1.25rem;
+  line-height: inherit;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+  color: #000000;
+  background-color: white;
+}

@@ -1,0 +1,63 @@
+@import "../../../style/global-variables";
+:host.toggled {
+  //Make room for the sidenav
+  .navbar {
+    left: 250px;
+  }
+
+  .nav-container span > a {
+    display: none;
+  }
+}
+.nav-container {
+  display: flex;
+}
+
+.nav-container span {
+  flex: 1;
+  text-align: center;
+  padding-top: 0.35rem;
+  padding-bottom: 0.25rem;
+}
+
+.nav-container span > a {
+  color: black;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
+.navbar {
+  border-bottom: 1px solid #e6e6e6;
+  transition: all 0.5s ease;
+  height: $navbar-height;
+  left: 0;
+
+  #header-user-dropdown {
+    img {
+      max-width: 32px;
+      max-height: 32px;
+      border-radius: 50%;
+    }
+
+    &::after{
+      display: none!important;
+    }
+  }
+}
+
+//@media(min-width:768px) {
+//  :host.toggled {
+//    .navbar {
+//      left: 0px;
+//    }
+//  }
+//  // Make room for the automatic toggling of the sidenav
+//  .navbar {
+//    left: 250px;
+//  }
+//
+//  .nav-container span > a {
+//    display: none;
+//  }
+//}
+
