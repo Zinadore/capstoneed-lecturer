@@ -1,0 +1,17 @@
+<form [formGroup]="loginForm" novalidate (ngSubmit)="submit()">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input #firstFocus type="text" class="form-control" id="email" formControlName="email">
+  </div>
+  <div class="form-group">
+    <label for="password">password</label>
+    <input type="password" class="form-control" id="password" formControlName="password">
+  </div>
+  <div class="form-check">
+    <label class="form-check-label">
+      <input class="form-check-input" type="checkbox" formControlName="rememberMe"> Remember me
+    </label>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

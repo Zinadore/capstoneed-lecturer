@@ -1,10 +1,5 @@
 @import "../../../style/global-variables";
 :host.toggled {
-  //Make room for the sidenav
-  .navbar {
-    left: 250px;
-  }
-
   .nav-container span > a {
     display: none;
   }
