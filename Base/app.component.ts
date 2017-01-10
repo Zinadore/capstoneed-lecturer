@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import '../../style/app.scss';
+import { AuthenticationService } from '../../shared/Services/authenticationService';
 
 @Component({
   selector: 'ced-app',
@@ -12,10 +13,10 @@ export class AppComponent implements OnInit{
   private toggleSidenav(event) {
     this._open = event;
   }
-  constructor() {
+  constructor(private authService: AuthenticationService) {
   }
 
   ngOnInit() {
-
+    this.authService.getMe()
   }
 }

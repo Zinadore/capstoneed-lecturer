@@ -7,29 +7,25 @@ import { UnitService } from '../../../shared/Services/unitService';
 
 @Component({
   selector: 'ced-unit-display',
-  template:`
-    <template *ngIf="units?.length === 1" [ngTemplateOutlet]="unitDetails"></template>  
-    <template *ngIf="units?.length > 1" [ngTemplateOutlet]="unitList"></template>  
-    
-    <template #unitDetails>
-      <ced-unit-details [unit]="units[0]"></ced-unit-details>
-    </template>
-    <template #unitList>
-      <ced-unit-list [units]="units"></ced-unit-list>
-    </template>
-  `
+  templateUrl: 'unitDisplay.component.html'
 })
 export class UnitDisplayComponent extends ComponentBase implements OnInit{
-  private units: Unit[];
+  private numberOfUnits: number;
 
-  constructor(store: Store<IAppState>, private unitService: UnitService) {
+  constructor(store: Store<IAppState>) {
     super();
-    this.disposeOnDestroy(store.select('units').subscribe((units: Unit[]) => {
-      this.units = units;
-    }));
+
+    this.disposeOnDestroy(
+      store.select('units')
+        .map((units: Unit[]) => {
+          if (units)
+            return units.length;
+          return 0;
+        })
+        .subscribe((value: number) => this.numberOfUnits = value)
+    )
   }
 
   ngOnInit() {
-    this.unitService.loadUnits();
   }
 }

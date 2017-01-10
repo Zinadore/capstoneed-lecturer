@@ -11,13 +11,15 @@ import { UnitDisplayComponent } from './unitDisplay-component/unitDisplay.compon
 import { UnitDetailsComponent } from './unitDetails-component/unitDetails.component';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './routing';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
     CommonModule,
+    NgbModule,
     RouterModule.forChild(ROUTES),
     SharedDirectivesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   declarations: [
     SidenavComponent,
