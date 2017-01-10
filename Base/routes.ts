@@ -12,9 +12,10 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from '../Lecturer/home-component/home.component';
 import { UnitDetailsComponent } from '../Lecturer/unitDetails-component/unitDetails.component';
+import { IsAuthenticatedGuard } from '../../shared/Guards/isAuthenticatedGuard';
 
 export const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'units/:id', component: UnitDetailsComponent },
+  { path: 'units/:id', component: UnitDetailsComponent, canActivate: [IsAuthenticatedGuard] },
   { path: '', pathMatch: 'full', redirectTo: 'home'}
 ];

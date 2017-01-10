@@ -1,13 +1,11 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SidebarModule } from 'ng-sidebar';
-
-
 import { AppComponent } from './app.component';
 import { ROUTES } from './routes';
 import { CedStoreModule } from '../../shared/Store/cedStore.module';
@@ -15,6 +13,7 @@ import { ServicesModule } from '../../shared/Services/services.module';
 import { HeaderComponent } from './header-component/header.component';
 import { LecturerModule } from '../Lecturer/lecturer.module';
 import { SharedDirectivesModule } from '../../shared/Directives/sharedDirectivesModule';
+import { GuardsModule } from '../../shared/Guards/guards.module';
 
 @NgModule({
   imports: [
@@ -27,7 +26,8 @@ import { SharedDirectivesModule } from '../../shared/Directives/sharedDirectives
     ServicesModule.forRoot(),
     SidebarModule,
     SharedDirectivesModule,
-    LecturerModule
+    LecturerModule,
+    GuardsModule
   ],
   declarations: [
     AppComponent,
