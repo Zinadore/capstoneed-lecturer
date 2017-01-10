@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Unit } from '../../../shared/Store/Models/unit';
-import { ComponentBase } from '../../../shared/Directives/componentBase';
-import { IAppState } from '../../../shared/Store/Reducers/index';
 import { Store } from '@ngrx/store';
-import { UnitService } from '../../../shared/Services/unitService';
+import { ComponentBase } from '../../../../shared/Directives/componentBase';
+import { IAppState } from '../../../../shared/Store/Reducers/index';
+import { Unit } from '../../../../shared/Store/Models/unit';
+import { FormGroup, FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'ced-unit-display',
@@ -12,7 +13,9 @@ import { UnitService } from '../../../shared/Services/unitService';
 export class UnitDisplayComponent extends ComponentBase implements OnInit{
   private numberOfUnits: number;
 
-  constructor(store: Store<IAppState>) {
+  public testForm: FormGroup;
+
+  constructor(store: Store<IAppState>, private fb: FormBuilder) {
     super();
 
     this.disposeOnDestroy(
@@ -27,5 +30,8 @@ export class UnitDisplayComponent extends ComponentBase implements OnInit{
   }
 
   ngOnInit() {
+    this.testForm = this.fb.group({
+      testInput: ['']
+    })
   }
 }

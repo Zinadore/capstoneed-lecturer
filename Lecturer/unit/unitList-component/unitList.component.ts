@@ -1,8 +1,8 @@
-import { ComponentBase } from '../../../shared/Directives/componentBase';
+import { ComponentBase } from '../../../../shared/Directives/componentBase';
 import { Component } from '@angular/core';
-import { IAppState } from '../../../shared/Store/Reducers/index';
+import { IAppState } from '../../../../shared/Store/Reducers/index';
 import { Store } from '@ngrx/store';
-import { Unit } from '../../../shared/Store/Models/unit';
+import { Unit } from '../../../../shared/Store/Models/unit';
 
 @Component({
   selector: 'ced-unit-list',

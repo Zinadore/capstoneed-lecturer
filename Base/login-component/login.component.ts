@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ComponentBase } from '../../../shared/Directives/componentBase';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../../shared/Services/authenticationService';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'ced-login',
@@ -10,23 +11,24 @@ import { AuthenticationService } from '../../../shared/Services/authenticationSe
 export class LoginComponent extends ComponentBase implements OnInit{
   private loginForm: FormGroup;
   @ViewChild('firstFocus') _firstFocus;
+  private redirectUrl: string;
 
-  constructor(private _fb: FormBuilder, private _auth: AuthenticationService) {
+  constructor(private _fb: FormBuilder, private _auth: AuthenticationService, private route: ActivatedRoute, private router: Router) {
     super();
   }
 
   ngOnInit() {
-    console.log('login component init');
     this.loginForm = this._fb.group({
       email: ['', Validators.compose([Validators.required])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
       rememberMe: false
     });
     this._firstFocus.nativeElement.focus();
+
+    this.redirectUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
   }
 
   destroy() {
-    console.log('login component destroyed');
   }
 
   submit() {
@@ -35,5 +37,10 @@ export class LoginComponent extends ComponentBase implements OnInit{
     let remember = this.loginForm.value['rememberMe'];
 
     this._auth.login(username, password, remember);
+
+    this.disposeOnDestroy(this._auth.isLoggedIn$.subscribe(value => {
+      if(value)
+        this.router.navigate([this.redirectUrl]);
+    }))
   }
 }

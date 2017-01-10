@@ -18,7 +18,10 @@
   </div>
 
   <div class="row row-component">
-    <div class="col-12">
+    <div class="col-12" *ngIf="!loadedAssignments.length > 0">
+      There appears to be nothing here
+    </div>
+    <div class="col-12" *ngIf="loadedAssignments.length > 0">
       <div class="row projects-table-header">
         <div class="col-sm-1">
         </div>

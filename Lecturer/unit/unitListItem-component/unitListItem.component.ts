@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Unit } from '../../../shared/Store/Models/unit';
+import { Unit } from '../../../../shared/Store/Models/unit';
 
 @Component({
   selector: 'ced-unit-list-item',

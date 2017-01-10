@@ -1,13 +1,13 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { IAppState } from '../../../shared/Store/Reducers/index';
-import { ComponentBase } from '../../../shared/Directives/componentBase';
-import { Unit } from '../../../shared/Store/Models/unit';
-import { Observable } from 'rxjs';
-import { AssignmentService } from '../../../shared/Services/assignmentService';
-import { Assignment } from '../../../shared/Store/Models/assignment';
 import { isUndefined } from 'util';
+import { Assignment } from '../../../../shared/Store/Models/assignment';
+import { ComponentBase } from '../../../../shared/Directives/componentBase';
+import { Observable } from 'rxjs';
+import { Unit } from '../../../../shared/Store/Models/unit';
+import { IAppState } from '../../../../shared/Store/Reducers/index';
+import { AssignmentService } from '../../../../shared/Services/assignmentService';
 
 @Component({
   selector: 'ced-unit-details',
@@ -17,7 +17,7 @@ import { isUndefined } from 'util';
 export class UnitDetailsComponent extends ComponentBase {
   private unitObservable: Observable<Unit[]>;
   private loadedUnit: Unit;
-  private loadedAssignments: Assignment[];
+  private loadedAssignments: Assignment[] = [];
 
   constructor(private route: ActivatedRoute, private store: Store<IAppState>, private assignmentService: AssignmentService) {
     super();

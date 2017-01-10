@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { IAppState } from '../../../shared/Store/Reducers/index';
 import { User } from '../../../shared/Store/Models/user';
 import { Observable } from 'rxjs';
+import { AuthenticationService } from '../../../shared/Services/authenticationService';
 @Component({
   selector: 'ced-home',
   templateUrl: 'home.component.html',
@@ -12,9 +13,13 @@ import { Observable } from 'rxjs';
 export class HomeComponent extends ComponentBase {
   private _user: Observable<User>;
 
-  constructor(store: Store<IAppState>) {
+  constructor(store: Store<IAppState>, private authService: AuthenticationService) {
     super();
     this._user = store.select('user');
+  }
+
+  private logout(): void {
+    this.authService.logout();
   }
 
 

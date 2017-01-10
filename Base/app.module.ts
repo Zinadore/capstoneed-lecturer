@@ -27,7 +27,7 @@ import { GuardsModule } from '../../shared/Guards/guards.module';
     SidebarModule,
     SharedDirectivesModule,
     LecturerModule,
-    GuardsModule
+    GuardsModule,
   ],
   declarations: [
     AppComponent,
