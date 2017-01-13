@@ -13,6 +13,6 @@ export class NewUnitComponent {
   ngOnInit() {
     this.testForm = this.fb.group({
       testInput: ['']
-    })
+    });
   }
 }

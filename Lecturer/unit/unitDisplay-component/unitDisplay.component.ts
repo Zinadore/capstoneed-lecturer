@@ -4,18 +4,20 @@ import { ComponentBase } from '../../../../shared/Directives/componentBase';
 import { IAppState } from '../../../../shared/Store/Reducers/index';
 import { Unit } from '../../../../shared/Store/Models/unit';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormWizardStepComponent } from '../../../../shared/Directives/formWizardStep - component/formWizardStep.component';
+import { Observable } from 'rxjs';
 
 
 @Component({
   selector: 'ced-unit-display',
   templateUrl: 'unitDisplay.component.html'
 })
-export class UnitDisplayComponent extends ComponentBase implements OnInit{
+export class UnitDisplayComponent extends ComponentBase implements OnInit {
   private numberOfUnits: number;
 
-  public testForm: FormGroup;
+  private testForm: FormGroup;
 
-  constructor(store: Store<IAppState>, private fb: FormBuilder) {
+  constructor(store: Store<IAppState>, private fb: FormBuilder, private step: FormWizardStepComponent) {
     super();
 
     this.disposeOnDestroy(
@@ -33,5 +35,14 @@ export class UnitDisplayComponent extends ComponentBase implements OnInit{
     this.testForm = this.fb.group({
       testInput: ['']
     })
+
   }
+
+  ngAfterContentInit() {
+    this.step.registerCanGoNext(Observable.of(true));
+
+    this.step.registerOnNext(() => console.log('Yiihaaa'));
+  }
+
+
 }
