@@ -1,5 +1,3 @@
-<!--THIS IS JUST FOR DEVELOPMENT-->
-<ngrx-store-log-monitor toggleCommand="ctrl-i" positionCommand="ctrl-m"></ngrx-store-log-monitor>
 <div id="wrapper" [class.toggled]="_open">
 
   <div id="sidebar-wrapper">
@@ -8,7 +6,9 @@
 
   <div id="page-content-wrapper">
     <ced-header (brandClick)="toggleSidenav($event)"></ced-header>
-    <router-outlet></router-outlet>
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 
 </div>

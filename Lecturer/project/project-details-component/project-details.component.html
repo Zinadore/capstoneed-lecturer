@@ -1,0 +1,49 @@
+<div class="row row-component">
+  <div class="col-12 ">
+    <h3 id="page-title" class="float-left">{{project?.project_name}}</h3>
+    <div class="float-right" id="project-settings" ngbDropdown>
+      <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+        <i class="fa fa-cog" aria-hidden="true"></i>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" >
+        <h6 class="dropdown-header">Project Settings</h6>
+        <a class="dropdown-item">Edit Project</a>
+        <a class="dropdown-item">Remove Student</a>
+        <a class="dropdown-item">Give Extension</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row row-component">
+  <div class="col-sm-12 col-md-8" id="project-description-column">
+    <p id="project-description">
+      {{project?.description}}
+    </p>
+  </div>
+
+  <div class="col-sm-12 col-md-4 col-lg-3 offset-lg-1" id="project-info-column">
+    <!-- <img src="images/feed.png" style="width: 100%"> -->
+    <div class="row row-component">
+      <div class="col-6 description">
+        <i class="fa fa-hourglass-start" aria-hidden="true"></i> Start Date:
+      </div>
+      <div class="col-6 value">
+        {{assignment?.start_date}}
+      </div>
+      <div class="col-6 description">
+        <i class="fa fa-hourglass-end" aria-hidden="true"></i> End Date:
+      </div>
+      <div class="col-6 value">
+        {{assignment?.end_date}}
+      </div>
+      <div class="col-6 description">
+        <i class="fa fa-calendar" aria-hidden="true"></i> Semester:
+      </div>
+      <div class="col-6 value">
+        {{unit?.semester}}
+      </div>
+    </div>
+  </div> <!--project-info-column-->
+</div>

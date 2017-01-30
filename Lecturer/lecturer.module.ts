@@ -8,11 +8,14 @@ import { LoginComponent } from '../Base/login-component/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UnitListItemComponent } from './unit/unitListItem-component/unitListItem.component';
 import { UnitDisplayComponent } from './unit/unitDisplay-component/unitDisplay.component';
-import { UnitDetailsComponent } from './unit/unitDetails-component/unitDetails.component';
+import { UnitOverviewComponent } from './unit/unitOverview-component/unitOverview.component';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NewUnitComponent } from './unit/newUnit-component/newUnit.component';
+import { NewProjectComponent } from './project/new-project-component/new-project.component';
+import { ProjectDetailsComponent } from './project/project-details-component/project-details.component';
+import { ProjectListComponent } from './project/project-list-component/project-list.component';
 
 @NgModule({
   imports: [
@@ -27,17 +30,20 @@ import { NewUnitComponent } from './unit/newUnit-component/newUnit.component';
     HomeComponent,
     LoginComponent,
     UnitDisplayComponent,
-    UnitDetailsComponent,
+    UnitOverviewComponent,
     UnitListComponent,
     UnitListItemComponent,
-    NewUnitComponent
+    NewUnitComponent,
+    NewProjectComponent,
+    ProjectDetailsComponent,
+    ProjectListComponent
   ],
   providers: [],
   exports: [
     SidenavComponent,
     HomeComponent,
     UnitListComponent,
-    UnitDetailsComponent
+    UnitOverviewComponent
   ]
 })
 export class LecturerModule {

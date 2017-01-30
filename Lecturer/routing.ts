@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { UnitDetailsComponent } from './unit/unitDetails-component/unitDetails.component';
+import { UnitOverviewComponent } from './unit/unitOverview-component/unitOverview.component';
 
 export const ROUTES: Route[] = [
 

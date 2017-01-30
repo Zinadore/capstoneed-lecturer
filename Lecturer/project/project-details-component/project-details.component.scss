@@ -1,0 +1,34 @@
+@import "../../../../style/global-variables";
+
+.row-component {
+  background-color: white;
+  margin-left: 0;
+  margin-right: 0;
+  border-radius: 3px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+#project-description {
+  font-size: $font-size-project-description;
+}
+
+#project-info-column {
+  border-left: 2px solid #dcdbdb;
+  padding-left: 10px;
+  font-size: $font-size-project-info-column;
+  line-height: 25px;
+
+  & > .row-component > .description {
+    font-weight: 600;
+    color: $project-info-column-font-color;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  & > .row-component > .value {
+    color: $project-info-column-font-color;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
