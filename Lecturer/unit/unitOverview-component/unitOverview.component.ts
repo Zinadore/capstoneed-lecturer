@@ -7,9 +7,9 @@ import { ComponentBase } from '../../../../shared/Directives/componentBase';
 import { Observable } from 'rxjs';
 import { Unit } from '../../../../shared/Store/Models/unit';
 import { IAppState } from '../../../../shared/Store/Reducers/index';
-import { AssignmentService } from '../../../../shared/Services/assignmentService';
+import { AssignmentService } from '../../../../shared/Services/assignment.service';
 import { Project } from '../../../../shared/Store/Models/project';
-import { ProjectService } from '../../../../shared/Services/projects.service';
+import { ProjectService } from '../../../../shared/Services/project.service';
 
 @Component({
   selector: 'ced-unit-overview',

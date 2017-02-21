@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { IAppState } from '../../../shared/Store/Reducers/index';
 import { User } from '../../../shared/Store/Models/user';
 import { Observable } from 'rxjs';
-import { AuthenticationService } from '../../../shared/Services/authenticationService';
+import { AuthenticationService } from '../../../shared/Services/authentication.service';
 @Component({
   selector: 'ced-home',
   templateUrl: 'home.component.html',

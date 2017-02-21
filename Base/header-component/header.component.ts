@@ -5,7 +5,7 @@ import { User } from '../../../shared/Store/Models/user';
 import { ComponentBase } from '../../../shared/Directives/componentBase';
 import { IAppState } from '../../../shared/Store/Reducers/index';
 import { Store } from '@ngrx/store';
-import { AuthenticationService } from '../../../shared/Services/authenticationService';
+import { AuthenticationService } from '../../../shared/Services/authentication.service';
 
 @Component({
   selector: 'ced-header',

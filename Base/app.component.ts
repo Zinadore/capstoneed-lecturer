@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import '../../style/app.scss';
-import { AuthenticationService } from '../../shared/Services/authenticationService';
+import { AuthenticationService } from '../../shared/Services/authentication.service';
 
 @Component({
   selector: 'ced-app',
