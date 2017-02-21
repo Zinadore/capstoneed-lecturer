@@ -1,1 +1,19 @@
-new project
+<ced-form-wizard>
+  <ced-form-wizard-step title="Unit Selection">
+    <form [formGroup]="unitSelectionForm">
+      <label class="" for="unitSelect">Select Unit</label>
+      <select class="custom-select" id="unitSelect" formControlName="unitSelect">
+        <option value="0">Choose...</option>
+        <option [value]="unit.id" *ngFor="let unit of units">{{unit.name + ', ' + unit.semester + ' ' + unit.year}}</option>
+      </select>
+    </form>
+  </ced-form-wizard-step>
+
+  <ced-form-wizard-step title="Assignment Selection">
+
+  </ced-form-wizard-step>
+
+  <ced-form-wizard-step title="Project Details">
+
+  </ced-form-wizard-step>
+</ced-form-wizard>
