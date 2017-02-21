@@ -41,7 +41,7 @@ export class UnitDisplayComponent extends ComponentBase implements OnInit {
   ngAfterContentInit() {
     this.step.registerCanGoNext(Observable.of(true));
 
-    this.step.registerOnNext(() => console.log('Yiihaaa'));
+    this.step.registerOnFinish(() => console.log('Yiihaaa'));
   }
 
 

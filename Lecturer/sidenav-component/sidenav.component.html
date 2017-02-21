@@ -1,29 +1,29 @@
 <ul class="sidebar-nav">
   <li class="sidebar-brand">
-    <a href="#" id="sidebar-brand-link">
+    <a href="home" id="sidebar-brand-link">
       CapstoneED
     </a>
   </li>
   <li class="divider">Menu</li>
-  <li>
-    <a> <i class="fa fa-home"></i> Dashboard</a>
+  <li routerLinkActive="active">
+    <a [routerLink]="['home']"><i class="fa fa-home"></i> Dashboard</a>
   </li>
-  <li>
-    <a [routerLink]="['units']" routerLinkActive="active"> <i class="fa fa-diamond"></i> WHERE MAH UNITS AT?</a>
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    <a [routerLink]="['units']"><i class="fa fa-diamond"></i> Units</a>
   </li>
-  <li>
-    <a [routerLink]="['units', 'new']" routerLinkActive="active"> <i class="fa fa-superpowers"></i> New Unit</a>
+  <li routerLinkActive="active">
+    <a [routerLink]="['units', 'new']"><i class="fa fa-superpowers"></i> New Unit</a>
   </li>
-  <li>
-    <a [routerLink]="['projects']" routerLinkActive="active"> <i class="fa fa-bug"></i> Projects</a>
+  <li routerLinkActive="active">
+    <a [routerLink]="['projects']"> <i class="fa fa-bug"></i> Projects</a>
   </li>
-  <li>
-    <a href="#"> <i class="fa fa-bomb"></i> About</a>
-  </li>
-  <li>
-    <a href="#"> <i class="fa fa-cloud"></i> Services</a>
-  </li>
-  <li>
-    <a href="#"> <i class="fa fa-legal"></i> Contact</a>
-  </li>
+  <!--<li>-->
+    <!--<a href="#"> <i class="fa fa-bomb"></i> About</a>-->
+  <!--</li>-->
+  <!--<li>-->
+    <!--<a href="#"> <i class="fa fa-cloud"></i> Services</a>-->
+  <!--</li>-->
+  <!--<li>-->
+    <!--<a href="#"> <i class="fa fa-legal"></i> Contact</a>-->
+  <!--</li>-->
 </ul>

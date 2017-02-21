@@ -1,4 +1,7 @@
 @import "../../../style/global-variables";
+:host {
+  padding-bottom: $navbar-height;
+}
 :host.toggled {
   .nav-container span > a {
     display: none;
@@ -42,19 +45,4 @@
   }
 }
 
-//@media(min-width:768px) {
-//  :host.toggled {
-//    .navbar {
-//      left: 0px;
-//    }
-//  }
-//  // Make room for the automatic toggling of the sidenav
-//  .navbar {
-//    left: 250px;
-//  }
-//
-//  .nav-container span > a {
-//    display: none;
-//  }
-//}
 

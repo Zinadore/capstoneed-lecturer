@@ -5,7 +5,7 @@ import { HomeComponent } from './home-component/home.component';
 import { CommonModule } from '@angular/common';
 import { SharedDirectivesModule } from '../../shared/Directives/sharedDirectivesModule';
 import { LoginComponent } from '../Base/login-component/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UnitListItemComponent } from './unit/unitListItem-component/unitListItem.component';
 import { UnitDisplayComponent } from './unit/unitDisplay-component/unitDisplay.component';
 import { UnitOverviewComponent } from './unit/unitOverview-component/unitOverview.component';
@@ -23,7 +23,7 @@ import { ProjectListComponent } from './project/project-list-component/project-l
     NgbModule,
     RouterModule.forChild(ROUTES),
     SharedDirectivesModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     SidenavComponent,

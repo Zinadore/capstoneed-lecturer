@@ -1,7 +1,9 @@
-<ced-form-wizard>
+<ced-form-wizard [onFinish]="testCallback">
 
-  <ced-form-wizard-step [title]="'Details'">
-    <ced-unit-display></ced-unit-display>
+  <ced-form-wizard-step [title]="'Details'" [canGoNext]="canGoNext" [onNext]="testCallback">
+    <form [formGroup]="testForm">
+      <input type="text" formControlName="testInput">
+    </form>
   </ced-form-wizard-step>
 
   <ced-form-wizard-step [title]="'Iterations'">
