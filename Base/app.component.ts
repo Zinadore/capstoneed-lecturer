@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import '../../style/app.scss';
 import { AuthenticationService } from '../../shared/Services/authentication.service';
+import { ToastrService, ToastContainerDirective } from 'ngx-toastr';
 
 @Component({
   selector: 'ced-app',
@@ -13,10 +14,14 @@ export class AppComponent implements OnInit{
   private toggleSidenav(event) {
     this._open = event;
   }
-  constructor(private authService: AuthenticationService) {
+
+  @ViewChild(ToastContainerDirective) toastContainer: ToastContainerDirective;
+
+  constructor(private authService: AuthenticationService, private toastrService: ToastrService) {
   }
 
   ngOnInit() {
-    this.authService.getMe()
+    this.authService.getMe();
+    this.toastrService.overlayContainer = this.toastContainer;
   }
 }

@@ -8,25 +8,32 @@ import { NewUnitComponent } from '../Lecturer/unit/new-unit-component/newUnit.co
 import { ProjectDetailsComponent } from '../Lecturer/project/project-details-component/project-details.component';
 import { NewProjectComponent } from '../Lecturer/project/new-project-component/new-project.component';
 import { ProjectListComponent } from '../Lecturer/project/project-list-component/project-list.component';
+import { AssignmentListComponent } from '../Lecturer/assignment/assignment-list-component/assignment-list.component';
+import { AssignmentDetailsComponent } from '../Lecturer/assignment/assignment-details-component/assignment-details.component';
+import { NewAssignmentComponent } from '../Lecturer/assignment/new-assignment-component/new-assignment.component';
 
 export const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  {
-    path: '', canActivate: [IsAuthenticatedGuard], children: [
-    {
-      path: 'units', children: [
+  { path: '', canActivate: [IsAuthenticatedGuard], children: [
+    { path: 'units', children: [
       { path: '', pathMatch: 'full', component: UnitListComponent },
       { path: 'new', component: NewUnitComponent },
       { path: ':id', component: UnitOverviewComponent },
-    ]
+      ]
     },
-    {
-      path: 'projects', children: [
+    { path: 'projects', children: [
       { path: '', pathMatch: 'full', component: ProjectListComponent },
       { path: 'new', component: NewProjectComponent },
-      { path: ':id', component: ProjectDetailsComponent }
-    ]
+      { path: ':id', component: ProjectDetailsComponent },
+      ]
+    },
+    { path: 'assignments', children: [
+      { path: '', pathMatch: 'full', component: AssignmentListComponent },
+      { path: 'new', component: NewAssignmentComponent },
+      { path: ':id', component: AssignmentDetailsComponent },
+
+      ]
     }
   ]
   },

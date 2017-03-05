@@ -16,6 +16,10 @@ import { NewUnitComponent } from './unit/new-unit-component/newUnit.component';
 import { NewProjectComponent } from './project/new-project-component/new-project.component';
 import { ProjectDetailsComponent } from './project/project-details-component/project-details.component';
 import { ProjectListComponent } from './project/project-list-component/project-list.component';
+import { AssignmentListComponent } from './assignment/assignment-list-component/assignment-list.component';
+import { AssignmentDetailsComponent } from './assignment/assignment-details-component/assignment-details.component';
+import { NewAssignmentComponent } from './assignment/new-assignment-component/new-assignment.component';
+import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 
 @NgModule({
   imports: [
@@ -23,7 +27,8 @@ import { ProjectListComponent } from './project/project-list-component/project-l
     NgbModule,
     RouterModule.forChild(ROUTES),
     SharedDirectivesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMyDatePickerModule
   ],
   declarations: [
     SidenavComponent,
@@ -36,9 +41,12 @@ import { ProjectListComponent } from './project/project-list-component/project-l
     NewUnitComponent,
     NewProjectComponent,
     ProjectDetailsComponent,
-    ProjectListComponent
+    ProjectListComponent,
+    AssignmentListComponent,
+    AssignmentDetailsComponent,
+    NewAssignmentComponent
   ],
-  providers: [],
+  providers: [NgxMyDatePickerModule],
   exports: [
     SidenavComponent,
     HomeComponent,

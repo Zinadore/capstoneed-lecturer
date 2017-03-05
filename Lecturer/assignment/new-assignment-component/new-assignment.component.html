@@ -1,0 +1,83 @@
+<ced-form-wizard>
+  <ced-form-wizard-step [canGoNext]="selectionStep_CanGoNext()" [onNext]="selectionStep_OnNext">
+    <form [formGroup]="unitSelectionForm">
+      <div class="form-row">
+        <label class="" for="unitSelect">Select existing unit</label>
+        <select class="custom-select" id="unitSelect" formControlName="unitSelect">
+          <option value="0">Select one...</option>
+          <option [value]="unit.id" *ngFor="let unit of units">{{unit.name + ', ' + unit.semester + ' ' + unit.year}}</option>
+        </select>
+      </div>
+    </form>
+    <p class="lead">Couldn't find what you were looking for? Try one of these:</p>
+    <div class="btn-group" role="group" aria-label="Create new">
+      <button type="button" class="btn btn-secondary" [routerLink]="['/units', 'new']">Create new unit</button>
+    </div>
+  </ced-form-wizard-step>
+  <ced-form-wizard-step [canGoNext]="detailsStep_CanGoNext()" [onNext]="detailsStep_OnNext">
+    <form [formGroup]="assignmentDetailsForm">
+      <div class="form-group">
+        <label for="assignmentName" class="form-control-label">Name</label>
+        <input id="assignmentName" class="form-control" formControlName="name">
+      </div>
+
+      <div class="form-row">
+        <label for="startDate" class="form-control-label">Start Date</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-calendar" (click)="sd.toggleCalendar();$event.stopPropagation()"></i></span>
+          <input class="form-control" ngx-mydatepicker #sd="ngx-mydatepicker" id="startDate" formControlName="startDate">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="startDate" class="form-control-label">End Date</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-calendar" (click)="ed.toggleCalendar();$event.stopPropagation()"></i></span>
+          <input class="form-control" ngx-mydatepicker #ed="ngx-mydatepicker" id="endDate" formControlName="endDate">
+        </div>
+      </div>
+
+      <!--<div class="form-row">-->
+        <!--<label for="startDate">Starting date</label>-->
+          <!--<div class="input-group">-->
+            <!--<input class="form-control" placeholder="yyyy-mm-dd" ngx-mydatepicker #d="ngx-mydatepicker"-->
+                  <!--id="startDate" formControlName="startDate">-->
+            <!--<div class="input-group-addon">-->
+              <!--<button type="button" class="btn btn-default" (click)="d.clearDate();$event.stopPropagation()">-->
+                <!--<i class="fa fa-crosshairs"></i>-->
+              <!--</button>-->
+              <!--<button type="button" class="btn btn-default" (click)="d.toggleCalendar();$event.stopPropagation()">-->
+                <!--<i class="fa fa-calendar"></i>-->
+              <!--</button>-->
+            <!--</div>-->
+          <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-row">-->
+        <!--<label for="endDate">Ending date</label>-->
+        <!--<div class="input-group">-->
+          <!--<input class="form-control" placeholder="yyyy-mm-dd" ngx-datepicker-->
+                 <!--id="endDate" formControlName="startDate">-->
+          <!--<div class="input-group-addon">-->
+            <!--<i class="fa fa-calendar" aria-hidden="true"></i>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    </form>
+
+
+    <!--<form>-->
+      <!--<div class="form-group">-->
+        <!--<div class="input-group">-->
+          <!--<input class="form-control" placeholder="yyyy-mm-dd"-->
+                 <!--name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">-->
+          <!--<div class="input-group-addon" (click)="d.toggle()" >-->
+            <!--<img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</form>-->
+  </ced-form-wizard-step>
+  <ced-form-wizard-step>
+    hello
+  </ced-form-wizard-step>
+</ced-form-wizard>

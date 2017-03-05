@@ -1,3 +1,5 @@
+<div toastContainer></div>
+
 <div id="wrapper" [class.toggled]="_open">
 
   <div id="sidebar-wrapper">
@@ -6,6 +8,8 @@
 
   <div id="page-content-wrapper">
     <ced-header (brandClick)="toggleSidenav($event)"></ced-header>
+
+
     <div class="container-fluid">
       <router-outlet></router-outlet>
     </div>

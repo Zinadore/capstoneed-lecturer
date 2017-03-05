@@ -6,23 +6,27 @@
   </li>
   <li class="divider">Menu</li>
   <li routerLinkActive="active">
-    <a [routerLink]="['home']"><i class="fa fa-home"></i> Dashboard</a>
+    <a [routerLink]="['/home']"><i class="fa fa-home"></i> Dashboard</a>
   </li>
   <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-    <a [routerLink]="['units']"><i class="fa fa-diamond"></i> Units</a>
+    <a [routerLink]="['/units']"><i class="fa fa-diamond"></i> Units</a>
   </li>
   <li routerLinkActive="active">
-    <a [routerLink]="['units', 'new']"><i class="fa fa-superpowers"></i> New Unit</a>
+    <a [routerLink]="['/units', 'new']"><i class="fa fa-superpowers"></i> New Unit</a>
   </li>
   <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-    <a [routerLink]="['projects']"> <i class="fa fa-bug"></i> Projects</a>
+    <a [routerLink]="['/projects']"> <i class="fa fa-bug"></i> Projects</a>
   </li>
   <li routerLinkActive="active">
-    <a [routerLink]="['projects', 'new']"> <i class="fa fa-bomb"></i> New Project</a>
+    <a [routerLink]="['/projects', 'new']"> <i class="fa fa-bomb"></i> New Project</a>
   </li>
-  <li>
-    <!--<a href="#"> <i class="fa fa-cloud"></i> Services</a>-->
-  <!--</li>-->
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    <a [routerLink]="['/assignments']"> <i class="fa fa-cloud"></i> Assignments</a>
+  </li>
+  <li routerLinkActive="active">
+    <a [routerLink]="['/assignments', 'new']"> <i class="fa fa-bomb"></i> New Project</a>
+  </li>
+
   <!--<li>-->
     <!--<a href="#"> <i class="fa fa-legal"></i> Contact</a>-->
   <!--</li>-->

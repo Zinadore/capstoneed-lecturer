@@ -4,7 +4,7 @@ import { Unit } from '../../../../shared/Store/Models/unit';
 @Component({
   selector: 'ced-unit-list-item',
   templateUrl: 'unitListItem.component.html',
-  styleUrls: ['unitListItem.component.scss'],
+  styleUrls: ['./unitListItem.component.scss'],
   host: {
     'class': 'row row-component'
   },

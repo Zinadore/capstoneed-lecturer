@@ -1,0 +1,12 @@
+body {
+
+}
+
+:host /deep/ ngx-my-date-picker {
+  position: absolute;
+  left: 0;
+
+  & .selector {
+    top: 80px;
+  }
+}

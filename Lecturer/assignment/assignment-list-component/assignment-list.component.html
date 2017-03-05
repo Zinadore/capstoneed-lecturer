@@ -1,0 +1,3 @@
+<ul *rxContext="let list on assignments">
+  <li *ngFor="let assignment of list"><a [routerLink]="['/assignments', assignment.id]">{{ assignment.name }}</a></li>
+</ul>
