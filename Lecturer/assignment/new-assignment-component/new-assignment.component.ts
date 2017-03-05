@@ -7,6 +7,8 @@ import { Store } from '@ngrx/store';
 import { Unit } from '../../../../shared/Store/Models/unit';
 import { UnitService } from '../../../../shared/Services/unit.service';
 import { Observable } from 'rxjs';
+import { Assignment } from '../../../../shared/Store/Models/assignment';
+import { AssignmentService } from '../../../../shared/Services/assignment.service';
 
 @Component({
   selector: 'ced-new-assignment',
@@ -18,10 +20,19 @@ export class NewAssignmentComponent extends ComponentBase implements OnInit {
   private unitSelectionForm: FormGroup;
   private assignmentDetailsForm: FormGroup;
 
+  private tempAssignment: Assignment;
+  private selectedUnit: Unit;
   private units: Unit[];
 
-  constructor(private fb: FormBuilder, store: Store<IAppState>, unitService: UnitService) {
+  constructor(private fb: FormBuilder, private assignmentservice: AssignmentService, store: Store<IAppState>, unitService: UnitService) {
     super();
+
+    this.tempAssignment = {
+      id: 0,
+      start_date: '',
+      end_date: '',
+      name: ''
+    };
 
     this.disposeOnDestroy(store.select((state: IAppState) => state.units)
       .do(_ => unitService.loadUnits())
@@ -38,13 +49,19 @@ export class NewAssignmentComponent extends ComponentBase implements OnInit {
 
     this.assignmentDetailsForm = this.fb.group({
       name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-      startDate: [Date.now(), Validators.compose([Validators.required])],
-      endDate: [Date.now(), Validators.compose([Validators.required])]
+      startDate: ['', Validators.compose([Validators.required])],
+      endDate: ['', Validators.compose([Validators.required])]
     });
 
   }
 
   private selectionStep_Setup(): void {
+    let unitSelect = this.unitSelectionForm.get('unitSelect');
+    this.disposeOnDestroy(unitSelect.valueChanges.subscribe(value => {
+      if(unitSelect.valid) {
+        this.selectedUnit = this.units.find(u => u.id == value);
+      }
+    }))
 
   }
 
@@ -53,7 +70,14 @@ export class NewAssignmentComponent extends ComponentBase implements OnInit {
   }
 
   public selectionStep_OnNext = (): void => {
-    console.log(this.unitSelectionForm.value);
+    this.tempAssignment.unit_id = this.unitSelectionForm.get('unitSelect').value;
+
+    if(this.selectedUnit && this.selectedUnit.id == this.tempAssignment.unit_id) {
+      this.tempAssignment.unit = this.selectedUnit;
+    } else {
+      console.log('Something went terribly wrong with the unit selection');
+    }
+
   };
 
   private detailsStep_Setup(): void {
@@ -65,7 +89,17 @@ export class NewAssignmentComponent extends ComponentBase implements OnInit {
   }
 
   public detailsStep_OnNext = (): void => {
-    console.log(this.assignmentDetailsForm.value);
+    this.tempAssignment.name = this.assignmentDetailsForm.get('name').value;
+    this.tempAssignment.start_date = this.assignmentDetailsForm.get('startDate').value.formatted;
+    this.tempAssignment.end_date = this.assignmentDetailsForm.get('endDate').value.formatted;
+  };
+
+  public overviewStep_CanGoNext(): Observable<boolean> {
+    return Observable.of(true);
+  }
+
+  public overviewStep_OnNext = (): void => {
+    this.assignmentservice.createAssignment(this.tempAssignment);
   };
 
 }

@@ -16,6 +16,7 @@ import { LecturerModule } from '../Lecturer/lecturer.module';
 import { SharedDirectivesModule } from '../../shared/Directives/sharedDirectivesModule';
 import { GuardsModule } from '../../shared/Guards/guards.module';
 import { ProjectCreatedToast } from '../../shared/Directives/toasts/project-created.toast';
+import { AssignmentCreatedToast } from '../../shared/Directives/toasts/assignment-created.toast';
 
 const ToastrGlobalConf: ToastrConfig = {
   maxOpened: 0, // max toasts opened. Toasts will be queued
@@ -62,7 +63,10 @@ const ToastrGlobalConf: ToastrConfig = {
     AppComponent,
     HeaderComponent
   ],
-  entryComponents: [ProjectCreatedToast],
+  entryComponents: [
+    ProjectCreatedToast,
+    AssignmentCreatedToast
+  ],
   providers: [
   ],
   bootstrap: [AppComponent]
