@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import '../../style/app.scss';
 import { AuthenticationService } from '../../shared/Services/authentication.service';
 import { ToastrService, ToastContainerDirective } from 'ngx-toastr';
+import { UserType } from '../../shared/Store/Models/user';
 
 @Component({
   selector: 'ced-app',
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.authService.userType = UserType.LECTURER;
     this.authService.getMe();
     this.toastrService.overlayContainer = this.toastContainer;
   }

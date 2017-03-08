@@ -40,6 +40,7 @@ export class NewProjectComponent extends ComponentBase implements OnInit {
 
     this.disposeOnDestroy(this.unitIdObservable.switchMap(id => this.store.select((state: IAppState) => state.assignments)
         .map((assignments: Assignment[]) => assignments.filter((a: Assignment) => a.unit_id == id))
+        .do(console.log)
       )
       .subscribe((assignments: Assignment[]) => {
         this.assignments = assignments;

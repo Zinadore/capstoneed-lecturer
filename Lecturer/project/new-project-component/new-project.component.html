@@ -1,5 +1,5 @@
 <ced-form-wizard [onFinish]="wizard_onFinish">
-  <ced-form-wizard-step [canGoNext]="selectionStep_canGoNext()" [onNext]="selectionStep_onNext" [title]="Selection">
+  <ced-form-wizard-step [canGoNext]="selectionStep_canGoNext()" [onNext]="selectionStep_onNext" [title]="'Selection'">
     <form [formGroup]="unitSelectionForm">
       <div class="form-row">
         <label class="" for="unitSelect">Select existing unit</label>
@@ -24,8 +24,15 @@
     </div>
   </ced-form-wizard-step>
 
-  <ced-form-wizard-step [canGoNext]="detailsStep_canGoNext()" [onNext]="detailsStep_onNext" [title]="New Project Details">
-    <h1>Create Project</h1>
+  <ced-form-wizard-step [canGoNext]="detailsStep_canGoNext()" [onNext]="detailsStep_onNext" [title]="'New Project Details'">
+    <div class="well">
+      <dl class="row">
+        <dt class="col-sm-3">For unit</dt>
+        <dd class="col-sm-9">{{ selectedUnit?.name + ', ' + selectedUnit?.semester + ' ' + selectedUnit?.year }}</dd>
+        <dt class="col-sm-3">For assignment</dt>
+        <dd class="col-sm-9">{{ selectedAssignment?.name }}</dd>
+      </dl>
+    </div>
     <form [formGroup]="projectDetailsForm">
       <div class="form-group">
         <label for="projectName">Project Name</label>
@@ -58,8 +65,7 @@
     </form>
   </ced-form-wizard-step>
 
-  <ced-form-wizard-step [canGoNext]="overviewStep_canGoNext()" [title]="Confirmation">
-    <h1>Overview</h1>
+  <ced-form-wizard-step [canGoNext]="overviewStep_canGoNext()" [title]="'Confirmation'">
     <p>Please confirm that everything below looks alright, and if it is, hit finish.</p>
     <p>NOTE: Pressing finish will attempt to create the project.</p>
 

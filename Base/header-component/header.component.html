@@ -6,7 +6,7 @@
 
     <span><a [routerLink]="['/home']">CapstoneED</a></span>
 
-    <div ngbDropdown>
+    <div ngbDropdown *ngIf="user">
       <a aria-haspopup="true" aria-expanded="false" id="header-user-dropdown" ngbDropdownToggle>
         <img src="img/avatar.png" alt="Person Nameoglou">
       </a>
