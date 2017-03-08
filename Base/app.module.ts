@@ -54,7 +54,6 @@ const ToastrGlobalConf: ToastrConfig = {
     ToastContainerModule.forRoot(),
     CedStoreModule.provideStore(),
     ServicesModule.forRoot(),
-    SidebarModule,
     SharedDirectivesModule,
     LecturerModule,
     GuardsModule
@@ -62,10 +61,6 @@ const ToastrGlobalConf: ToastrConfig = {
   declarations: [
     AppComponent,
     HeaderComponent
-  ],
-  entryComponents: [
-    ProjectCreatedToast,
-    AssignmentCreatedToast
   ],
   providers: [
   ],
