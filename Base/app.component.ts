@@ -10,7 +10,7 @@ import { UserType } from '../../shared/Store/Models/user';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit{
-  private _open: boolean = false;
+  private _open: boolean = true;
 
   private toggleSidenav(event) {
     this._open = event;
