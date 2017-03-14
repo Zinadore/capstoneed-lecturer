@@ -1,21 +1,23 @@
+<!--Breadcrumbs-->
 <div class="row">
   <div class="col-12">
     <div class="breadcrumb-custom">
       <div class="breadcrumb-step">
-        <a href="">Units</a>
+        <a [routerLink]="['/units']">Units</a>
       </div>
       <div class="breadcrumb-divider"> <i class="fa fa-long-arrow-right" aria-hidden="true"></i> </div>
       <div class="breadcrumb-step">
-        <a href="">Industrial Software Project</a>
+        <a [routerLink]="['/units', unit.id]" *ngIf="unit">Industrial Software Project</a>
       </div>
     </div>
   </div>
 </div>
 
-<div class="row row-component">
+<!--Page Title-->
+<div class="page-title-row">
   <div class="col-12 ">
-    <h3 id="page-title" class="float-left">{{project?.project_name}}</h3>
-    <div class="float-right" id="project-settings" ngbDropdown>
+    <h3 class="page-title">{{ project?.project_name }}</h3>
+    <div class="project-settings" ngbDropdown>
       <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
         <i class="fa fa-cog" aria-hidden="true"></i>
       </a>
@@ -29,39 +31,62 @@
   </div>
 </div>
 
-
+<!--Description-->
 <div class="row row-component">
-  <div class="col-sm-12 col-md-8" id="project-description-column">
-    <p id="project-description">
-      {{project?.description}}
-    </p>
-
-    <div class="col-sm-12 col-md-8">
-      Enrollment Key: {{project?.enrollment_key}}
+    <div class="project-description-column">
+      <h5>Description</h5>
+      <p class="project-description">
+        {{ project?.description }}
+      </p>
     </div>
-  </div>
 
-  <div class="col-sm-12 col-md-4 col-lg-3 offset-lg-1" id="project-info-column">
-    <!-- <img src="images/feed.png" style="width: 100%"> -->
-    <div class="row row-component">
-      <div class="col-6 description">
-        <i class="fa fa-hourglass-start" aria-hidden="true"></i> Start Date:
-      </div>
-      <div class="col-6 value">
-        {{assignment?.start_date}}
-      </div>
-      <div class="col-6 description">
-        <i class="fa fa-hourglass-end" aria-hidden="true"></i> End Date:
-      </div>
-      <div class="col-6 value">
-        {{assignment?.end_date}}
-      </div>
-      <div class="col-6 description">
-        <i class="fa fa-calendar" aria-hidden="true"></i> Semester:
-      </div>
-      <div class="col-6 value">
-        {{unit?.semester}}
-      </div>
-    </div>
-  </div> <!--project-info-column-->
+    <div class="project-info-column">
+      <div class="dates">
+        <div class="start-date">
+          <i class="fa fa-hourglass-start" aria-hidden="true"></i> {{ assignment?.start_date }}
+        </div>
+        <div class="end-date">
+          <i class="fa fa-hourglass-end" aria-hidden="true"></i> {{ assignment?.end_date }}
+        </div>
+        <div class="semester-year">
+          <i class="fa fa-calendar" aria-hidden="true"></i> {{ unit?.semester + " " + unit?.year }}
+        </div>
+      </div> <!--row-component-->
+    </div> <!--project-info-column-->
 </div>
+
+<!-- Students and Stats -->
+<div class="row row-multi-component">
+    <div class="stats-container column-component">
+      <div class="row">
+        <div class="widget" *ngFor="let number of [0, 1, 2, 3]">
+          <div class="container-fluid">
+            <div class="d-flex align-items-sm-center flex-wrap align-content-left flex-row">
+              <i class="fa fa-heart tile-icon" id="icon-health"></i>
+              <div class="d-flex m-auto flex-column align-items-end ">
+                <span class="description"> Project Health</span>
+                <span class="value"> 
+                  <i class="fa fa-chevron-right" id="icon-health-indicator"></i> 80%
+                </span>
+              </div>
+            </div>
+          </div> <!-- container-fluid -->
+        </div> <!--widget widget-tile-->
+      </div>
+    </div><!-- col with all the tiles-->
+
+    <div class="students-container column-component"  *ngIf="project">
+      <div class="row">
+          <div class="col-12">
+              <h5>Students</h5>
+          </div>
+          <div class="student" *ngFor="let student of project.students">
+              <img class="student-avatar" [src]="student.avatar_url">
+              <span class="remove-student-button animated swing infinite">
+                  <i class="fa fa-times" aria-hidden="true"></i>
+              </span>
+              <p class="student-name">{{ student.first_name + " " + student.last_name }}</p>
+          </div>
+      </div> <!--row-->
+    </div> <!-- students-->
+</div> <!-- row -->

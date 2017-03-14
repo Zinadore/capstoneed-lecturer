@@ -26,7 +26,9 @@ export class HeaderComponent extends ComponentBase implements OnInit, OnDestroy 
   }
 
   ngOnInit() {
-
+    if (window.innerWidth > 1200) {
+      this.onBrandClick();
+    }
   }
 
   private onBrandClick():void {

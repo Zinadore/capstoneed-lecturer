@@ -1,14 +1,24 @@
 @import "../../../style/global-variables";
+
 :host {
-  padding-bottom: $navbar-height;
+  padding-bottom: $navbar-height-lecturer;
 }
+
 :host.toggled {
   .nav-container span > a {
     display: none;
   }
 }
+
 .nav-container {
   display: flex;
+  align-items: center;
+  height: 100%;
+
+  i {
+    font-size: 1.5rem;
+    color: $burger-button-color;
+  }
 }
 
 .nav-container span {
@@ -27,22 +37,45 @@
 .navbar {
   border-bottom: 1px solid #e6e6e6;
   transition: all 0.5s ease;
-  height: $navbar-height;
+  height: $navbar-height-lecturer;
   left: 0;
   background-color: white;
   margin-bottom: 25px;
 
   #header-user-dropdown {
+    padding: 0;
+
     img {
       max-width: 32px;
       max-height: 32px;
       border-radius: 50%;
     }
 
+    & a:first-child {
+      padding: 0;
+    }    
+
     &::after{
       display: none!important;
     }
   }
 }
+
+.navbar-user-info .user-menu {
+  padding-top: 0;
+  font-size: 0.9rem;    
+
+  a:first-child {
+    padding: 0;
+  }
+
+  .name {
+    background-color: $user-info-dropdown-color;
+    color: white;
+    margin-bottom: 7px;
+    padding: 19px 15px 15px; 
+  }
+}
+
 
 

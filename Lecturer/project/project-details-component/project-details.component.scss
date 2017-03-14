@@ -1,41 +1,116 @@
 @import "../../../../style/global-variables";
-//@import '~bootstrap/scss/bootstrap.scss';
+@import "../../../../style/lecturer-common";
 
+// General
 .row-component {
   background-color: white;
   margin-left: 0;
   margin-right: 0;
   border-radius: 3px;
-  padding: 20px;
+  padding: 20px 5px;
   margin-bottom: 25px;
 }
 
-#project-description {
-  font-size: $font-size-project-description;
+.row-multi-component {
+  margin-right: 0;
+  margin-left: 0;
+
+  .row {
+    // margin-right: 0;
+    // margin-left: 0;
+  }
+  // & div:first-child {
+  // }
+
+  // & div:last-child {
+  // }
 }
 
-#project-info-column {
-  border-left: 2px solid #dcdbdb;
-  padding-left: 10px;
-  font-size: $font-size-project-info-column;
-  line-height: 25px;
+.white {
+  background-color: white;
+}
 
-  & > .row-component > .description {
-    font-weight: 600;
-    color: $project-info-column-font-color;
-    padding-left: 0;
-    padding-right: 0;
+.column-component {
+  padding: 20px;
+
+  .row {
+    // margin-right: 0;
+    // margin-left: 0;    
+  }
+  //background-color: white;
+  // margin-left: 20px;
+  // margin-right: 20px;
+  // background-color: white;
+  // margin-left: 0;
+  // margin-right: 0;
+  // border-radius: 3px;
+  // padding: 20px 5px;
+  // margin-bottom: 25px;  
+}
+
+.students-container {
+  @extend .col-12;
+  @extend .col-lg-6;
+  
+  background-color: white;
+
+  &.remove-on span.remove-student-button {
+		display: block;
+	}
+
+  .student {
+    @extend .col-4;
+    @extend .col-xl-3;
+    
+    .student-name {
+      text-align: center;
+    }
   }
 
-  & > .row-component > .value {
-    color: $project-info-column-font-color;
-    padding-left: 0;
-    padding-right: 0;
-  }
+  .student-avatar {
+    @extend .mx-auto;
+    @extend .d-block;
+    @extend .img-fluid;
+
+    width: 100%;
+    height: 100%;
+    max-width: 80px;
+    max-height: 80px;
+    margin-right: 10px;
+    border-radius: 50%;
+
+    &:hover {
+      transition: .1s ease;
+      border: 5px solid rgb(96, 152, 244);
+    }
+  }  
+}
+
+span.remove-student-button {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	i {
+	    color: red;
+	    line-height: 0;
+	    font-size: 1.7rem;
+	}
+}
+
+#edit-overlay {
+	height: 100%;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.73);;
+	z-index: 1000;
+	position: absolute;
+	top: $size-navbar-height;
+	left: 0;
+	display: none;
 }
 
 // Breadcrumb
-
 .breadcrumb-custom {
   color: white;
   margin: 0;
@@ -44,9 +119,8 @@
   height: 40px;
   padding: 11px;
   border-radius: 3px;
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
 
-  margin-left: 15px;
-  margin-right: 15px;
   margin-bottom: 17px;
 
   a {
@@ -75,4 +149,147 @@
     padding-right: 5px;
   }
 }
+
+// Page Title Row
+.page-title-row {
+  @extend .row;
+  @extend .row-component;
+
+  line-height: 30px;
+}
+
+.page-title {
+  @extend .page-title;
+}
+
+.project-settings {
+  @extend .float-right;
+
+  font-size: 1.5rem;
+  color: #8a8a8a;
+  transition: color .5s ease;  
+
+  .dropdown-toggle:after {
+    display: none;
+  }
+}
+
+.project-description {
+  font-size: $font-size-project-description;
+}
+
+.project-description-column {
+  @extend .col-12;
+  @extend .col-sm-7;
+  @extend .col-md-8;
+}
+
+.project-info-column {
+  @extend .col-12;
+  @extend .col-md-3;
+  @extend .col-sm-5;
+  @extend .offset-md-1;
+
+  text-align: right;
+  padding-left: 10px;
+  font-size: $font-size-project-info-column;
+  line-height: 25px;
+
+  .dates {
+    color: $project-info-column-font-color;
+
+    text-align: center;
+    // padding-left: 0;
+    // padding-right: 0;
+    .start-date, .end-date, .semester-year {
+      @extend .col-12;
+    }
+  }
+}
+
+
+.widget {
+  @extend .col-12;  
+  @extend .col-md-6;
+
+	//background-color: white;
+	//padding: 20px;
+	margin-bottom: 25px;
+	border-radius: 3px;
+
+	& > .row {
+		margin-right: 0;
+		margin-left: 0;
+	}
+
+  i.tile-icon {
+    font-size: 3.5em;
+  }
+}
+
+.widget.widget-tile .data {
+
+	& > .row > .tile-attribute {
+	    overflow: hidden;
+	    font-size: 0.88em;
+	}
+
+	& > .row > .tile-value {
+		font-size: 1.38em;
+	}
+}
+
+.stats-container {
+  @extend .col-12;
+  @extend .col-lg-6;
+
+	padding: 0;
+}
+
+##{icon-health} {
+
+	& {
+		color: $red;
+	}
+
+	&-indicator {
+		color: $red;
+	}
+}
+
+##{icon-morale} {
+
+	& {
+		color: $green;
+	}
+
+	&-indicator {
+		color: $green;
+	}
+}
+
+##{icon-completion} {
+
+	& {
+		color: $yellow;
+	}
+
+	&-indicator {
+		color: $yellow;
+	}
+}
+
+##{icon-peer-assessement} {
+
+	& {
+		color: $blue;
+	}
+
+	&-indicator {
+		color: $blue;
+	}
+}
+
+
+
 

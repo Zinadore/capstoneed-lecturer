@@ -6,7 +6,6 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule, ToastrConfig, ToastContainerModule } from 'ngx-toastr';
-import { SidebarModule } from 'ng-sidebar';
 import { AppComponent } from './app.component';
 import { ROUTES } from './routes';
 import { CedStoreModule } from '../../shared/Store/cedStore.module';
@@ -17,6 +16,7 @@ import { SharedDirectivesModule } from '../../shared/Directives/sharedDirectives
 import { GuardsModule } from '../../shared/Guards/guards.module';
 import { ProjectCreatedToast } from '../../shared/Directives/toasts/project-created.toast';
 import { AssignmentCreatedToast } from '../../shared/Directives/toasts/assignment-created.toast';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const ToastrGlobalConf: ToastrConfig = {
   maxOpened: 0, // max toasts opened. Toasts will be queued
@@ -56,7 +56,8 @@ const ToastrGlobalConf: ToastrConfig = {
     ServicesModule.forRoot(),
     SharedDirectivesModule,
     LecturerModule,
-    GuardsModule
+    GuardsModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     AppComponent,
