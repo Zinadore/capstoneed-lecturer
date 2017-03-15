@@ -56,27 +56,25 @@
 </div>
 
 <!-- Students and Stats -->
-<div class="row row-multi-component">
+<div class="row">
     <div class="stats-container column-component">
-      <div class="row">
+      <div class="row no-gutters">
         <div class="widget" *ngFor="let number of [0, 1, 2, 3]">
-          <div class="container-fluid">
-            <div class="d-flex align-items-sm-center flex-wrap align-content-left flex-row">
+            <div class="widget-inner d-flex align-items-sm-center flex-wrap flex-row">
               <i class="fa fa-heart tile-icon" id="icon-health"></i>
-              <div class="d-flex m-auto flex-column align-items-end ">
-                <span class="description"> Project Health</span>
+              <div class="d-flex flex-column ml-auto">
+                <span class="description flex-wrap"> Project Health</span>
                 <span class="value"> 
                   <i class="fa fa-chevron-right" id="icon-health-indicator"></i> 80%
                 </span>
               </div>
             </div>
-          </div> <!-- container-fluid -->
-        </div> <!--widget widget-tile-->
+        </div> 
       </div>
-    </div><!-- col with all the tiles-->
+    </div>  
 
     <div class="students-container column-component"  *ngIf="project">
-      <div class="row">
+      <div class="row no-gutters">
           <div class="col-12">
               <h5>Students</h5>
           </div>
@@ -90,3 +88,4 @@
       </div> <!--row-->
     </div> <!-- students-->
 </div> <!-- row -->
+

@@ -16,8 +16,6 @@
   margin-left: 0;
 
   .row {
-    // margin-right: 0;
-    // margin-left: 0;
   }
   // & div:first-child {
   // }
@@ -31,28 +29,19 @@
 }
 
 .column-component {
-  padding: 20px;
-
-  .row {
-    // margin-right: 0;
-    // margin-left: 0;    
+  .row {  
+  
   }
-  //background-color: white;
-  // margin-left: 20px;
-  // margin-right: 20px;
-  // background-color: white;
-  // margin-left: 0;
-  // margin-right: 0;
-  // border-radius: 3px;
-  // padding: 20px 5px;
-  // margin-bottom: 25px;  
 }
 
 .students-container {
   @extend .col-12;
   @extend .col-lg-6;
   
-  background-color: white;
+  .row.no-gutters {
+    background-color: white;
+    padding: 20px; 
+  }
 
   &.remove-on span.remove-student-button {
 		display: block;
@@ -210,12 +199,21 @@ span.remove-student-button {
 
 .widget {
   @extend .col-12;  
-  @extend .col-md-6;
+  @extend .col-sm-6;
 
 	//background-color: white;
 	//padding: 20px;
 	margin-bottom: 25px;
 	border-radius: 3px;
+
+  .widget-inner {
+    padding: 20px;
+    background-color: white;
+  }
+
+  .container-fluid {
+    background-color: white;
+  }
 
 	& > .row {
 		margin-right: 0;
@@ -289,7 +287,3 @@ span.remove-student-button {
 		color: $blue;
 	}
 }
-
-
-
-
