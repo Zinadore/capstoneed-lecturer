@@ -14,89 +14,21 @@
 .row-multi-component {
   margin-right: 0;
   margin-left: 0;
-
-  .row {
-  }
-  // & div:first-child {
-  // }
-
-  // & div:last-child {
-  // }
 }
 
 .white {
   background-color: white;
 }
 
-.column-component {
-  .row {  
-  
-  }
-}
-
-.students-container {
-  @extend .col-12;
-  @extend .col-lg-6;
-  
-  .row.no-gutters {
-    background-color: white;
-    padding: 20px; 
-  }
-
-  &.remove-on span.remove-student-button {
-		display: block;
-	}
-
-  .student {
-    @extend .col-4;
-    @extend .col-xl-3;
-    
-    .student-name {
-      text-align: center;
-    }
-  }
-
-  .student-avatar {
-    @extend .mx-auto;
-    @extend .d-block;
-    @extend .img-fluid;
-
-    width: 100%;
-    height: 100%;
-    max-width: 80px;
-    max-height: 80px;
-    margin-right: 10px;
-    border-radius: 50%;
-
-    &:hover {
-      transition: .1s ease;
-      border: 5px solid rgb(96, 152, 244);
-    }
-  }  
-}
-
-span.remove-student-button {
-	display: none;
-	position: absolute;
-	top: 0;
-	right: 0;
-
-	i {
-	    color: red;
-	    line-height: 0;
-	    font-size: 1.7rem;
-	}
-}
-
+// Edit Overlay
 #edit-overlay {
-	height: 100%;
+	height: 100vh;
 	width: 100%;
 	background-color: rgba(255, 255, 255, 0.73);;
 	z-index: 1000;
 	position: absolute;
-	top: $size-navbar-height;
+	top: -26px;
 	left: 0;
-	display: none;
 }
 
 // Breadcrumb
@@ -158,6 +90,10 @@ span.remove-student-button {
   color: #8a8a8a;
   transition: color .5s ease;  
 
+  &.show {
+    color: $blue;
+  }
+
   .dropdown-toggle:after {
     display: none;
   }
@@ -196,13 +132,10 @@ span.remove-student-button {
   }
 }
 
-
 .widget {
   @extend .col-12;  
   @extend .col-sm-6;
 
-	//background-color: white;
-	//padding: 20px;
 	margin-bottom: 25px;
 	border-radius: 3px;
 
@@ -286,4 +219,61 @@ span.remove-student-button {
 	&-indicator {
 		color: $blue;
 	}
+}
+
+.students-container {
+  @extend .col-12;
+  @extend .col-lg-6;
+  
+  .row.no-gutters {
+    background-color: white;
+    padding: 20px; 
+  }
+
+  &.remove-on span.remove-student-button {
+		display: block;
+	}
+
+  .student {
+    @extend .col-4;
+    @extend .col-xl-3;
+
+    z-index: 1001;
+    
+    .student-name {
+      text-align: center;
+    } 
+  }
+
+  span.remove-student-button {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 5%;
+    z-index: 10000;
+
+    i {
+        color: red;
+        line-height: 0;
+        font-size: 1.7rem;
+    }
+  }     
+
+  .student-avatar {
+    @extend .mx-auto;
+    @extend .d-block;
+    @extend .img-fluid;
+
+    width: 100%;
+    height: 100%;
+    max-width: 80px;
+    max-height: 80px;
+    margin-right: 10px;
+    border-radius: 50%;
+
+    &:hover {
+      transition: .1s ease;
+      border: 5px solid rgb(96, 152, 244);
+    }
+  }  
 }

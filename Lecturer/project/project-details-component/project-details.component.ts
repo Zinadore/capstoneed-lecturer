@@ -22,11 +22,18 @@ export class ProjectDetailsComponent extends ComponentBase implements OnInit {
   private project: Project;
   private unit: Unit;
   private assignment: Assignment;
+  private removeStudentMode: Boolean;
   // private projectObservable: Observable<Project>;
   private project_id: number;
 
-  constructor(private store: Store<IAppState>, private route: ActivatedRoute, private projectService: ProjectService, private unitService: UnitService, private assignmentService: AssignmentService) {
+  constructor(private store: Store<IAppState>, 
+              private route: ActivatedRoute, 
+              private projectService: ProjectService, 
+              private unitService: UnitService, 
+              private assignmentService: AssignmentService) {
+
     super();
+    let removeStudentMode = false;
     // Observable that emits the project id from route params
     let idObservable = this.route.params
       .filter(params => params['id'])
@@ -77,6 +84,15 @@ export class ProjectDetailsComponent extends ComponentBase implements OnInit {
     this.disposeOnDestroy(unitObservable.filter((u: Unit) => isUndefined(u) || u == null).subscribe((_) => this.unitService.getUnit(this.project.unit_id)));
     this.disposeOnDestroy(assignmentObservable.filter((a: Assignment) => isUndefined(a) || a == null).subscribe((_) => this.assignmentService.getAssignment(this.project.assignment_id)));
 
+  }
+
+  public toggleRemoveStudentMode() {
+    this.removeStudentMode = !this.removeStudentMode;
+  }
+
+  public removeStudent(student_id: number) {
+    if (this.removeStudentMode)
+      this.projectService.removeStudentFromProject(this.project.id, student_id)
   }
 
   // constructor(private store: Store<IAppState>, private route: ActivatedRoute, private projectService: ProjectService, private unitService: UnitService, private assignmentService: AssignmentService) {
