@@ -8,9 +8,9 @@
       <div class="breadcrumb-step">
         <a [routerLink]="['/units']">Units</a>
       </div>
-      <div class="breadcrumb-divider"> <i class="fa fa-long-arrow-right" aria-hidden="true"></i> </div>
+      <div class="breadcrumb-divider"> / </div>
       <div class="breadcrumb-step">
-        <a [routerLink]="['/units', unit.id]" *ngIf="unit">Industrial Software Project</a>
+        <a [routerLink]="['/units', unit.id]" *ngIf="unit">{{ unit.name }}</a>
       </div>
     </div>
   </div>

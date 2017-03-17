@@ -1,3 +1,4 @@
+import { Unit } from '../../../../shared/Store/Models';
 import { isUndefined } from 'util';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -8,7 +9,7 @@ import { Subject, Observable } from 'rxjs';
 import { Assignment } from '../../../../shared/Store/Models/assignment';
 import { Project } from '../../../../shared/Store/Models/project';
 import { ProjectService } from '../../../../shared/Services/project.service';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -20,9 +21,10 @@ export class EditProjectComponent extends ComponentBase implements OnInit {
 
   private editGroupForm: FormGroup;
   private project: Project;
+  private unit: Unit;
   private project_id: number;
 
-  constructor(private fb: FormBuilder, 
+  constructor(private formBuilder: FormBuilder, 
               private store: Store<IAppState>,
               private route: ActivatedRoute,              
               private projectService: ProjectService) {
@@ -53,15 +55,23 @@ export class EditProjectComponent extends ComponentBase implements OnInit {
     // Sanity check mainly, if the project emitted by the observable is undefined, 
     // then the the project from the server and put it in store
     this.disposeOnDestroy(projectObservable.filter((p: Project) => isUndefined(p) || p == null).subscribe((_) => this.projectService.getProject(this.project_id)));            
+    
+    let unitObservable = projectObservable
+      .filter((p: Project) => !isUndefined(p))
+      .switchMap((p: Project) => this.store.select((state: IAppState) => state.units)
+        .map((units: Unit[]) => units.find((u: Unit) => u.id == p.unit_id))
+      );
+
+    this.disposeOnDestroy(unitObservable.filter((u: Unit) => !isUndefined(u)).subscribe(u => this.unit = u));
   }
 
   ngOnInit() {
-    this.editGroupForm = new FormGroup({
-        project_name: new FormControl(''),
-        team_name: new FormControl(''),
-        description: new FormControl(''),
-        enrollment_key: new FormControl(''),
-        logo: new FormControl('')                     
+    this.editGroupForm = this.formBuilder.group({
+        project_name: [''],
+        team_name: [''],
+        description: [''],
+        enrollment_key: [''],
+        logo: ['']                 
     });
     
     // this.unitSelectionForm = this.fb.group({
