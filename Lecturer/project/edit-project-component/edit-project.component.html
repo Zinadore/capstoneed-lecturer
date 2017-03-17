@@ -1,0 +1,12 @@
+<div *ngIf="!project">
+    NO project
+</div>
+
+<form novalidate (ngSubmit)="submit(editGroupForm)" [formGroup]="editGroupForm">
+    <input type="text" placeholder="Project Name" formControlName="project_name">
+    <input type="text" placeholder="Team Name" formControlName="team_name">
+    <input type="text" placeholder="Description" formControlName="description">
+    <input type="text" placeholder="enrollment_key" formControlName="enrollment_key">
+    <input type="text" placeholder="logo" formControlName="logo">      
+    <button type="submit">Submit</button>          
+</form>

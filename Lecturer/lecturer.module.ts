@@ -16,6 +16,7 @@ import { NewUnitComponent } from './unit/new-unit-component/newUnit.component';
 import { NewProjectComponent } from './project/new-project-component/new-project.component';
 import { ProjectDetailsComponent } from './project/project-details-component/project-details.component';
 import { ProjectListComponent } from './project/project-list-component/project-list.component';
+import { EditProjectComponent } from './project/edit-project-component/edit-project.component';
 import { AssignmentListComponent } from './assignment/assignment-list-component/assignment-list.component';
 import { AssignmentDetailsComponent } from './assignment/assignment-details-component/assignment-details.component';
 import { NewAssignmentComponent } from './assignment/new-assignment-component/new-assignment.component';
@@ -42,6 +43,7 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     NewProjectComponent,
     ProjectDetailsComponent,
     ProjectListComponent,
+    EditProjectComponent,
     AssignmentListComponent,
     AssignmentDetailsComponent,
     NewAssignmentComponent

@@ -1,3 +1,4 @@
+import { EditProjectComponent } from '../Lecturer/project/edit-project-component/edit-project.component';
 import { Routes } from '@angular/router';
 import { HomeComponent } from '../Lecturer/home-component/home.component';
 import { IsAuthenticatedGuard } from '../../shared/Guards/isAuthenticatedGuard';
@@ -26,6 +27,7 @@ export const ROUTES: Routes = [
       { path: '', pathMatch: 'full', component: ProjectListComponent },
       { path: 'new', component: NewProjectComponent },
       { path: ':id', component: ProjectDetailsComponent },
+      { path: ':id/edit', component: EditProjectComponent }
       ]
     },
     { path: 'assignments', children: [
