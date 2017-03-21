@@ -44,7 +44,7 @@
 
   <div class="tabs col-12">
 <ngb-tabset>
-  <ngb-tab title="Simple">
+  <ngb-tab title="Project Info">
     <template ngbTabContent>
       <form novalidate (ngSubmit)="submit(editGroupForm)" [formGroup]="editGroupForm">
 
@@ -101,26 +101,20 @@
       </form>
     </template>
   </ngb-tab>
-  <ngb-tab>
+  <ngb-tab *ngIf="iterations">
     <template ngbTabTitle>Iterations</template>
-    <template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
-      <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
-      craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
-      cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
-      yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean
-      shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
-      sint qui sapiente accusamus tattooed echo park.</p>
+    <template ngbTabContent>
+      <ul *ngFor="let iteration of iterations">
+        <li>{{ iteration.name }}</li>
+      </ul>
     </template>
   </ngb-tab> 
-  <ngb-tab>
+  <ngb-tab *ngIf="project">
     <template ngbTabTitle>Students</template>
-    <template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
-      <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
-      craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
-      cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
-      yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean
-      shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
-      sint qui sapiente accusamus tattooed echo park.</p>
+    <template ngbTabContent>
+      <ul *ngFor="let student of project.students">
+        <li>{{ student.first_name + " " + student.last_name }}</li>
+      </ul>
     </template>
   </ngb-tab>   
 </ngb-tabset>

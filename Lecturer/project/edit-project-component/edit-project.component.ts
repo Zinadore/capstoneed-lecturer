@@ -1,3 +1,4 @@
+import { Iteration } from '../../../../shared/Store/Models/iteration';
 import { Unit } from '../../../../shared/Store/Models';
 import { isUndefined } from 'util';
 import { Component, OnInit } from '@angular/core';
@@ -22,6 +23,8 @@ export class EditProjectComponent extends ComponentBase implements OnInit {
   private editGroupForm: FormGroup;
   private project: Project;
   private unit: Unit;
+  private iterations: Iteration[];
+  private assignment: Assignment;
   private project_id: number;
 
   constructor(private formBuilder: FormBuilder, 
@@ -50,7 +53,11 @@ export class EditProjectComponent extends ComponentBase implements OnInit {
 
     // If the Project observable emits a project that is not undefined, 
     // cacke it to the local project object to use in the component
-    this.disposeOnDestroy(projectObservable.filter((p: Project) => !isUndefined(p)).subscribe(p => this.project = p));
+    this.disposeOnDestroy(projectObservable.filter((p: Project) => 
+      !isUndefined(p)).subscribe(p => 
+        this.project = p
+      )
+    );
     
     // Sanity check mainly, if the project emitted by the observable is undefined, 
     // then the the project from the server and put it in store
@@ -63,6 +70,19 @@ export class EditProjectComponent extends ComponentBase implements OnInit {
       );
 
     this.disposeOnDestroy(unitObservable.filter((u: Unit) => !isUndefined(u)).subscribe(u => this.unit = u));
+    
+    let assignmentObservable = projectObservable
+      .filter((p: Project) => !isUndefined(p))
+      .switchMap((p: Project) => this.store.select((state: IAppState) => state.assignments)
+        .map((assignments: Assignment[]) => assignments.find((a: Assignment) => a.id == this.project.assignment_id))
+      );
+
+    this.disposeOnDestroy(assignmentObservable.filter((a: Assignment) => 
+      !isUndefined(a)).subscribe(a => {
+        this.assignment = a
+        this.iterations = a.iterations
+      })
+    )
   }
 
   ngOnInit() {
