@@ -6,7 +6,8 @@ import { Unit } from '../../../../shared/Store/Models/unit';
 
 @Component({
   selector: 'ced-unit-list',
-  templateUrl: 'unitList.component.html'
+  templateUrl: 'unit-list.component.html',
+  styleUrls: ['unit-list.component.scss']  
 })
 export class UnitListComponent extends ComponentBase{
 

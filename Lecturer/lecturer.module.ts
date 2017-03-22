@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SidenavComponent } from './sidenav-component/sidenav.component';
-import { UnitListComponent } from './unit/unit-list-component/unitList.component';
+import { UnitListComponent } from './unit/unit-list-component/unit-list.component';
 import { HomeComponent } from './home-component/home.component';
 import { CommonModule } from '@angular/common';
 import { SharedDirectivesModule } from '../../shared/Directives/sharedDirectivesModule';
