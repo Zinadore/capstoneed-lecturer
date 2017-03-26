@@ -41,7 +41,7 @@ export class EditProjectComponent extends ComponentBase implements OnInit {
     // Get the project from the server according to the id from the
     // idObservable and put it in the store
     this.disposeOnDestroy(idObservable.subscribe((id: number) => {
-        this.projectService.getProject(id);
+        this.projectService.get(id);
       })
     );
 
@@ -61,7 +61,7 @@ export class EditProjectComponent extends ComponentBase implements OnInit {
     
     // Sanity check mainly, if the project emitted by the observable is undefined, 
     // then the the project from the server and put it in store
-    this.disposeOnDestroy(projectObservable.filter((p: Project) => isUndefined(p) || p == null).subscribe((_) => this.projectService.getProject(this.project_id)));            
+    this.disposeOnDestroy(projectObservable.filter((p: Project) => isUndefined(p) || p == null).subscribe((_) => this.projectService.get(this.project_id)));            
     
     let unitObservable = projectObservable
       .filter((p: Project) => !isUndefined(p))

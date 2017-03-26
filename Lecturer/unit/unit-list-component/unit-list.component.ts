@@ -1,5 +1,6 @@
+import { Observable } from 'rxjs/Rx';
 import { ComponentBase } from '../../../../shared/Directives/componentBase';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IAppState } from '../../../../shared/Store/Reducers/index';
 import { Store } from '@ngrx/store';
 import { Unit } from '../../../../shared/Store/Models/unit';
@@ -12,12 +13,32 @@ import { Unit } from '../../../../shared/Store/Models/unit';
 export class UnitListComponent extends ComponentBase{
 
   private units: Unit[];
+  private columns;
+  private rows;
+  private filteredUnits: Observable<Unit[]>;
+  @ViewChild('myTable') table: any;
 
   constructor(store: Store<IAppState>) {
     super();
-    store.select('units').subscribe((units: Unit[]) => {
-      this.units = units;
-    });
+    this.filteredUnits = store.select('units');
+
+    // this.disposeOnDestroy(this.filteredUnits.subscribe(console.log))
+
+    // this.columns = [
+    //   { prop: 'name', name: 'Name' },
+    //   { prop: 'code', name: 'Code' },
+    //   { prop: 'semester', name: 'Semester' },
+    //   { prop: 'year', name: 'Year' }
+    // ];    
   }
+
+  toggleExpandRow(row) {
+    // console.log('Toggled Expand Row!', row);
+    this.table.rowDetail.toggleExpandRow(row);
+  }  
+
+  onDetailToggle(event) {
+    // console.log('Detail Toggled', event);
+  }  
 
 }

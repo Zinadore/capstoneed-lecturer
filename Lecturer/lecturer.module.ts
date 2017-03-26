@@ -21,6 +21,7 @@ import { AssignmentListComponent } from './assignment/assignment-list-component/
 import { AssignmentDetailsComponent } from './assignment/assignment-details-component/assignment-details.component';
 import { NewAssignmentComponent } from './assignment/new-assignment-component/new-assignment.component';
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
     RouterModule.forChild(ROUTES),
     SharedDirectivesModule,
     ReactiveFormsModule,
-    NgxMyDatePickerModule
+    NgxMyDatePickerModule,
+    NgxDatatableModule
   ],
   declarations: [
     SidenavComponent,

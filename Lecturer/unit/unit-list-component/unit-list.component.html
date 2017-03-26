@@ -10,6 +10,65 @@
   </div>
 </div>
 
+<div>
+  <ngx-datatable #myTable
+    [rows]="filteredUnits | async"
+    [columns]="columns" [columnMode]="'force'">
+
+    <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow (toggle)="onDetailToggle($event)">
+      <ng-template let-row="row" ngx-datatable-row-detail-template>
+        <div style="padding-left:35px;">
+          <ul *ngFor="let assignment of row.assignments">
+            <li> <a [routerLink]="['/assignments', assignment.id]"> {{ assignment.name }} </a></li>
+          </ul>
+        </div>
+      </ng-template>
+    </ngx-datatable-row-detail> 
+
+    <ngx-datatable-column
+      [width]="50"
+      [resizeable]="false"
+      [sortable]="false"
+      [draggable]="false"
+      [canAutoResize]="false">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <i class="fa"
+          [class.fa-chevron-right]="!row.$$expanded"
+          [class.fa-chevron-down]="row.$$expanded"
+          title="Expand/Collapse Row"
+          (click)="toggleExpandRow(row)">
+        </i>
+      </ng-template>
+    </ngx-datatable-column>       
+
+    <ngx-datatable-column name="Name" [flexGrow]="2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row['name'] }}
+      </ng-template>
+    </ngx-datatable-column> 
+
+    <ngx-datatable-column name="Code" [flexGrow]="2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row['code'] }}
+      </ng-template>
+    </ngx-datatable-column> 
+
+    <ngx-datatable-column name="Semester" [flexGrow]="2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row['semester'] }}
+      </ng-template>
+    </ngx-datatable-column> 
+
+    <ngx-datatable-column name="Year" [flexGrow]="2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row['year'] }}
+      </ng-template>
+    </ngx-datatable-column>              
+
+  </ngx-datatable>
+  
+</div>
+
   <!--<div class="row row-component">
     <div class="col-12">
       <h3 id="page-title" class="float-left">Units</h3>

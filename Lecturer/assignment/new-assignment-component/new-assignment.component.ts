@@ -99,7 +99,7 @@ export class NewAssignmentComponent extends ComponentBase implements OnInit {
   }
 
   public overviewStep_OnNext = (): void => {
-    this.assignmentservice.createAssignment(this.tempAssignment);
+    this.assignmentservice.create(this.tempAssignment);
   };
 
 }

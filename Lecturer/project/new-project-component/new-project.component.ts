@@ -153,6 +153,6 @@ export class NewProjectComponent extends ComponentBase implements OnInit {
 
   private wizard_onFinish = (): void => {
     console.log(this.tempProject);
-    this.projectService.createProject(this.tempProject);
+    this.projectService.create(this.tempProject);
   }
 }

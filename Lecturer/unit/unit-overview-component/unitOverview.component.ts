@@ -34,8 +34,8 @@ export class UnitOverviewComponent extends ComponentBase {
 
     this.disposeOnDestroy(this.unitObservable.subscribe((u: Unit) => {
       this.loadedUnit = u;
-      this.assignmentService.getAssignmentsForUnit(u.id);
-      this.projectsService.getProjectsForUnit(u.id);
+      this.assignmentService.getAllForUnit(u.id);
+      this.projectsService.getAllActiveForUnit(u.id);
 
       this.disposeOnDestroy(this.store.select('assignments')
         .filter((as: Assignment[]) => as.length > 0)

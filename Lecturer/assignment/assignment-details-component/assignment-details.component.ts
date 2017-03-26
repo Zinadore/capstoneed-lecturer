@@ -26,14 +26,14 @@ export class AssignmentDetailsComponent extends ComponentBase {
     this.assignment = route.params
       .filter(params => params['id'])
       .map(params => params['id'])
-      .do(id => this.assignmentService.getAssignment(id))
+      .do(id => this.assignmentService.get(id))
       .switchMap(id => store.select((state: IAppState) => state.assignments)
         .map((assignments: Assignment[]) => assignments.find(a => a.id == id))
         .filter((a: Assignment) => !isNullOrUndefined(a))
       );
 
     this.projects = this.assignment
-      .do((a: Assignment) => this.projectService.getProjectsForAssignment(a.id))
+      .do((a: Assignment) => this.projectService.getAllActiveForAssignment(a.id))
       .switchMap(assignment => store.select((state: IAppState) => state.projects)
         .map((projects: Project[]) => projects.filter((p: Project) => p.assignment_id == assignment.id))
       )

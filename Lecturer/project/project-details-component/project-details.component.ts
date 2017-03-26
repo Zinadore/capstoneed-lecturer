@@ -42,7 +42,7 @@ export class ProjectDetailsComponent extends ComponentBase implements OnInit {
     // When the component load request fresh data
     //TODO: Perhaps add some cache invalidation logic ?
     this.disposeOnDestroy(idObservable.subscribe((id: number) => {
-        this.projectService.getProject(id);
+        this.projectService.get(id);
       })
     );
 
@@ -55,7 +55,7 @@ export class ProjectDetailsComponent extends ComponentBase implements OnInit {
     //TODO: Another candidate for invalidation logic
     this.disposeOnDestroy(projectObservable.filter((p: Project) => !isUndefined(p) || p === null).subscribe((p: Project) => {
         this.unitService.getUnit(p.unit_id);
-        this.assignmentService.getAssignment(p.assignment_id);
+        this.assignmentService.get(p.assignment_id);
       })
     );
 
@@ -80,9 +80,9 @@ export class ProjectDetailsComponent extends ComponentBase implements OnInit {
     this.disposeOnDestroy(unitObservable.filter((u: Unit) => !isUndefined(u)).subscribe(u => this.unit = u));
 
     // If the store gave us an invalid entity, request it from the corresponding service
-    this.disposeOnDestroy(projectObservable.filter((p: Project) => isUndefined(p) || p == null).subscribe((_) => this.projectService.getProject(this.project_id)));
+    this.disposeOnDestroy(projectObservable.filter((p: Project) => isUndefined(p) || p == null).subscribe((_) => this.projectService.get(this.project_id)));
     this.disposeOnDestroy(unitObservable.filter((u: Unit) => isUndefined(u) || u == null).subscribe((_) => this.unitService.getUnit(this.project.unit_id)));
-    this.disposeOnDestroy(assignmentObservable.filter((a: Assignment) => isUndefined(a) || a == null).subscribe((_) => this.assignmentService.getAssignment(this.project.assignment_id)));
+    this.disposeOnDestroy(assignmentObservable.filter((a: Assignment) => isUndefined(a) || a == null).subscribe((_) => this.assignmentService.get(this.project.assignment_id)));
 
   }
 
@@ -92,7 +92,7 @@ export class ProjectDetailsComponent extends ComponentBase implements OnInit {
 
   public removeStudent(student_id: number) {
     if (this.removeStudentMode)
-      this.projectService.removeStudentFromProject(this.project.id, student_id)
+      this.projectService.removeStudent(this.project.id, student_id)
   }
 
   // constructor(private store: Store<IAppState>, private route: ActivatedRoute, private projectService: ProjectService, private unitService: UnitService, private assignmentService: AssignmentService) {
