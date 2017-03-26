@@ -10,63 +10,86 @@
   </div>
 </div>
 
-<div>
-  <ngx-datatable #myTable
-    [rows]="filteredUnits | async"
-    [columns]="columns" [columnMode]="'force'">
+<!--Page Title-->
+<div class="page-title-row">
+  <div class="col-12 ">
+    <h3 class="page-title">Currently Active Units</h3>
+  </div>
+</div>
 
-    <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow (toggle)="onDetailToggle($event)">
-      <ng-template let-row="row" ngx-datatable-row-detail-template>
-        <div style="padding-left:35px;">
-          <ul *ngFor="let assignment of row.assignments">
-            <li> <a [routerLink]="['/assignments', assignment.id]"> {{ assignment.name }} </a></li>
-          </ul>
-        </div>
-      </ng-template>
-    </ngx-datatable-row-detail> 
+<div class="row row-component">
+  <div class="col-12">
+      <input
+        type='text'
+        placeholder='Filter by name or year...'
+        (keyup)='updateFilter($event)'
+        class="form-control"
+        />    
+  </div>
+  <div class="col-12">
+    <ngx-datatable #myTable
+      [rows]="rows"
+      [columns]="columns" [columnMode]="'force'" class="material">
 
-    <ngx-datatable-column
-      [width]="50"
-      [resizeable]="false"
-      [sortable]="false"
-      [draggable]="false"
-      [canAutoResize]="false">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        <i class="fa"
-          [class.fa-chevron-right]="!row.$$expanded"
-          [class.fa-chevron-down]="row.$$expanded"
-          title="Expand/Collapse Row"
-          (click)="toggleExpandRow(row)">
-        </i>
-      </ng-template>
-    </ngx-datatable-column>       
+      <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow (toggle)="onDetailToggle($event)">
+        <ng-template let-row="row" ngx-datatable-row-detail-template>
+          <div class="detail-wrapper">
+            <p>Assignments</p>
+            <ul *ngFor="let assignment of row.assignments">
+              <li> <a [routerLink]="['/assignments', assignment.id]"> {{ assignment.name }} </a></li>
+            </ul>
+          </div>
+        </ng-template>
+      </ngx-datatable-row-detail> 
 
-    <ngx-datatable-column name="Name" [flexGrow]="2">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{ row['name'] }}
-      </ng-template>
-    </ngx-datatable-column> 
+      <ngx-datatable-column
+        [width]="50"
+        [resizeable]="false"
+        [sortable]="false"
+        [draggable]="false"
+        [canAutoResize]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <i class="fa"
+            [class.fa-chevron-right]="!row.$$expanded"
+            [class.fa-chevron-down]="row.$$expanded"
+            title="Expand/Collapse Row"
+            (click)="toggleExpandRow(row)"
+            *ngIf="row.assignments.length > 0">
+          </i>
+        </ng-template>
+      </ngx-datatable-column>       
 
-    <ngx-datatable-column name="Code" [flexGrow]="2">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{ row['code'] }}
-      </ng-template>
-    </ngx-datatable-column> 
+      <ngx-datatable-column 
+        name="Unit Name" 
+        [sortable]="true"
+        [flexGrow]="2">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <a [routerLink]="['/units', row.id]">
+            {{ row['name'] }}
+          </a>
+        </ng-template>
+      </ngx-datatable-column> 
 
-    <ngx-datatable-column name="Semester" [flexGrow]="2">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{ row['semester'] }}
-      </ng-template>
-    </ngx-datatable-column> 
+      <ngx-datatable-column name="Code" [flexGrow]="2">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row['code'] }}
+        </ng-template>
+      </ngx-datatable-column> 
 
-    <ngx-datatable-column name="Year" [flexGrow]="2">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{ row['year'] }}
-      </ng-template>
-    </ngx-datatable-column>              
+      <ngx-datatable-column name="Semester" [flexGrow]="2">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row['semester'] }}
+        </ng-template>
+      </ngx-datatable-column> 
 
-  </ngx-datatable>
-  
+      <ngx-datatable-column name="Year" [flexGrow]="2">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row['year'] }}
+        </ng-template>
+      </ngx-datatable-column>              
+
+    </ngx-datatable>
+  </div>
 </div>
 
   <!--<div class="row row-component">

@@ -12,6 +12,25 @@
       <div class="breadcrumb-step">
         <a [routerLink]="['/units', unit.id]" *ngIf="unit">{{ unit.name }}</a>
       </div>
+      <div class="breadcrumb-divider"> / </div>
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/assignments']" *ngIf="project">
+          Assignments
+        </a>
+      </div>        
+      <div class="breadcrumb-divider"> / </div>
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/assignments', assignment.id]" *ngIf="assignment">
+          {{ assignment.name }}
+        </a>
+      </div>    
+      <div class="breadcrumb-divider"> / </div>
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/projects']" *ngIf="project">
+          Projects
+        </a>
+      </div>   
+      <div class="breadcrumb-divider"> / </div>             
     </div>
   </div>
 </div>

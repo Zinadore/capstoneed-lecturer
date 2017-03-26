@@ -1,3 +1,14 @@
+<!--Breadcrumbs-->
+<div class="row">
+  <div class="col-12">
+    <div class="breadcrumb-custom">
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/assignments']">Assignments</a>
+      </div>
+      <div class="breadcrumb-divider"> / </div>      
+  </div>
+</div>
+
 <ul *rxContext="let list on assignments">
   <li *ngFor="let assignment of list"><a [routerLink]="['/assignments', assignment.id]">{{ assignment.name }}</a></li>
 </ul>

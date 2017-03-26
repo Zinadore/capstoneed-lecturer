@@ -1,4 +1,31 @@
-<div class="row row-component" *rxContext="let ass on assignment">
+<!--Breadcrumbs-->
+<div class="row">
+  <div class="col-12">
+    <div class="breadcrumb-custom">
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/units']">Units</a>
+      </div>
+      <div class="breadcrumb-divider"> / </div>   
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/units', assignment.unit.id]" *ngIf="assignment">
+          {{ assignment.unit.name }}
+        </a>
+      </div>
+      <div class="breadcrumb-divider"> / </div>       
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/assignments']">Assignments</a>
+      </div>
+      <div class="breadcrumb-divider"> / </div>   
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/assignments', assignment.id]" *ngIf="assignment">
+          {{ assignment?.name }}
+        </a>
+      </div>
+      <div class="breadcrumb-divider"> / </div>           
+  </div>
+</div>
+
+<div class="row row-component" *rxContext="let ass on assignment$">
 
   <h3>{{ ass.name}}</h3>
   <div class="col-12"  >

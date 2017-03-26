@@ -1,3 +1,14 @@
+<!--Breadcrumbs-->
+<div class="row">
+  <div class="col-12">
+    <div class="breadcrumb-custom">
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/projects']">Projects</a>
+      </div>
+      <div class="breadcrumb-divider"> / </div>      
+  </div>
+</div>
+
 <ul *rxContext="let projects on projectsObservable">
   <li *ngFor="let project of projects"><a [routerLink]="['/projects', project.id]">{{project.project_name}}</a></li>
 </ul>
