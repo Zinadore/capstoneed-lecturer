@@ -2,7 +2,7 @@ import { EditProjectComponent } from '../Lecturer/project/edit-project-component
 import { Routes } from '@angular/router';
 import { HomeComponent } from '../Lecturer/home-component/home.component';
 import { IsAuthenticatedGuard } from '../../shared/Guards/isAuthenticatedGuard';
-import { UnitOverviewComponent } from '../Lecturer/unit/unit-overview-component/unitOverview.component';
+import { UnitOverviewComponent } from '../Lecturer/unit/unit-overview-component/unit-overview.component';
 import { LoginComponent } from './login-component/login.component';
 import { UnitListComponent } from '../Lecturer/unit/unit-list-component/unit-list.component';
 import { NewUnitComponent } from '../Lecturer/unit/new-unit-component/newUnit.component';

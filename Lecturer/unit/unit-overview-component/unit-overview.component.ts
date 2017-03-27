@@ -13,8 +13,8 @@ import { ProjectService } from '../../../../shared/Services/project.service';
 
 @Component({
   selector: 'ced-unit-overview',
-  templateUrl: 'unitOverview.component.html',
-  styleUrls: ['unitOverview.component.scss']
+  templateUrl: 'unit-overview.component.html',
+  styleUrls: ['unit-overview.component.scss']
 })
 export class UnitOverviewComponent extends ComponentBase {
   private unitObservable: Observable<Unit>;
@@ -62,5 +62,9 @@ export class UnitOverviewComponent extends ComponentBase {
 
   filterProjects(assignment: Assignment): Project[] {
     return this.loadedProjects.filter(p => p.assignment_id == assignment.id);
+  }
+
+  archiveUnit() {
+    console.log('archive unit called')
   }
 }

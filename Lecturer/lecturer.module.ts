@@ -8,7 +8,7 @@ import { LoginComponent } from '../Base/login-component/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UnitListItemComponent } from './unit/unit-list-item-component/unitListItem.component';
 import { UnitDisplayComponent } from './unit/unit-display-component/unitDisplay.component';
-import { UnitOverviewComponent } from './unit/unit-overview-component/unitOverview.component';
+import { UnitOverviewComponent } from './unit/unit-overview-component/unit-overview.component';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';

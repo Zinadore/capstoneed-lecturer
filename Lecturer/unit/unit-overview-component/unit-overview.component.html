@@ -1,0 +1,59 @@
+<ng-container *rxContext="let unit on unitObservable">
+  <!--Breadcrumbs-->
+  <div class="row">
+    <div class="col-12">
+      <div class="breadcrumb-custom">
+        <div class="breadcrumb-step">
+          <a [routerLink]="['/units']">Units</a>
+        </div>
+        <div class="breadcrumb-divider"> / </div>
+        <div class="breadcrumb-step">
+          <a [routerLink]="['/units', loadedUnit.id]" *ngIf="loadedUnit">{{ loadedUnit?.name }}</a>
+        </div>
+        <div class="breadcrumb-divider"> / </div>           
+      </div>
+    </div>
+  </div>
+
+  <!--Page Title-->
+  <div class="page-title-row">
+    <div class="col-12 ">
+      <h3 class="page-title">{{ loadedUnit?.name }}</h3>
+      <div class="gear-settings" ngbDropdown>
+        <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+          <i class="fa fa-cog" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" >
+          <a class="dropdown-item" [routerLink]="['edit']">Edit Unit</a>
+          <a class="dropdown-item" (click)="archiveUnit()">Archive Unit</a>
+        </div>
+      </div>      
+    </div>
+  </div>
+
+  <!-- Unit Details-->
+  <div class="row">
+    <div class="col-4 column-white">
+      <div class="row no-gutters">
+        dddddd
+      </div>
+    </div>
+    <div class="col-4 column-white">
+      <div class="row no-gutters">
+        dddddd
+      </div>
+    </div>  
+    <div class="col-4 column-white">
+      <div class="row no-gutters">
+        dddddd
+      </div>
+    </div>      
+  </div>
+
+  <div class="row row-component" *ngIf="!unit">
+    <div class="col-12">
+      There appears to be nothing here
+    </div>
+  </div>
+
+</ng-container>

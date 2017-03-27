@@ -39,7 +39,7 @@
 <div class="page-title-row">
   <div class="col-12 ">
     <h3 class="page-title">{{ project?.project_name }}</h3>
-    <div class="project-settings" ngbDropdown>
+    <div class="gear-settings" ngbDropdown>
       <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
         <i class="fa fa-cog" aria-hidden="true"></i>
       </a>
@@ -78,34 +78,34 @@
 
 <!-- Students and Stats -->
 <div class="row">
-    <div class="stats-container">
-      <div class="row no-gutters">
-        <div class="widget" *ngFor="let number of [0, 1, 2, 3]">
-            <div class="widget-inner d-flex align-items-sm-center flex-wrap flex-row">
-              <i class="fa fa-heart tile-icon" id="icon-health"></i>
-              <div class="d-flex flex-column ml-auto">
-                <span class="description"> Project Health</span>
-                <span class="value"> 
-                  <i class="fa fa-chevron-right" id="icon-health-indicator"></i> 80%
-                </span>
-              </div>
-            </div>
-        </div> 
-      </div>
-    </div>  
-
-    <div class="students-container" *ngIf="project" [class.remove-on]="removeStudentMode">
-      <div class="row no-gutters">
-          <div class="col-12">
-              <h5>Students ({{project.students.length}})</h5>
-          </div>
-          <div class="student" *ngFor="let student of project.students">
-              <img class="student-avatar" [src]="student.avatar_url">
-              <span class="remove-student-button animated swing infinite" (click)="removeStudent(student.id)">
-                  <i class="fa fa-times" aria-hidden="true"></i>
+  <div class="stats-container">
+    <div class="row no-gutters">
+      <div class="widget" *ngFor="let number of [0, 1, 2, 3]">
+          <div class="widget-inner d-flex align-items-sm-center flex-wrap flex-row">
+            <i class="fa fa-heart tile-icon" id="icon-health"></i>
+            <div class="d-flex flex-column ml-auto">
+              <span class="description"> Project Health</span>
+              <span class="value"> 
+                <i class="fa fa-chevron-right" id="icon-health-indicator"></i> 80%
               </span>
-              <p class="student-name">{{ student.first_name + " " + student.last_name }}</p>
+            </div>
           </div>
-      </div> <!--row-->
-    </div> <!-- students-->
+      </div> 
+    </div>
+  </div>  
+
+  <div class="students-container column-white" *ngIf="project" [class.remove-on]="removeStudentMode">
+    <div class="row no-gutters">
+        <div class="col-12">
+            <h5>Students ({{project.students.length}})</h5>
+        </div>
+        <div class="student" *ngFor="let student of project.students">
+            <img class="student-avatar" [src]="student.avatar_url">
+            <span class="remove-student-button animated swing infinite" (click)="removeStudent(student.id)">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </span>
+            <p class="student-name">{{ student.first_name + " " + student.last_name }}</p>
+        </div>
+    </div> <!--row-->
+  </div> <!-- students-->
 </div> <!-- row -->

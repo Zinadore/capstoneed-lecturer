@@ -16,22 +16,6 @@
   @extend .page-title;
 }
 
-.project-settings {
-  @extend .float-right;
-
-  font-size: 1.5rem;
-  color: #8a8a8a;
-  transition: color .5s ease;  
-
-  &.show {
-    color: $blue;
-  }
-
-  .dropdown-toggle:after {
-    display: none;
-  }
-}
-
 .project-description {
   font-size: $font-size-project-description;
 }
@@ -157,11 +141,6 @@
 .students-container {
   @extend .col-12;
   @extend .col-lg-6;
-  
-  .row.no-gutters {
-    background-color: white;
-    padding: 20px; 
-  }
 
   &.remove-on span.remove-student-button {
 		display: block;
