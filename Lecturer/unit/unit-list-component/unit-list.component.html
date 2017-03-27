@@ -18,7 +18,8 @@
 </div>
 
 <div class="row row-component">
-  <div class="col-12">
+
+  <div class="search-column">
       <input
         type='text'
         placeholder='Filter by name or year...'
@@ -26,6 +27,22 @@
         class="form-control"
         />    
   </div>
+
+  <div class="units-select-box-column">
+    <!--<div class="units-select-box-wrapper row justify-content-end form-group">
+      <select class="form-control col-12 col-md-3 offset-md-9" id="units-select-box">
+        <option>Active</option>
+        <option>Archived</option>
+        <option>All</option>
+      </select>
+    </div>-->
+      <select class="form-control" id="units-select-box">
+        <option>Active</option>
+        <option>Archived</option>
+        <option>All</option>
+      </select>
+  </div>  
+
   <div class="col-12">
     <ngx-datatable #myTable
       [rows]="rows"

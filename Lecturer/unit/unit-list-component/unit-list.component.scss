@@ -10,15 +10,19 @@ input.form-control {
     border-radius: 0;
     outline: none;
     height: 3rem;
-    width: 30%;
+    width: 100%;
     font-size: 1rem;
-    margin: 0 auto 23px;
     padding: 0;
     box-shadow: none;
     box-sizing: content-box;
     transition: all 0.3s;    
 }
 /deep/ { 
+
+    // Datatable
+    .ngx-datatable {
+        margin-top: 40px;
+    }
 
     // Table header
     .ngx-datatable .datatable-header {
@@ -61,5 +65,21 @@ input.form-control {
     .datatable-body-row .datatable-body-cell:first-child {
         text-align: center;
     }
+}
 
+// #units-select-box {
+    
+// }
+
+.search-column {
+    @extend .col-12; 
+    @extend .col-md-3;
+}
+
+.units-select-box-column {
+    @extend .col-12;
+    @extend .col-md-2;
+    @extend .offset-md-7;
+
+    padding-top: 0.7rem;
 }

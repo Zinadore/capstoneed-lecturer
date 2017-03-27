@@ -11,51 +11,62 @@
           {{ assignment.unit.name }}
         </a>
       </div>
-      <div class="breadcrumb-divider"> / </div>       
-      <div class="breadcrumb-step">
-        <a [routerLink]="['/assignments']">Assignments</a>
-      </div>
-      <div class="breadcrumb-divider"> / </div>   
+      <div class="breadcrumb-divider"> / </div>
       <div class="breadcrumb-step">
         <a [routerLink]="['/assignments', assignment.id]" *ngIf="assignment">
           {{ assignment?.name }}
         </a>
       </div>
       <div class="breadcrumb-divider"> / </div>           
+    </div>
   </div>
 </div>
 
-<div class="row row-component" *rxContext="let ass on assignment$">
-
-  <h3>{{ ass.name}}</h3>
-  <div class="col-12"  >
-    <div class="row projects-table-header">
-      <div class="col-sm-1">
-      </div>
-      <div class="col-sm-6">
-        <h6>Project Name</h6>
-      </div>
-      <div class="col-sm-3">
-        <h6>Team</h6>
-      </div>
-      <div class="col-sm-2">
-        <h6>Stats</h6>
-      </div>
-    </div>
-    <div  *rxContext="let project_list on projects">
-      <div class="row project-row" *ngFor="let project of project_list">
-        <div class="col-sm-1">
-          <a [routerLink]="['/projects', project.id]"><img class="project-image img-fluid" [src]="project.logo || 'http://lorempixel.com/320/240'" src="http://lorempixel.com/320/240" alt=""></a>
-        </div>
-        <div class="col-sm-6">
-          <a [routerLink]="['/projects', project.id]" class="project-title">{{ project.project_name }}</a>
-        </div>
-        <div class="col-sm-3 team-avatars">
-          <img *ngFor="let student of project.students" [src]="student.avatar_url" placement="top" ngbTooltip="{{student.nickname}}">
-        </div>
-        <div class="col-sm-2"></div>
-      </div>
+<ng-container *rxContext="let ass on assignment$">
+  <!--Page Title-->
+  <div class="page-title-row">
+    <div class="col-12 ">
+      <h3 class="page-title">{{ ass.name }} Projects</h3>
     </div>
   </div>
 
-</div>
+  <ng-container  *rxContext="let project_list on projects">
+    <!-- Project table-->
+    <div class="row row-component">
+      <div class="col-12"  >
+        <div class="row projects-table-header">
+          <div class="col-1">
+          </div>
+          <div class="col-4">
+            <h6>Project Name</h6>
+          </div>
+          <div class="col-2">
+            <h6>Team Name</h6>
+          </div>          
+          <div class="col-3">
+            <h6>Members</h6>
+          </div>
+          <div class="col-2">
+            <h6>Stats</h6>
+          </div>
+        </div>
+
+        <div class="row project-row" *ngFor="let project of project_list">
+          <div class="col-sm-1">
+            <a [routerLink]="['/projects', project.id]"><img class="project-image img-fluid" [src]="project.logo || 'http://lorempixel.com/320/240'" src="http://lorempixel.com/320/240" alt=""></a>
+          </div>
+          <div class="col-sm-4">
+            <a [routerLink]="['/projects', project.id]" class="project-title">{{ project.project_name }}</a>
+          </div>
+          <div class="col-sm-2">
+            <a [routerLink]="['/projects', project.id]" class="project-title">{{ project.team_name }}</a>
+          </div>          
+          <div class="col-sm-3 team-avatars">
+            <img *ngFor="let student of project.students" [src]="student.avatar_url" placement="top" ngbTooltip="{{student.nickname}}">
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
