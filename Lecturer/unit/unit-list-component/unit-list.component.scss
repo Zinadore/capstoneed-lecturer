@@ -1,8 +1,6 @@
 @import "../../../../style/global-variables";
 @import "../../../../style/lecturer-common";
 
-$datatable-header-divider-color: #d0d0d0;
-$datatable-expanded-row-bg-color: whitesmoke;
 input.form-control {
     background-color: transparent;
     border: none;
@@ -16,64 +14,6 @@ input.form-control {
     box-shadow: none;
     box-sizing: content-box;
     transition: all 0.3s;    
-}
-/deep/ { 
-
-    // Datatable
-    .ngx-datatable {
-        margin-top: 40px;
-    }
-
-    // Table header
-    .ngx-datatable .datatable-header {
-        border-bottom: 1px solid $datatable-header-divider-color;
-        margin-bottom: 1rem;        
-    }
-
-    // Table Header cells
-    .ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
-        color: black;
-        font-weight: 700;
-    }
-
-    // Table row
-    .ngx-datatable .datatable-body .datatable-row-wrapper {
-        padding: 10px 0;
-        padding-bottom: 34px;
-
-        &:hover {
-            background: $datatable-expanded-row-bg-color;
-        }
-
-        // When expanded, remove the padding-bottom to show the detail correctly
-        &[ng-reflect-expanded=true] {
-            padding-bottom: initial;
-        }
-    }
-
-    // Table row detail
-    .datatable-row-detail {
-        background: $datatable-expanded-row-bg-color;
-
-        .detail-wrapper {
-            padding: 16px;
-            padding-left: 49px;
-        }
-    }
-
-    // First column (the one that expands)
-    .datatable-body-row .datatable-body-cell:first-child {
-        text-align: center;
-    }
-}
-
-// #units-select-box {
-    
-// }
-
-.search-column {
-    @extend .col-12; 
-    @extend .col-md-3;
 }
 
 .units-select-box-column {
