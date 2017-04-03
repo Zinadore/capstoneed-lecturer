@@ -1,3 +1,4 @@
+import { EditAssignmentComponent } from './assignment/edit-assignment-component/edit-assignment.component';
 import { NgModule } from '@angular/core';
 import { SidenavComponent } from './sidenav-component/sidenav.component';
 import { UnitListComponent } from './unit/unit-list-component/unit-list.component';
@@ -48,7 +49,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     EditProjectComponent,
     AssignmentListComponent,
     AssignmentDetailsComponent,
-    NewAssignmentComponent
+    NewAssignmentComponent,
+    EditAssignmentComponent
   ],
   providers: [NgxMyDatePickerModule],
   exports: [

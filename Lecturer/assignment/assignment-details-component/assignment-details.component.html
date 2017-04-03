@@ -27,6 +27,15 @@
   <div class="page-title-row">
     <div class="col-12 ">
       <h3 class="page-title">{{ ass.name }} Projects</h3>
+      <div class="gear-settings" ngbDropdown>
+        <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+          <i class="fa fa-cog" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" >
+          <a class="dropdown-item" [routerLink]="['edit']">Edit Assignment</a>
+          <a class="dropdown-item" [routerLink]="['/projects/new']">Add Project..</a>
+        </div>
+      </div>      
     </div>
   </div>
 

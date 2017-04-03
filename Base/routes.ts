@@ -1,3 +1,4 @@
+import { EditAssignmentComponent } from '../Lecturer/assignment/edit-assignment-component/edit-assignment.component';
 import { EditProjectComponent } from '../Lecturer/project/edit-project-component/edit-project.component';
 import { Routes } from '@angular/router';
 import { HomeComponent } from '../Lecturer/home-component/home.component';
@@ -34,7 +35,7 @@ export const ROUTES: Routes = [
       { path: '', pathMatch: 'full', component: AssignmentListComponent },
       { path: 'new', component: NewAssignmentComponent },
       { path: ':id', component: AssignmentDetailsComponent },
-
+      { path: ':id/edit', component: EditAssignmentComponent }
       ]
     }
   ]

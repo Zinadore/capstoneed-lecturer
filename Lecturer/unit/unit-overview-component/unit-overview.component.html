@@ -31,28 +31,75 @@
     </div>
   </div>
 
-  <!-- Unit Details-->
-  <div class="row">
+  <div class="row" *ngIf="unit">
+
+    <!-- Unit Details-->
     <div class="col-4 column-white">
       <div class="row no-gutters">
-        dddddd
+        <div class="panel-title-wrapper">
+            <p class="panel-title">
+              Unit Info
+            </p>
+            <p class="panel-subtitle">
+              <a [routerLink]="['edit']">Edit</a>
+            </p>
+        </div>
+        <div class="panel-body col-12 row">
+          <div class="col-6 col-md-4 offset-md-1">Name: </div>
+          <div class="col-6 col-md-6">{{ unit.name }}</div>    
+          <div class="col-6 col-md-4 offset-md-1">Code: </div>
+          <div class="col-6 col-md-6">{{ unit.code }}</div>                   
+          <div class="col-6 col-md-4 offset-md-1">Semester: </div>
+          <div class="col-6 col-md-6">{{ unit.semester }}</div>   
+          <div class="col-6 col-md-4 offset-md-1">Year: </div>
+          <div class="col-6 col-md-6">{{ unit.year }}</div>  
+          <div class="col-6 col-md-4 offset-md-1">Department Name: </div>
+          <div class="col-6 col-md-6">{{ unit.department?.name }}</div>   
+          <div class="col-6 col-md-4 offset-md-1">University: </div>
+          <div class="col-6 col-md-6">{{ unit.department?.university }}</div> 
+          <div class="col-6 col-md-4 offset-md-1" *ngIf="unit.archived_at">Archived At: </div>
+          <div class="col-6 col-md-6" *ngIf="unit.archived_at">{{ unit.archived_at }}</div>                                            
+        </div>        
       </div>
     </div>
+
+    <!--Assignments-->
     <div class="col-4 column-white">
       <div class="row no-gutters">
-        dddddd
+        <div class="panel-title-wrapper">
+            <p class="panel-title">Assignments</p>
+            <!--<p class="panel-subtitle"></p>-->
+        </div>
+        <div class="panel-body col-12 row" *ngIf="unit.assignments">
+          <ul *ngFor="let ass of unit.assignments">
+            <li> 
+              <a [routerLink]="['/assignments', ass.id]"> {{ ass.name }} </a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>  
+    </div>
+    <!--Projects-->
     <div class="col-4 column-white">
       <div class="row no-gutters">
-        dddddd
+        <div class="panel-title-wrapper">
+            <p class="panel-title">Projects</p>
+            <!--<p class="panel-subtitle"></p>-->
+        </div>
+        <div class="panel-body col-12 row" *ngIf="loadedProjects">
+          <ul *ngFor="let project of loadedProjects">
+            <li> 
+              <a [routerLink]="['/projects', project.id]"> {{ project.project_name }} </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>      
   </div>
 
   <div class="row row-component" *ngIf="!unit">
     <div class="col-12">
-      There appears to be nothing here
+      There appears to be nothing here. Go back to <a [routerLink]="['/units']">Units</a>
     </div>
   </div>
 
