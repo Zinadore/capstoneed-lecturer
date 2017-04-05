@@ -1,9 +1,10 @@
+import { EditUnitComponent } from '../Lecturer/unit/edit-unit-component/edit-unit.component';
 import { EditAssignmentComponent } from '../Lecturer/assignment/edit-assignment-component/edit-assignment.component';
 import { EditProjectComponent } from '../Lecturer/project/edit-project-component/edit-project.component';
 import { Routes } from '@angular/router';
 import { HomeComponent } from '../Lecturer/home-component/home.component';
 import { IsAuthenticatedGuard } from '../../shared/Guards/isAuthenticatedGuard';
-import { UnitOverviewComponent } from '../Lecturer/unit/unit-overview-component/unit-overview.component';
+import { UnitDetailsComponent } from '../Lecturer/unit/unit-details-component/unit-details.component';
 import { LoginComponent } from './login-component/login.component';
 import { UnitListComponent } from '../Lecturer/unit/unit-list-component/unit-list.component';
 import { NewUnitComponent } from '../Lecturer/unit/new-unit-component/newUnit.component';
@@ -21,7 +22,8 @@ export const ROUTES: Routes = [
     { path: 'units', children: [
       { path: '', pathMatch: 'full', component: UnitListComponent },
       { path: 'new', component: NewUnitComponent },
-      { path: ':id', component: UnitOverviewComponent },
+      { path: ':id', component: UnitDetailsComponent },
+      { path: ':id/edit', component: EditUnitComponent }
       ]
     },
     { path: 'projects', children: [

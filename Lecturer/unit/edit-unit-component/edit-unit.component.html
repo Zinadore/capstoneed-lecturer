@@ -1,4 +1,4 @@
-<ng-container *rxContext="let assignment on assignmentObservable">
+<ng-container *rxContext="let unit on unitObservable">
   <!--Breadcrumbs-->
   <div class="row">
     <div class="col-12">
@@ -12,33 +12,29 @@
         </div>
         <div class="breadcrumb-divider"> / </div>
         <div class="breadcrumb-step">
-          <a [routerLink]="['/assignments']">Assignments</a>
+            Edit
         </div>
-        <div class="breadcrumb-divider"> / </div>
-        <div class="breadcrumb-step">
-          <a [routerLink]="['/assignments', assignment.id]" *ngIf="assignment">{{ assignment.name }}</a>
-        </div>      
       </div>
     </div>
   </div>
 
-  <div class="row row-component highlight-border" *ngIf="assignment else noAssignment">
+  <div class="row row-component highlight-border" *ngIf="unit else noUnit">
     <div class="page-title-subtitle">
 
       <div class="col-12">
-        <h4 class="page-title">{{ assignment?.name }}</h4>
+        <h4 class="page-title">{{ unit?.name }}</h4>
       </div>
       <div class="col-12">
         <p class="page-subtitle">Edit Assignment Details</p>
       </div>
       <div class="col-12">
-        <a [routerLink]="['/assignments', assignment.id]" *ngIf="assignment">
+        <a [routerLink]="['/units', unit.id]" *ngIf="unit">
           <button class="btn btn-default back-button"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>
         </a>       
       </div>
     </div>  
   </div>
 
-  <template #noAssignment>No Assingment was found here. Go back to <a [routerLink]="['/assignments']">assignments</a></template>
+  <template #noUnit>No Unit was found here. Go back to <a [routerLink]="['/units']">units</a></template>
     
 </ng-container>

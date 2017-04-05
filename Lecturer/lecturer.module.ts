@@ -1,3 +1,4 @@
+import { EditUnitComponent } from './unit/edit-unit-component/edit-unit.component';
 import { EditAssignmentComponent } from './assignment/edit-assignment-component/edit-assignment.component';
 import { NgModule } from '@angular/core';
 import { SidenavComponent } from './sidenav-component/sidenav.component';
@@ -9,7 +10,7 @@ import { LoginComponent } from '../Base/login-component/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UnitListItemComponent } from './unit/unit-list-item-component/unitListItem.component';
 import { UnitDisplayComponent } from './unit/unit-display-component/unitDisplay.component';
-import { UnitOverviewComponent } from './unit/unit-overview-component/unit-overview.component';
+import { UnitDetailsComponent } from './unit/unit-details-component/unit-details.component';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -39,7 +40,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     HomeComponent,
     LoginComponent,
     UnitDisplayComponent,
-    UnitOverviewComponent,
+    UnitDetailsComponent,
     UnitListComponent,
     UnitListItemComponent,
     NewUnitComponent,
@@ -50,14 +51,15 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     AssignmentListComponent,
     AssignmentDetailsComponent,
     NewAssignmentComponent,
-    EditAssignmentComponent
+    EditAssignmentComponent,
+    EditUnitComponent
   ],
   providers: [NgxMyDatePickerModule],
   exports: [
     SidenavComponent,
     HomeComponent,
     UnitListComponent,
-    UnitOverviewComponent
+    UnitDetailsComponent
   ]
 })
 export class LecturerModule {

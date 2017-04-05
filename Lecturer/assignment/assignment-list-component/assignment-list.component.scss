@@ -1,2 +1,14 @@
 @import "../../../../style/global-variables";
 @import "../../../../style/lecturer-common";
+
+/deep/ .datatable-body-row .datatable-body-cell:first-child {
+    text-align: left;
+}
+
+/deep/ .datatable-body-cell-label {
+    text-align: left;
+}
+
+.assignment-name {
+    text-align: left;
+}

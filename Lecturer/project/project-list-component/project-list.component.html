@@ -24,14 +24,15 @@
         type='text'
         placeholder='Filter by Project or Team name...'
         (keyup)='updateFilter($event)'
-        class="form-control"
+        class="form-control search"
         />    
   </div>
 
   <div class="col-12">
     <ngx-datatable #myTable
       [rows]="rows"
-      [columns]="columns" [columnMode]="'flex'" class="material">   
+      [columns]="columns" [columnMode]="'flex'" class="material"
+      [rowHeight]="'auto'">   
 
       <ngx-datatable-column 
         name="" 

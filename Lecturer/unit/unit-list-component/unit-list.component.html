@@ -24,7 +24,7 @@
         type='text'
         placeholder='Filter by name or year...'
         (keyup)='updateFilter($event)'
-        class="form-control"
+        class="form-control search"
         />    
   </div>
 
@@ -41,7 +41,7 @@
       [rows]="rows"
       [columns]="columns" [columnMode]="'force'" class="material">
 
-      <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow (toggle)="onDetailToggle($event)">
+      <!--<ngx-datatable-row-detail [rowHeight]="100" #myDetailRow (toggle)="onDetailToggle($event)">
         <ng-template let-row="row" ngx-datatable-row-detail-template>
           <div class="detail-wrapper">
             <p>Assignments</p>
@@ -50,9 +50,9 @@
             </ul>
           </div>
         </ng-template>
-      </ngx-datatable-row-detail> 
+      </ngx-datatable-row-detail> -->
 
-      <ngx-datatable-column
+      <!--<ngx-datatable-column
         [width]="50"
         [resizeable]="false"
         [sortable]="false"
@@ -67,7 +67,7 @@
             *ngIf="row.assignments.length > 0">
           </i>
         </ng-template>
-      </ngx-datatable-column>       
+      </ngx-datatable-column>       -->
 
       <ngx-datatable-column 
         name="Unit Name" 
