@@ -1,0 +1,105 @@
+<!--Breadcrumbs-->
+<div class="row">
+  <div class="col-12">
+    <div class="breadcrumb-custom">
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/units']">Units</a>
+      </div>
+      <div class="breadcrumb-divider"> / </div>
+    </div>
+  </div>
+</div>
+
+<!--Page Title-->
+<div class="page-title-row">
+  <div class="col-12 ">
+    <h3 class="page-title">Units</h3>
+  </div>
+</div>
+
+<div class="row row-component">
+
+  <div class="search-column">
+      <input
+        type='text'
+        placeholder='Filter by name or year...'
+        (keyup)='updateFilter($event)'
+        class="form-control search"
+        />    
+  </div>
+
+  <div class="units-select-box-column">
+      <select class="form-control" id="units-select-box">
+        <option>Active</option>
+        <option>Archived</option>
+        <option>All</option>
+      </select>
+  </div>  
+
+  <div class="col-12">
+    <ngx-datatable #myTable
+      [rows]="rows"
+      [columns]="columns" [columnMode]="'force'" class="material">
+
+      <!--<ngx-datatable-row-detail [rowHeight]="100" #myDetailRow (toggle)="onDetailToggle($event)">
+        <ng-template let-row="row" ngx-datatable-row-detail-template>
+          <div class="detail-wrapper">
+            <p>Assignments</p>
+            <ul *ngFor="let assignment of row.assignments">
+              <li> <a [routerLink]="['/assignments', assignment.id]"> {{ assignment.name }} </a></li>
+            </ul>
+          </div>
+        </ng-template>
+      </ngx-datatable-row-detail> -->
+
+      <!--<ngx-datatable-column
+        [width]="50"
+        [resizeable]="false"
+        [sortable]="false"
+        [draggable]="false"
+        [canAutoResize]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <i class="fa"
+            [class.fa-chevron-right]="!row.$$expanded"
+            [class.fa-chevron-down]="row.$$expanded"
+            title="Expand/Collapse Row"
+            (click)="toggleExpandRow(row)"
+            *ngIf="row.assignments.length > 0">
+          </i>
+        </ng-template>
+      </ngx-datatable-column>       -->
+
+      <ngx-datatable-column 
+        name="Unit Name" 
+        [sortable]="true"
+        [flexGrow]="2">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <a [routerLink]="['/units', row.id]">
+            {{ row['name'] }}
+          </a>
+        </ng-template>
+      </ngx-datatable-column> 
+
+      <ngx-datatable-column name="Code" [flexGrow]="2">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row['code'] }}
+        </ng-template>
+      </ngx-datatable-column> 
+
+      <ngx-datatable-column name="Semester" [flexGrow]="2">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row['semester'] }}
+        </ng-template>
+      </ngx-datatable-column> 
+
+      <ngx-datatable-column name="Year" [flexGrow]="2">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row['year'] }}
+        </ng-template>
+      </ngx-datatable-column>              
+
+    </ngx-datatable>
+  </div>
+</div>
+
+<template #noUnits>No Units were found.</template>

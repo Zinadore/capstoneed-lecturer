@@ -1,3 +1,80 @@
-<ul *rxContext="let projects on projectsObservable">
-  <li *ngFor="let project of projects"><a [routerLink]="['/projects', project.id]">{{project.project_name}}</a></li>
-</ul>
+<!--Breadcrumbs-->
+<div class="row">
+  <div class="col-12">
+    <div class="breadcrumb-custom">
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/projects']">Projects</a>
+      </div>
+      <div class="breadcrumb-divider"> / </div>      
+    </div>
+  </div>
+</div>
+
+<!--Page Title-->
+<div class="page-title-row">
+  <div class="col-12 ">
+    <h3 class="page-title">Projects</h3>
+  </div>
+</div>
+
+<div class="row row-component">
+
+  <div class="search-column pull-md-9 offset-md-9">
+      <input
+        type='text'
+        placeholder='Filter by Project or Team name...'
+        (keyup)='updateFilter($event)'
+        class="form-control search"
+        />    
+  </div>
+
+  <div class="col-12">
+    <ngx-datatable #myTable
+      [rows]="rows"
+      [columns]="columns" [columnMode]="'flex'" class="material"
+      [rowHeight]="'auto'">   
+
+      <ngx-datatable-column 
+        name="" 
+        [sortable]="true"
+        [flexGrow]="0.5">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <a [routerLink]="['/projects', row.id]">
+            <img class="project-image img-fluid" [src]="row.logo" alt="">
+          </a>
+        </ng-template>
+      </ngx-datatable-column>    
+
+      <ngx-datatable-column name="Project Name" [flexGrow]="4">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <a [routerLink]="['/projects', row.id]" class="project-title">
+            {{ row['project_name'] }}
+          </a>
+        </ng-template>
+      </ngx-datatable-column> 
+
+      <ngx-datatable-column name="Team Name" [flexGrow]="2">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <a [routerLink]="['/projects', row.id]" class="project-title">
+            {{ row['team_name'] }}
+          </a>
+        </ng-template>
+      </ngx-datatable-column> 
+
+      <ngx-datatable-column name="Students" [flexGrow]="2">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div class="team-avatars">
+            <img *ngFor="let student of row['students']" [src]="student.avatar_url" placement="top" ngbTooltip="{{student.nickname}}">
+          </div>
+        </ng-template>
+      </ngx-datatable-column>     
+
+      <ngx-datatable-column name="Stats" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span></span>
+        </ng-template>
+      </ngx-datatable-column>                  
+
+    </ngx-datatable>
+  </div>
+</div>

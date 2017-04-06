@@ -1,0 +1,11 @@
+@import "../../../../style/global-variables";
+@import "../../../../style/lecturer-common";
+
+.team-avatars {
+    & > img {
+        $img-size: 2.5rem;
+
+        width: $img-size;
+        height: $img-size;
+    }
+}

@@ -11,21 +11,23 @@
   <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
     <a [routerLink]="['/units']"><i class="fa fa-diamond"></i> Units</a>
   </li>
-  <li routerLinkActive="active">
-    <a [routerLink]="['/units', 'new']"><i class="fa fa-superpowers"></i> New Unit</a>
-  </li>
   <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
     <a [routerLink]="['/projects']"> <i class="fa fa-bug"></i> Projects</a>
-  </li>
-  <li routerLinkActive="active">
-    <a [routerLink]="['/projects', 'new']"> <i class="fa fa-bomb"></i> New Project</a>
   </li>
   <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
     <a [routerLink]="['/assignments']"> <i class="fa fa-cloud"></i> Assignments</a>
   </li>
+
+  <li class="divider">Actions</li>
   <li routerLinkActive="active">
-    <a [routerLink]="['/assignments', 'new']"> <i class="fa fa-bomb"></i> New Project</a>
+    <a [routerLink]="['/units', 'new']"><i class="fa fa-superpowers"></i> New Unit</a>
   </li>
+  <li routerLinkActive="active">
+    <a [routerLink]="['/projects', 'new']"> <i class="fa fa-bomb"></i> New Project</a>
+  </li>
+  <li routerLinkActive="active">
+    <a [routerLink]="['/assignments', 'new']"> <i class="fa fa-bomb"></i> New Assingment</a>
+  </li>  
 
   <!--<li>-->
     <!--<a href="#"> <i class="fa fa-legal"></i> Contact</a>-->

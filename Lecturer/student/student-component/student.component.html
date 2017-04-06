@@ -1,0 +1,46 @@
+<ng-container *rxContext="let unit on unitObservable">
+    <!--Breadcrumbs-->
+    <div class="row">
+        <div class="col-12">
+            <div class="breadcrumb-custom">
+            <div class="breadcrumb-step">
+                <a [routerLink]="['/units']">Units</a>
+            </div>
+            <div class="breadcrumb-divider"> / </div>
+            <div class="breadcrumb-step">
+                <a [routerLink]="['/units', unit.id]" *ngIf="unit">{{ unit.name }}</a>
+            </div>
+            <div class="breadcrumb-divider"> / </div>
+            <div class="breadcrumb-step">
+                <a [routerLink]="['/assignments']" *ngIf="project">
+                Assignments
+                </a>
+            </div>        
+            <div class="breadcrumb-divider"> / </div>
+            <div class="breadcrumb-step">
+                <a [routerLink]="['/assignments', assignment.id]" *ngIf="assignment">
+                {{ assignment.name }}
+                </a>
+            </div>    
+            <div class="breadcrumb-divider"> / </div>
+            <div class="breadcrumb-step">
+                <a [routerLink]="['/projects']" *ngIf="project">
+                Projects
+                </a>
+            </div>   
+            <div class="breadcrumb-divider"> / </div>             
+            </div>
+            <div class="breadcrumb-step">
+                <a [routerLink]="['/projects', project.id]" *ngIf="project">
+                    {{ project.name }}
+                </a>
+            </div>   
+            <div class="breadcrumb-divider"> / </div>             
+            <div class="breadcrumb-step">
+                Students
+            </div>   
+            <div class="breadcrumb-divider"> / </div>             
+        </div>
+    </div>
+
+</ng-container>

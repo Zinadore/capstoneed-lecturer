@@ -1,3 +1,61 @@
-<ul *rxContext="let list on assignments">
-  <li *ngFor="let assignment of list"><a [routerLink]="['/assignments', assignment.id]">{{ assignment.name }}</a></li>
-</ul>
+<!--Breadcrumbs-->
+<div class="row">
+  <div class="col-12">
+    <div class="breadcrumb-custom">
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/assignments']">Assignments</a>
+      </div>
+      <div class="breadcrumb-divider"> / </div>      
+    </div>
+  </div>
+</div>
+
+<!--Page Title-->
+<div class="page-title-row">
+  <div class="col-12 ">
+    <h3 class="page-title">Assignments</h3>
+  </div>
+</div>
+
+<div class="row row-component">
+
+  <div class="search-column pull-md-9 offset-md-9">
+      <input
+        type='text'
+        placeholder='Filter by Assignment name...'
+        (keyup)='updateFilter($event)'
+        class="form-control search"
+        />    
+  </div>
+
+  <div class="col-12">
+    <ngx-datatable #myTable
+      [rows]="rows"
+      [columns]="columns" [columnMode]="'flex'" class="material"
+      [rowHeight]="'auto'">   
+
+      <ngx-datatable-column name="Assignment Name" [flexGrow]="4">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <a [routerLink]="['/assignments', row.id]" class="assignment-name">
+            {{ row['name'] }}
+          </a>
+        </ng-template>
+      </ngx-datatable-column> 
+
+      <ngx-datatable-column name="Start Date" [flexGrow]="2">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div class="team-avatars">
+            {{ row['start_date'] }}
+          </div>
+        </ng-template>
+      </ngx-datatable-column>     
+
+      <ngx-datatable-column name="End Date" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row['end_date'] }}
+        </ng-template>
+      </ngx-datatable-column>                  
+
+    </ngx-datatable>
+  </div>
+</div>

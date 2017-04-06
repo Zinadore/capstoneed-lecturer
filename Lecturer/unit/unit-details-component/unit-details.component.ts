@@ -12,15 +12,15 @@ import { Project } from '../../../../shared/Store/Models/project';
 import { ProjectService } from '../../../../shared/Services/project.service';
 
 @Component({
-  selector: 'ced-unit-overview',
-  templateUrl: 'unitOverview.component.html',
-  styleUrls: ['unitOverview.component.scss']
+  selector: 'ced-unit-details',
+  templateUrl: 'unit-details.component.html',
+  styleUrls: ['unit-details.component.scss']
 })
-export class UnitOverviewComponent extends ComponentBase {
-  private unitObservable: Observable<Unit>;
-  private loadedUnit: Unit;
-  private loadedAssignments: Assignment[] = [];
-  private loadedProjects: Project[] = [];
+export class UnitDetailsComponent extends ComponentBase {
+  private unitObservable: Observable<Unit>
+  private loadedUnit: Unit
+  private loadedAssignments: Assignment[] = []
+  private projects: Project[] = []
 
   constructor(private route: ActivatedRoute, private store: Store<IAppState>, private assignmentService: AssignmentService, private projectsService: ProjectService) {
     super();
@@ -33,23 +33,23 @@ export class UnitOverviewComponent extends ComponentBase {
       );
 
     this.disposeOnDestroy(this.unitObservable.subscribe((u: Unit) => {
-      this.loadedUnit = u;
-      this.assignmentService.getAssignmentsForUnit(u.id);
-      this.projectsService.getProjectsForUnit(u.id);
+      this.loadedUnit = u
+      this.assignmentService.getAllForUnit(u.id)
+      this.projectsService.getAllActiveForUnit(u.id)
 
-      this.disposeOnDestroy(this.store.select('assignments')
+    this.disposeOnDestroy(this.store.select('assignments')
         .filter((as: Assignment[]) => as.length > 0)
         .map((as: Assignment[]) => as.filter((a: Assignment) => a.unit_id == this.loadedUnit.id))
         .subscribe((as: Assignment[]) => {
-          this.loadedAssignments = as;
+          this.loadedAssignments = as
         })
       );
 
-      this.disposeOnDestroy(this.store.select('projects')
+    this.disposeOnDestroy(this.store.select('projects')
         .filter((ps: Project[]) => ps.length > 0)
         .map((ps: Project[]) => ps.filter((p: Project) => p.unit_id == this.loadedUnit.id))
         .subscribe((ps: Project[]) => {
-          this.loadedProjects = ps;
+          this.projects = ps
         })
       );
     }));
@@ -61,6 +61,10 @@ export class UnitOverviewComponent extends ComponentBase {
   }
 
   filterProjects(assignment: Assignment): Project[] {
-    return this.loadedProjects.filter(p => p.assignment_id == assignment.id);
+    return this.projects.filter(p => p.assignment_id == assignment.id)
+  }
+
+  archiveUnit() {
+    console.log('archive unit called')
   }
 }

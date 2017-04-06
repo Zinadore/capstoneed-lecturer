@@ -1,0 +1,40 @@
+<ng-container *rxContext="let unit on unitObservable">
+  <!--Breadcrumbs-->
+  <div class="row">
+    <div class="col-12">
+      <div class="breadcrumb-custom">
+        <div class="breadcrumb-step">
+          <a [routerLink]="['/units']">Units</a>
+        </div>
+        <div class="breadcrumb-divider"> / </div>
+        <div class="breadcrumb-step">
+          <a [routerLink]="['/units', unit.id]" *ngIf="unit">{{ unit.name }}</a>
+        </div>
+        <div class="breadcrumb-divider"> / </div>
+        <div class="breadcrumb-step">
+            Edit
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row row-component highlight-border" *ngIf="unit else noUnit">
+    <div class="page-title-subtitle">
+
+      <div class="col-12">
+        <h4 class="page-title">{{ unit?.name }}</h4>
+      </div>
+      <div class="col-12">
+        <p class="page-subtitle">Edit Assignment Details</p>
+      </div>
+      <div class="col-12">
+        <a [routerLink]="['/units', unit.id]" *ngIf="unit">
+          <button class="btn btn-default back-button"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>
+        </a>       
+      </div>
+    </div>  
+  </div>
+
+  <template #noUnit>No Unit was found here. Go back to <a [routerLink]="['/units']">units</a></template>
+    
+</ng-container>

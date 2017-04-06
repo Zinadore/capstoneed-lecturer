@@ -1,0 +1,10 @@
+@import "../../../../style/global-variables";
+@import "../../../../style/lecturer-common";
+
+.units-select-box-column {
+    @extend .col-12;
+    @extend .col-md-2;
+    @extend .offset-md-7;
+
+    padding-top: 0.7rem;
+}
