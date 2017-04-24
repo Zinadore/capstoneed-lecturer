@@ -1,5 +1,5 @@
 <ced-form-wizard>
-  <ced-form-wizard-step [canGoNext]="selectionStep_CanGoNext()" [onNext]="selectionStep_OnNext">
+  <ced-form-wizard-step [canGoNext]="selectionStep_CanGoNext()" [onNext]="selectionStep_OnNext" [title]="'Unit Selection'">
     <form [formGroup]="unitSelectionForm">
       <div class="form-row">
         <label class="" for="unitSelect">Select existing unit</label>
@@ -14,7 +14,7 @@
       <button type="button" class="btn btn-secondary" [routerLink]="['/units', 'new']">Create new unit</button>
     </div>
   </ced-form-wizard-step>
-  <ced-form-wizard-step [canGoNext]="detailsStep_CanGoNext()" [onNext]="detailsStep_OnNext">
+  <ced-form-wizard-step [canGoNext]="detailsStep_CanGoNext()" [onNext]="detailsStep_OnNext" [title]="'Assignment Details'">
     <form [formGroup]="assignmentDetailsForm">
       <div class="form-group">
         <label for="assignmentName" class="form-control-label">Name</label>
@@ -40,7 +40,12 @@
     </form>
 
   </ced-form-wizard-step>
-  <ced-form-wizard-step [canGoNext]="overviewStep_CanGoNext()" [onFinish]="overviewStep_OnNext">
+
+  <ced-form-wizard-step [title]="'Iterations'">
+
+  </ced-form-wizard-step>
+
+  <ced-form-wizard-step [canGoNext]="overviewStep_CanGoNext()" [onFinish]="overviewStep_OnNext" [title]="'Overview'">
     <h1>Overview</h1>
     <p>Please confirm that everything below looks alright, and if it is, hit finish.</p>
     <p>NOTE: Pressing finish will attempt to create the assignment.</p>

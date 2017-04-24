@@ -1,0 +1,28 @@
+<div class="progress-block" *ngFor="let it of _iterations"
+     [style.width.%]="getBlockWidth(it.timespan)"
+     [ngbTooltip]="tooltipContent"
+     placement="bottom"
+     triggers="manual"
+     [ngClass]="{ 'empty': it.isDeadSpace }"
+     #t="ngbTooltip"
+     (click)="tooltip_OnClicked(it, t)"
+>
+  {{it.timespan}}
+</div>
+
+<ng-template #tooltipContent let-iteration let-self="self">
+  <section (click)="self.close()">
+    <div class="tooltip-row">
+      <span class="tooltip-row_heading">Name</span>
+      <span class="tooltip-row_data">{{ iteration.name }}</span>
+    </div>
+    <div class="tooltip-row">
+      <span class="tooltip-row_heading">Start Date</span>
+      <span class="tooltip-row_data">{{ iteration.start_date | date:'shortDate' }}</span>
+    </div>
+    <div class="tooltip-row">
+      <span class="tooltip-row_heading">End Date</span>
+      <span class="tooltip-row_data">{{ iteration.deadline | date:'shortDate' }}</span>
+    </div>
+  </section>
+</ng-template>

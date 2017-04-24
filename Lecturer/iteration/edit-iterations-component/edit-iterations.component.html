@@ -1,0 +1,47 @@
+<form [formGroup]="iterationsForm">
+
+  <button (click)="addIterationGroup()">Add</button>
+
+  <h2>Edit Iterations</h2>
+  <div class="iterations-container" formArrayName="iterations">
+
+    <div class="card"  *ngFor="let iteration of _iterations; let i=index" [formGroupName]="i">
+      <div class="card-header">
+        <h4 class="card-title">{{iteration.name || 'Iteration' + (i+1)}}</h4>
+        <i class="fa fa-ban" (click)="removeIterationAt(i)"></i>
+      </div>
+      <div class="card-block">
+        <label  for="iterationName{{i}}">Iteration Name</label>
+        <input type="text" id="iterationName{{i}}" class="form-control" formControlName="name" [(ngModel)]="iteration.name">
+        <label for="iterationStartDate{{i}}">Start Date</label>
+        <div class="input-group">
+          <span class="input-group-addon" (click)="sd.toggleCalendar();$event.stopPropagation()"><i class="fa fa-calendar" ></i></span>
+          <input class="form-control"
+                 placeholder="yyyy-mm-dd"
+                 ngx-mydatepicker
+                 #sd="ngx-mydatepicker"
+                 [options]="datePickerOptions"
+                 id="iterationStartDate{{i}}"
+                 [(ngModel)]="iteration.start_date"
+                 formControlName="startDate">
+        </div>
+
+        <label for="iterationDeadline{{i}}">End Date</label>
+        <div class="input-group">
+          <span class="input-group-addon" (click)="ed.toggleCalendar();$event.stopPropagation()"><i class="fa fa-calendar" ></i></span>
+          <input class="form-control"
+                 placeholder="yyyy-mm-dd"
+                 ngx-mydatepicker
+                 #ed="ngx-mydatepicker"
+                 [options]="datePickerOptions"
+                 id="iterationDeadline{{i}}"
+                 [(ngModel)]="iteration.deadline"
+                 formControlName="deadline">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>
+
+<!--<button (click)="debug()">Debug</button>-->

@@ -1,0 +1,86 @@
+<form class="edit-form" [formGroup]="editProfileForm" (ngSubmit)="onUpdateSubmit()">
+  <fieldset class="form-group">
+    <legend>Personal Information</legend>
+    <hr>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" class="form-control" id="firstName" formControlName="firstName">
+      <div class="errors" ngxErrors="firstName">
+        <span ngxError="required" when="dirty" class="text-danger">*First name is required</span>
+        <span ngxError="noEmptyString" when="touched" class="text-danger">*First name cannot be an empty string</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" class="form-control" id="lastName" formControlName="lastName">
+      <div class="errors" ngxErrors="lastName">
+        <span ngxError='required' when="touched" class="text-danger">*Last name is required</span>
+        <span ngxError='noEmptyString' when="touched" class="text-danger">*Last name cannot be an empty string</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" formControlName="email">
+      <div class="errors" ngxErrors="email">
+        <span ngxError='required' when="touched" class="text-danger">*Email is required</span>
+        <span ngxError='normalEmailRule' when="dirty" class="text-danger">*Please enter a valid email address</span>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset formGroupName="lecturerInformation" *ngIf="isLecturerInfoVisible">
+    <legend>Lecturer Information</legend>
+    <hr>
+    <div class="form-group">
+      <label for="lecturerUniversity">University</label>
+      <input type="text" class="form-control" id="lecturerUniversity" formControlName="university">
+      <div class="errors" ngxErrors="lecturerInformation.university">
+        <span ngxError='required' [when]="['touched', 'dirty']" class="text-danger">*University is required</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lecturerPosition">Academic Position</label>
+      <input type="text" class="form-control" id="lecturerPosition" formControlName="academicPosition">
+      <div class="errors" ngxErrors="lecturerInformation.academicPosition">
+        <span ngxError='required' [when]="['touched', 'dirty']" class="text-danger">*Academic position is required</span>
+
+      </div>
+    </div>
+  </fieldset>
+  <button type="submit" class="btn btn-success" [disabled]="!editProfileForm.valid || !editProfileForm.dirty">Save</button>
+  <button type=reset class="btn btn-warning" (click)="reset($event)">Reset Changes</button>
+</form>
+
+<form class="password-form" [formGroup]="passwordChangeForm" (ngSubmit)="onPasswordSubmit()">
+  <fieldset>
+    <legend>Change Password</legend>
+    <hr>
+    <div class="form-group">
+      <label for="currentPassword">Current Password</label>
+      <input type="password" class="form-control no-style" id="currentPassword" formControlName="currentPassword">
+      <div class="errors" ngxErrors="currentPassword">
+        <span ngxError="currentPassword" when="touched" class="text-danger">*Your current password is required</span>
+      </div>
+    </div>
+    <fieldset formGroupName="newPasswords">
+      <div class="form-group">
+        <label for="newPassword">Password</label>
+        <input type="password" class="form-control" id="newPassword" formControlName="newPassword">
+        <div class="errors" ngxErrors="newPasswords.newPassword">
+          <span ngxError='required' when="touched" class="text-danger">*Password is required</span>
+          <span ngxError='minlength' when="dirty" class="text-danger">*The password must be at least 8 characters long</span>
+          <span ngxError='noWhitespaceRequired' when="dirty" class="text-danger">*The password cannot contain whitespaces</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="newPasswordConfirmation">Password Confirmation</label>
+        <input type="password" class="form-control" id="newPasswordConfirmation" formControlName="newPasswordConfirmation">
+        <div class="errors" ngxErrors="newPasswords.newPasswordConfirmation">
+          <span ngxError='mismatchedPasswords' when="dirty" class="text-danger">*Passwords must match</span>
+        </div>
+      </div>
+    </fieldset>
+  </fieldset>
+  <button type="submit" class="btn btn-default" [disabled]="!passwordChangeForm.valid">Change password</button>
+</form>

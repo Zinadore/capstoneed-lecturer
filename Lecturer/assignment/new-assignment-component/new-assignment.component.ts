@@ -34,8 +34,9 @@ export class NewAssignmentComponent extends ComponentBase implements OnInit {
       name: ''
     };
 
+    unitService.loadUnits();
+
     this.disposeOnDestroy(store.select((state: IAppState) => state.units)
-      .do(_ => unitService.loadUnits())
       .subscribe((units: Unit[]) => this.units = units)
     )
   }

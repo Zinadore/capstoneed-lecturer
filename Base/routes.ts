@@ -14,10 +14,18 @@ import { ProjectListComponent } from '../Lecturer/project/project-list-component
 import { AssignmentListComponent } from '../Lecturer/assignment/assignment-list-component/assignment-list.component';
 import { AssignmentDetailsComponent } from '../Lecturer/assignment/assignment-details-component/assignment-details.component';
 import { NewAssignmentComponent } from '../Lecturer/assignment/new-assignment-component/new-assignment.component';
+import { EditProfileComponent } from '../Lecturer/edit-profile-component/edit-profile.component';
+import { RegisterSuccessComponent } from './register-success-component/register-success.component';
+import { RegisterComponent } from './register-component/register.component';
+import { IterationsBarComponent } from '../Lecturer/iteration/iterations-bar-component/iterations-bar.component';
+import { EditIterationsComponent } from '../Lecturer/iteration/edit-iterations-component/edit-iterations.component';
 
 export const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'beta-test', component: EditIterationsComponent },
+  { path: 'register', pathMatch: 'full', component: RegisterComponent },
+  { path: 'register_success', pathMatch: 'full', component: RegisterSuccessComponent },
   { path: '', canActivate: [IsAuthenticatedGuard], children: [
     { path: 'units', children: [
       { path: '', pathMatch: 'full', component: UnitListComponent },
@@ -39,7 +47,10 @@ export const ROUTES: Routes = [
       { path: ':id', component: AssignmentDetailsComponent },
       { path: ':id/edit', component: EditAssignmentComponent }
       ]
-    }
+    },
+    { path: 'profile', children: [
+      { path: 'edit', pathMatch: 'full', component: EditProfileComponent }
+    ] }
   ]
   },
   { path: '', pathMatch: 'full', redirectTo: 'home' }

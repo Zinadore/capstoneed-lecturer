@@ -1,0 +1,64 @@
+@import "~bootstrap/scss/bootstrap";
+
+$blockColors: (
+  1: #FF0000,
+  2: #00FF00,
+  3: #0000FF,
+  4: #FFFF00,
+  5: #FF00FF,
+  6: #00FFFF
+);
+
+:host {
+  display: flex;
+  border: 2px solid black;
+  min-height: 4px;
+  width: 100%;
+  background-color: #EEEEEE;
+
+  .progress-block {
+
+
+
+    @each $key, $color in $blockColors {
+      &:not(.empty):nth-of-type(6n + #{$key}) {
+        background-color: $color!important;
+      }
+    }
+
+    &.empty {
+      background-color: gray!important;
+    }
+  }
+
+  & /deep/ .tooltip-inner {
+    background-color: #333333;
+
+    &::before {
+      border-bottom-color: #333333!important;
+    }
+
+    .tooltip-row {
+      display: flex;
+      width: 100%;
+      flex-wrap: nowrap;
+
+      span.tooltip-row_heading {
+        white-space: nowrap;
+        flex: 1;
+        margin: 0.2em 0 0.2em 0;
+        text-align: left;
+        color: #a6a6a6;
+      }
+
+      span.tooltip-row_data {
+        font-weight: bold;
+        text-align: right;
+        margin: 0.2rem 0 0.2rem 2em;
+      }
+    }
+  }
+
+
+
+}

@@ -24,6 +24,8 @@ import { AssignmentDetailsComponent } from './assignment/assignment-details-comp
 import { NewAssignmentComponent } from './assignment/new-assignment-component/new-assignment.component';
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { EditProfileComponent } from './edit-profile-component/edit-profile.component';
+import { NgxErrorsModule } from '@ultimate/ngxerrors';
 
 @NgModule({
   imports: [
@@ -33,7 +35,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     SharedDirectivesModule,
     ReactiveFormsModule,
     NgxMyDatePickerModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    NgxErrorsModule
   ],
   declarations: [
     SidenavComponent,
@@ -52,7 +55,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     AssignmentDetailsComponent,
     NewAssignmentComponent,
     EditAssignmentComponent,
-    EditUnitComponent
+    EditUnitComponent,
+    EditProfileComponent
   ],
   providers: [NgxMyDatePickerModule],
   exports: [

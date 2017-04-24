@@ -1,11 +1,11 @@
-import { NgModule, ApplicationRef } from '@angular/core';
+import { ApplicationRef, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
-import { ReactiveFormsModule } from '@angular/forms';
-import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { createNewHosts, removeNgStyles } from '@angularclass/hmr';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToastrModule, ToastrConfig, ToastContainerModule } from 'ngx-toastr';
+import { ToastContainerModule, ToastrConfig, ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { ROUTES } from './routes';
 import { CedStoreModule } from '../../shared/Store/cedStore.module';
@@ -14,11 +14,15 @@ import { HeaderComponent } from './header-component/header.component';
 import { LecturerModule } from '../Lecturer/lecturer.module';
 import { SharedDirectivesModule } from '../../shared/Directives/sharedDirectivesModule';
 import { GuardsModule } from '../../shared/Guards/guards.module';
-import { ProjectCreatedToast } from '../../shared/Directives/toasts/project-created.toast';
-import { AssignmentCreatedToast } from '../../shared/Directives/toasts/assignment-created.toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RegisterComponent } from './register-component/register.component';
+import { RegisterSuccessComponent } from './register-success-component/register-success.component';
+import { IterationsBarComponent } from '../Lecturer/iteration/iterations-bar-component/iterations-bar.component';
+import { EditIterationsComponent } from '../Lecturer/iteration/edit-iterations-component/edit-iterations.component';
+import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 
-const ToastrGlobalConf: ToastrConfig = {
+
+const ToastrGlobalConf: any = {
   maxOpened: 0, // max toasts opened. Toasts will be queued
   autoDismiss: false, // dismiss current toast when max is reached
   iconClasses : { // classes used on toastr service methods
@@ -48,6 +52,8 @@ const ToastrGlobalConf: ToastrConfig = {
     BrowserModule,
     HttpModule,
     ReactiveFormsModule,
+    FormsModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(ROUTES),
     NgbModule.forRoot(),
     ToastrModule.forRoot(ToastrGlobalConf),
@@ -57,11 +63,18 @@ const ToastrGlobalConf: ToastrConfig = {
     SharedDirectivesModule,
     LecturerModule,
     GuardsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxMyDatePickerModule,
+
   ],
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    RegisterComponent,
+    RegisterSuccessComponent,
+    IterationsBarComponent,
+    EditIterationsComponent,
+
   ],
   providers: [
   ],

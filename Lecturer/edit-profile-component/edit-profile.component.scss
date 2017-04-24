@@ -1,0 +1,44 @@
+@import '../../../style/student-variables';
+@import "~bootstrap/scss/bootstrap";
+
+@mixin validation-border($border-color) {
+  border: 1px solid $border-color;
+  border-left-width: 5px;
+}
+
+:host {
+  display: flex;
+  width: 100%;
+
+  @include media-breakpoint-up(lg) {
+    flex-direction: row;
+  }
+
+  @include media-breakpoint-down(md) {
+    flex-direction: column;
+  }
+
+  form {
+    flex: 1;
+    background-color: white;
+    padding: 1em;
+
+    input.ng-dirty:not(.no-style), input.touched:not(.no-style) {
+      &.ng-invalid {
+        @include validation-border($red-color);
+      }
+
+      &.ng-valid {
+        @include validation-border($green-color);
+      }
+    }
+
+    .errors {
+      span {
+        display: block;
+      }
+    }
+
+
+  }
+}
