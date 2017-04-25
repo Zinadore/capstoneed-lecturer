@@ -1,7 +1,7 @@
-import { Component, OnInit, HostBinding, Input, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Input, OnInit } from '@angular/core';
 import { Iteration } from '../../../../shared/Store/Models/iteration';
-import * as moment from 'moment/moment';
 import { TimeHelpers } from '../../../../shared/Helpers/time.helpers';
+import * as moment from 'moment';
 
 @Component({
   selector: 'ced-iterations-bar',
@@ -29,6 +29,8 @@ export class IterationsBarComponent implements OnInit {
     // Bail Early
     if(value.length == 0) return;
 
+    this._iterations = [];
+
     // Iterate through the array
     for(let index = 0; index < value.length; index++) {
       // Grab the current and next iteration
@@ -36,7 +38,7 @@ export class IterationsBarComponent implements OnInit {
       let next: Iteration = value[index + 1];
 
       // Add some meta data for this iteration
-      cur.timespan = TimeHelpers.getTimeSpanInDays(moment(cur.start_date), moment(cur.deadline));
+      cur.timespan = TimeHelpers.getTimeSpanInDays(cur.start_date, cur.deadline);
       cur.isDeadSpace = false;
       this._iterations.push(cur);
       // If there is no next iteration, we are done. The following code will throw exceptions.
@@ -44,17 +46,19 @@ export class IterationsBarComponent implements OnInit {
         break;
       }
 
-      let days = TimeHelpers.getTimeSpanInDays(moment(cur.deadline), moment(next.start_date));
+      let days = TimeHelpers.getTimeSpanInDays(cur.deadline, next.start_date, 0, 0);
 
       // If the gap is large enough, we need to add some dead space to the bar
-      if(days > 1) {
+      // Greater that two means at least one actual day of space since the start and end date count
+      // as well
+      if(days > 2) {
         this.pushEmptySpace(days);
         this._iterations.push({
           name: "EMPTY",
-          start_date: cur.deadline,
-          deadline: next.start_date,
+          start_date: moment(cur.deadline).add(1, 'days').hours(0).minutes(0).seconds(0).toString(),
+          deadline: moment(next.start_date).subtract(1, 'days').hours(0).minutes(0).seconds(0).toString(),
           assignment_id: 0,
-          timespan: days,
+          timespan: days - 2,
           isDeadSpace: true
         })
       }

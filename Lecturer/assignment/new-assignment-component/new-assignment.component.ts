@@ -6,9 +6,11 @@ import { IAppState } from '../../../../shared/Store/Reducers/index';
 import { Store } from '@ngrx/store';
 import { Unit } from '../../../../shared/Store/Models/unit';
 import { UnitService } from '../../../../shared/Services/unit.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Assignment } from '../../../../shared/Store/Models/assignment';
 import { AssignmentService } from '../../../../shared/Services/assignment.service';
+import { TimeHelpers } from '../../../../shared/Helpers/time.helpers';
+import { Iteration } from '../../../../shared/Store/Models/iteration';
 
 @Component({
   selector: 'ced-new-assignment',
@@ -23,6 +25,7 @@ export class NewAssignmentComponent extends ComponentBase implements OnInit {
   private tempAssignment: Assignment;
   private selectedUnit: Unit;
   private units: Unit[];
+  private areIterationsValidSubject: BehaviorSubject<boolean>;
 
   constructor(private fb: FormBuilder, private assignmentservice: AssignmentService, store: Store<IAppState>, unitService: UnitService) {
     super();
@@ -31,8 +34,11 @@ export class NewAssignmentComponent extends ComponentBase implements OnInit {
       id: 0,
       start_date: '',
       end_date: '',
-      name: ''
+      name: '',
+      iterations: []
     };
+
+    this.areIterationsValidSubject = new BehaviorSubject<boolean>(false);
 
     unitService.loadUnits();
 
@@ -54,6 +60,10 @@ export class NewAssignmentComponent extends ComponentBase implements OnInit {
       endDate: ['', Validators.compose([Validators.required])]
     });
 
+  }
+
+  public calculateProjectTimespan(): number {
+    return TimeHelpers.getTimeSpanInDays(this.tempAssignment.start_date, this.tempAssignment.end_date);
   }
 
   private selectionStep_Setup(): void {
@@ -103,5 +113,13 @@ export class NewAssignmentComponent extends ComponentBase implements OnInit {
     this.assignmentservice.create(this.tempAssignment);
   };
 
+  public iterationStep_OnReceivedIterations(iterations: Iteration[]): void {
+   this.tempAssignment.iterations = iterations;
+   this.areIterationsValidSubject.next(this.tempAssignment.iterations.length > 0);
+  }
+
+  public iterationStep_CanGoNext() {
+    return this.areIterationsValidSubject.asObservable();
+  }
 }
 

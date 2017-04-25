@@ -20,6 +20,7 @@ import { RegisterSuccessComponent } from './register-success-component/register-
 import { IterationsBarComponent } from '../Lecturer/iteration/iterations-bar-component/iterations-bar.component';
 import { EditIterationsComponent } from '../Lecturer/iteration/edit-iterations-component/edit-iterations.component';
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
+import { NgxErrorsModule } from '@ultimate/ngxerrors';
 
 
 const ToastrGlobalConf: any = {
@@ -64,17 +65,13 @@ const ToastrGlobalConf: any = {
     LecturerModule,
     GuardsModule,
     BrowserAnimationsModule,
-    NgxMyDatePickerModule,
 
   ],
   declarations: [
     AppComponent,
     HeaderComponent,
     RegisterComponent,
-    RegisterSuccessComponent,
-    IterationsBarComponent,
-    EditIterationsComponent,
-
+    RegisterSuccessComponent
   ],
   providers: [
   ],

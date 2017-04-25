@@ -19,11 +19,12 @@ import { RegisterSuccessComponent } from './register-success-component/register-
 import { RegisterComponent } from './register-component/register.component';
 import { IterationsBarComponent } from '../Lecturer/iteration/iterations-bar-component/iterations-bar.component';
 import { EditIterationsComponent } from '../Lecturer/iteration/edit-iterations-component/edit-iterations.component';
+import { NewPeerAssessmentFormComponent } from "../Lecturer/assessment/new-pa-form-component/new-pa-form.component";
 
 export const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'beta-test', component: EditIterationsComponent },
+  { path: 'beta-test', component: HomeComponent },
   { path: 'register', pathMatch: 'full', component: RegisterComponent },
   { path: 'register_success', pathMatch: 'full', component: RegisterSuccessComponent },
   { path: '', canActivate: [IsAuthenticatedGuard], children: [
@@ -50,6 +51,9 @@ export const ROUTES: Routes = [
     },
     { path: 'profile', children: [
       { path: 'edit', pathMatch: 'full', component: EditProfileComponent }
+    ] },
+    { path: 'peer-assessments', children: [
+      { path: 'new-form', component: NewPeerAssessmentFormComponent }
     ] }
   ]
   },

@@ -1,0 +1,48 @@
+<div class="selector">
+  <form [formGroup]="selectForm">
+    <h3 class="display-5">Step 1: Select an assignment</h3>
+    <div class="form-group">
+      <label for="assignmentSelect">Assignment</label>
+      <select id="assignmentSelect"
+              formControlName="assignmentSelect"
+              class="form-control custom-select">
+        <option value="0">Select One...</option>
+        <option *ngFor="let a of assignments"
+                value="{{ a.id }}">
+          {{ a.name }}
+        </option>
+      </select>
+    </div>
+  </form>
+  <div class="hint">
+    <p class="lead">
+      Use the selector on the left to pick one of the available assignments. Alternative you can use the button below to create an assignment first.
+      <button class="btn btn-outline-primary btn-lg" [routerLink]="['/assignments', 'new']">Create Assignment</button>
+    </p>
+  </div>
+</div>
+
+<div class="questions-selector" *ngIf="selectedAssignment">
+  <h3 class="display-5">Step 2: Select questions</h3>
+  <p class="lead">
+    Drag questions from the left column to the right column to add the to the form. You can reorder the right column by dragging the questions around as well.
+    You need to add at least one question. Please note that comment style questions are optional for the students.
+  </p>
+  <ced-dragable-question-lists [questions]="questions"
+                               [extras]="extraQuestions"
+                               (form-questions)="onFormQuestionsReceived($event)">
+  </ced-dragable-question-lists>
+
+  <!--<button (click)="debug()">Debug</button>-->
+  <button [disabled]="formQuestions.length == 0" (click)="submitQuestions()" class="btn btn-success">Submit</button>
+</div>
+
+<div class="question-creator" *ngIf="selectedAssignment">
+  <h3 class="display-5">Create new question</h3>
+  <p class="lead">
+    You can use the form below to create a new question. New questions will <b>NOT</b> be saved by the system until the form is submitted.
+  </p>
+  <ced-new-pa-question (newQuestion)="newQuestionReceived($event)"></ced-new-pa-question>
+</div>
+
+

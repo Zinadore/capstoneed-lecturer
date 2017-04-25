@@ -41,29 +41,43 @@
 
   </ced-form-wizard-step>
 
-  <ced-form-wizard-step [title]="'Iterations'">
+  <ced-form-wizard-step [title]="'Iterations'" [canGoNext]="iterationStep_CanGoNext()">
+    <ced-iterations-bar [height-em]="2"
+                        [project-timespan]="calculateProjectTimespan()"
+                        [iterations]="tempAssignment.iterations">
+    </ced-iterations-bar>
 
+    <ced-edit-iterations [assignment]="tempAssignment"
+                         (iterations)="iterationStep_OnReceivedIterations($event)">
+    </ced-edit-iterations>
   </ced-form-wizard-step>
 
   <ced-form-wizard-step [canGoNext]="overviewStep_CanGoNext()" [onFinish]="overviewStep_OnNext" [title]="'Overview'">
     <h1>Overview</h1>
     <p>Please confirm that everything below looks alright, and if it is, hit finish.</p>
     <p>NOTE: Pressing finish will attempt to create the assignment.</p>
-
-    <div class="well">
+    <div class="container">
       <dl class="row">
-        <dt class="col-sm-3">For unit</dt>
-        <dd class="col-sm-9">{{ selectedUnit?.name + ', ' + selectedUnit?.semester + ' ' + selectedUnit?.year }}</dd>
+        <dt class="col-3">For unit</dt>
+        <dd class="col-9">{{ selectedUnit?.name + ', ' + selectedUnit?.semester + ' ' + selectedUnit?.year }}</dd>
       </dl>
       <hr>
+      <h3>Details</h3>
       <dl class="row">
-        <dt class="col-sm-3">Assignment name</dt>
-        <dd class="col-sm-9">{{ tempAssignment?.name }}</dd>
-        <dt class="col-sm-3">Start Date</dt>
-        <dd class="col-sm-9">{{ tempAssignment.start_date }}</dd>
-        <dt class="col-sm-3">End Date</dt>
-        <dd class="col-sm-9">{{ tempAssignment.end_date }}</dd>
+        <dt class="col-3">Assignment name</dt>
+        <dd class="col-9">{{ tempAssignment?.name }}</dd>
+        <dt class="col-3">Start Date</dt>
+        <dd class="col-9">{{ tempAssignment.start_date }}</dd>
+        <dt class="col-3">End Date</dt>
+        <dd class="col-9">{{ tempAssignment.end_date }}</dd>
       </dl>
+      <hr>
+      <h3>Iterations</h3>
+      <ced-iterations-bar [height-em]="2"
+                          [project-timespan]="calculateProjectTimespan()"
+                          [iterations]="tempAssignment.iterations">
+      </ced-iterations-bar>
     </div>
+
   </ced-form-wizard-step>
 </ced-form-wizard>

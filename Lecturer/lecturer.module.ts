@@ -26,6 +26,12 @@ import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { EditProfileComponent } from './edit-profile-component/edit-profile.component';
 import { NgxErrorsModule } from '@ultimate/ngxerrors';
+import { IterationsBarComponent } from './iteration/iterations-bar-component/iterations-bar.component';
+import { EditIterationsComponent } from './iteration/edit-iterations-component/edit-iterations.component';
+import { NewPeerAssessmentFormComponent } from "./assessment/new-pa-form-component/new-pa-form.component";
+import { DragulaModule } from 'ng2-dragula';
+import { DragableQuestionListsComponent } from './assessment/dragable-question-lists-component/dragable-question-lists.component';
+import { NewPaQuestionComponent } from './assessment/new-pa-question-component/new-pa-question.component';
 
 @NgModule({
   imports: [
@@ -36,7 +42,8 @@ import { NgxErrorsModule } from '@ultimate/ngxerrors';
     ReactiveFormsModule,
     NgxMyDatePickerModule,
     NgxDatatableModule,
-    NgxErrorsModule
+    NgxErrorsModule,
+    DragulaModule
   ],
   declarations: [
     SidenavComponent,
@@ -56,7 +63,12 @@ import { NgxErrorsModule } from '@ultimate/ngxerrors';
     NewAssignmentComponent,
     EditAssignmentComponent,
     EditUnitComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    IterationsBarComponent,
+    EditIterationsComponent,
+    NewPeerAssessmentFormComponent,
+    DragableQuestionListsComponent,
+    NewPaQuestionComponent
   ],
   providers: [NgxMyDatePickerModule],
   exports: [

@@ -1,0 +1,16 @@
+<form [formGroup]="newQuestionForm">
+  <div class="group-wrapper">
+    <div class="form-group">
+      <label for="questionText">Question Text</label>
+      <input type="text" id="questionText" formControlName="questionText">
+    </div>
+    <div class="form-group">
+      <label for="typeSelect">Question Type</label>
+      <select id="typeSelect" class="form-control custom-select" formControlName="typeSelect">
+        <option value="0">Select a type...</option>
+        <option *ngFor="let type of types" value="{{type.id}}">{{type.friendly_name}}</option>
+      </select>
+    </div>
+  </div>
+  <button type="submit" [disabled]="!newQuestionForm.valid" class="btn btn-success" (click)="addQuestion()">Add</button>
+</form>

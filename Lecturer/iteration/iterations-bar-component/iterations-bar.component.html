@@ -18,11 +18,11 @@
     </div>
     <div class="tooltip-row">
       <span class="tooltip-row_heading">Start Date</span>
-      <span class="tooltip-row_data">{{ iteration.start_date | date:'shortDate' }}</span>
+      <span class="tooltip-row_data">{{ iteration.start_date | date:'dd/MM/yyyy' }}</span>
     </div>
     <div class="tooltip-row">
       <span class="tooltip-row_heading">End Date</span>
-      <span class="tooltip-row_data">{{ iteration.deadline | date:'shortDate' }}</span>
+      <span class="tooltip-row_data">{{ iteration.deadline | date:'dd/MM/yyyy' }}</span>
     </div>
   </section>
 </ng-template>

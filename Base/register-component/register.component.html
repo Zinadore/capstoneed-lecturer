@@ -1,0 +1,83 @@
+<!--<div class="debug">-->
+  <!--<pre>-->
+    <!--{{ registrationForm?.value | json }}-->
+  <!--</pre>-->
+
+  <!--<pre>-->
+    <!--{{ registrationForm?.errors }}-->
+  <!--</pre>-->
+<!--</div>-->
+
+<!--<button (click)="logErrors()">Log errors</button>-->
+
+
+<form [formGroup]="registrationForm"  (ngSubmit)="onSubmit()">
+  <span class="text-danger">All fields are required</span>
+  <fieldset class="form-group">
+    <legend>Personal Information</legend>
+    <hr>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" class="form-control" id="firstName" placeholder="John" formControlName="firstName">
+      <span *ngIf="registrationForm.get('firstName').hasError('required') && registrationForm.get('firstName').touched" class="text-danger">*First name is required</span>
+      <span *ngIf="registrationForm.get('firstName').hasError('noEmptyString') && registrationForm.get('firstName').touched" class="text-danger">*First name cannot be an empty string</span>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" class="form-control" id="lastName" placeholder="Doe" formControlName="lastName">
+      <span *ngIf="registrationForm.get('lastName').hasError('required') && registrationForm.get('lastName').touched" class="text-danger">*Last name is required</span>
+      <span *ngIf="registrationForm.get('lastName').hasError('noEmptyString') && registrationForm.get('lastName').touched" class="text-danger">*Last name cannot be an empty string</span>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" placeholder="john@doe.com" formControlName="email">
+      <span *ngIf="registrationForm.get('email').hasError('required') && registrationForm.get('email').touched" class="text-danger">*Email is required</span>
+      <span *ngIf="registrationForm.get('email').hasError('normalEmailRule') && registrationForm.get('email').dirty" class="text-danger">*Please enter a valid email address</span>
+    </div>
+    <fieldset formGroupName="passwords">
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" formControlName="password">
+        <span *ngIf="registrationForm.get('passwords.password').hasError('required') && registrationForm.get('passwords.password').touched" class="text-danger">*Password is required</span>
+        <span *ngIf="registrationForm.get('passwords.password').hasError('minlength') && registrationForm.get('passwords.password').dirty" class="text-danger">*The password must be at least 8 characters long</span>
+        <span *ngIf="registrationForm.get('passwords.password').hasError('noWhitespaceRequired') && registrationForm.get('passwords.password').dirty" class="text-danger">*The password cannot contain whitespaces</span>
+      </div>
+      <div class="form-group">
+        <label for="passwordConfirmation">Password Confirmation</label>
+        <input type="password" class="form-control" id="passwordConfirmation" formControlName="passwordConfirmation">
+        <span *ngIf="registrationForm.get('passwords').hasError('mismatchedPasswords') && registrationForm.get('passwords.passwordConfirmation').dirty" class="text-danger">*Passwords must match</span>
+      </div>
+    </fieldset>
+  </fieldset>
+
+  <fieldset>
+    <legend>Account Type</legend>
+    <hr>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label" for="lecturerRadio">
+        <input class="form-check-input" type="radio" id="lecturerRadio" value="Lecturer" formControlName="accountType"> Lecturer
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label" for="studentRadio">
+        <input class="form-check-input" type="radio" id="studentRadio" value="Student" formControlName="accountType"> Student
+      </label>
+    </div>
+  </fieldset>
+  <span *ngIf="registrationForm.get('accountType').hasError('required') && registrationForm.get('accountType').touched" class="text-danger">*The account type is required</span>
+  <span *ngIf="registrationForm.get('accountType').hasError('valueNotInRange') && registrationForm.get('accountType').dirty" class="text-danger">*Please use the above radio buttons to select the account type</span>
+
+  <fieldset formGroupName="lecturerInformation" *ngIf="isLecturerInfoVisible">
+    <legend>Lecturer Information</legend>
+    <hr>
+    <div class="form-group">
+      <label for="lecturerUniversity">University</label>
+      <input type="text" class="form-control" id="lecturerUniversity">
+    </div>
+    <div class="form-group">
+      <label for="lecturerPosition">Academic Position</label>
+      <input type="text" class="form-control" id="lecturerPosition">
+    </div>
+  </fieldset>
+  <button type="submit" class="btn btn-success" [disabled]="!registrationForm.valid">Register</button>
+</form>

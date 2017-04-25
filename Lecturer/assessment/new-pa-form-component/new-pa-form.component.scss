@@ -1,0 +1,35 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 100%;
+  padding: 2em;
+
+  .selector {
+    display: flex;
+    border-bottom: 2px solid black;
+    form {
+      h3 {
+        white-space: nowrap;
+      }
+    }
+
+    .hint {
+      padding: 2em;
+      flex: 1;
+      .btn {
+        display: block;
+      }
+    }
+  }
+
+  .questions-selector {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+  }
+
+  .question-creator {
+    margin-top: 2em;
+  }
+}
