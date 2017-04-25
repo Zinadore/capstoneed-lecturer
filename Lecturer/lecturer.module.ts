@@ -1,3 +1,4 @@
+import { HoursWorkedComponent } from './stats/hours-worked-component/hours-worked.component';
 import { EditUnitComponent } from './unit/edit-unit-component/edit-unit.component';
 import { EditAssignmentComponent } from './assignment/edit-assignment-component/edit-assignment.component';
 import { NgModule } from '@angular/core';
@@ -52,7 +53,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     AssignmentDetailsComponent,
     NewAssignmentComponent,
     EditAssignmentComponent,
-    EditUnitComponent
+    EditUnitComponent,
+    HoursWorkedComponent
   ],
   providers: [NgxMyDatePickerModule],
   exports: [
