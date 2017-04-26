@@ -22,10 +22,42 @@
   </div>
 </div>
 
-<div class="questions-selector" *ngIf="selectedAssignment">
-  <h3 class="display-5">Step 2: Select questions</h3>
+<div class="offsets-selector" *ngIf="selectedAssignment">
+  <form [formGroup]="offsetsForm" class="offsets-form">
+    <h3 class="display-5">Step 2: Select offsets</h3>
+    <div class="form-group">
+      <label for="startOffset">Start offset</label>
+      <input class="form-control" type="number" min="0" id="startOffset" formControlName="startOffset">
+      <div class="errors" ngxErrors="startOffset">
+        <span class="text-danger" ngxError="required" when="dirty">* The start offset is required</span>
+        <span class="text-danger" ngxError="numberRequired" when="dirty">* The start offset must be a number</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-group">
+        <label for="endOffset">End offset</label>
+        <input class="form-control" type="number" min="0" id="endOffset" formControlName="endOffset">
+        <div class="errors" ngxErrors="endOffset">
+          <span class="text-danger" ngxError="required" when="dirty">* The end offset is required</span>
+          <span class="text-danger" ngxError="numberRequired" when="dirty">* The end offset must be a number</span>
+          <span class="text-danger" ngxError="numericValueGreaterThan" when="dirty">* The end offset must be greater than the start offset</span>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="hint">
+    <p class="lead">
+      Use the inputs below to set how many days after the deadline of the assignment, the peer assessment will begin. That's when students will be able
+      to complete it. You can use 0 for start to begin right after the deadline. When you are done click below.
+    </p>
+    <button class="btn btn-outline-success" (click)="offsetsDone()">Done</button>
+  </div>
+</div>
+
+<div class="questions-selector" *ngIf="canShowQuestions">
+  <h3 class="display-5">Step 3: Select questions</h3>
   <p class="lead">
-    Drag questions from the left column to the right column to add the to the form. You can reorder the right column by dragging the questions around as well.
+    Drag questions from the left column to the right column to add them to the form. You can reorder the right column by dragging the questions around as well.
     You need to add at least one question. Please note that comment style questions are optional for the students.
   </p>
   <ced-dragable-question-lists [questions]="questions"
@@ -34,10 +66,10 @@
   </ced-dragable-question-lists>
 
   <!--<button (click)="debug()">Debug</button>-->
-  <button [disabled]="formQuestions.length == 0" (click)="submitQuestions()" class="btn btn-success">Submit</button>
+  <button [disabled]="formQuestions.length == 0" (click)="submitQuestions()" class="btn btn-outline-success">Submit</button>
 </div>
 
-<div class="question-creator" *ngIf="selectedAssignment">
+<div class="question-creator" *ngIf="canShowQuestions">
   <h3 class="display-5">Create new question</h3>
   <p class="lead">
     You can use the form below to create a new question. New questions will <b>NOT</b> be saved by the system until the form is submitted.

@@ -1,26 +1,33 @@
-<div class="bag-wrapper">
-  <div class="all-questions list-group" [dragula]="'questions-bag'" [dragulaModel]="_questions">
-    <div class="list-group-item list-group-item-action"  *ngFor="let question of _extraQuestions">
-      <div class="d-flex w-100">
-        {{ question.text }}
+<div class="bags-wrapper">
+  <div class="bag">
+    <h1 class="display-5">Available Questions</h1>
+    <div class="all-questions list-group" [dragula]="'questions-bag'" [dragulaModel]="_questions">
+      <div class="list-group-item list-group-item-action"  *ngFor="let question of _extraQuestions">
+        <div class="d-flex w-100">
+          {{ question.text }}
+        </div>
+        <small><b>Question Type:</b> {{ question.question_type.friendly_name }}</small>
       </div>
-      <small><b>Question Type:</b> {{ question.question_type.friendly_name }}</small>
-    </div>
-    <div class="list-group-item list-group-item-action" *ngFor="let question of _questions">
-      <div class="d-flex w-100">
-        {{ question.text }}
+      <div class="list-group-item list-group-item-action" *ngFor="let question of _questions">
+        <div class="d-flex w-100">
+          {{ question.text }}
+        </div>
+        <small><b>Question Type:</b> {{ question.question_type.friendly_name }}</small>
       </div>
-      <small><b>Question Type:</b> {{ question.question_type.friendly_name }}</small>
-    </div>
-  </div>
-  <div class="form-questions list-group" [dragula]="'questions-bag'" [dragulaModel]="formQuestions">
-    <div class="list-group-item list-group-item-action"  *ngFor="let question of formQuestions">
-      <div class="d-flex w-100">
-        {{ question.text }}
-      </div>
-      <small><b>Question Type:</b> {{ question.question_type.friendly_name }}</small>
     </div>
   </div>
+  <div class="bag">
+    <h1 class="display-5">Form Questions</h1>
+    <div class="form-questions list-group" [dragula]="'questions-bag'" [dragulaModel]="formQuestions">
+      <div class="list-group-item list-group-item-action"  *ngFor="let question of formQuestions">
+        <div class="d-flex w-100">
+          {{ question.text }}
+        </div>
+        <small><b>Question Type:</b> {{ question.question_type.friendly_name }}</small>
+      </div>
+    </div>
+  </div>
+
 </div>
 <!--<button (click)="debug()">Debug</button>-->
 

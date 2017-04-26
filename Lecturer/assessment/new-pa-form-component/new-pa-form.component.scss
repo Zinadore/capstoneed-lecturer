@@ -9,6 +9,28 @@
     display: flex;
     border-bottom: 2px solid black;
     form {
+      width: 25%;
+      h3 {
+        white-space: nowrap;
+      }
+    }
+
+    .hint {
+      padding: 2em;
+      flex: 1;
+      .btn {
+        display: block;
+      }
+    }
+  }
+
+  .offsets-selector {
+    margin-top: 2em;
+    display: flex;
+    border-bottom: 2px solid black;
+    form {
+      width: 25%;
+
       h3 {
         white-space: nowrap;
       }

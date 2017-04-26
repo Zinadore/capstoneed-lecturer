@@ -1,33 +1,41 @@
 :host {
   display: flex;
-  .bag-wrapper {
+  .bags-wrapper {
     width: 100%;
     display: flex;
 
-    .all-questions {
-      min-width: 50%;
-      border: 2px solid black;
-      min-height: 50px;
-      max-height: 300px;
-      overflow-y: auto;
-      .list-group-item {
-        display: block;
+    .bag {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
 
-        &.extra {
-          background-color: #4CAF50;
-          color: white;
+      .all-questions {
+        border: 2px solid black;
+        min-height: 50px;
+        max-height: 300px;
+        overflow-y: auto;
+        height: 100%;
+
+        .list-group-item {
+          display: block;
+
+          &.extra {
+            background-color: #4CAF50;
+            color: white;
+          }
         }
       }
-    }
 
-    .form-questions {
-      min-width: 50%;
-      border: 2px solid black;
-      min-height: 50px;
-      max-height: 300px;
-      overflow-y: auto;
-      .list-group-item {
-        display: block;
+      .form-questions {
+        border: 2px solid black;
+        min-height: 50px;
+        max-height: 300px;
+        overflow-y: auto;
+        height: 100%;
+
+        .list-group-item {
+          display: block;
+        }
       }
     }
   }
