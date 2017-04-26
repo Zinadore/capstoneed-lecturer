@@ -2,7 +2,7 @@
   <div class="bag">
     <h1 class="display-5">Available Questions</h1>
     <div class="all-questions list-group" [dragula]="'questions-bag'" [dragulaModel]="_questions">
-      <div class="list-group-item list-group-item-action"  *ngFor="let question of _extraQuestions">
+      <div class="list-group-item list-group-item-action extra"  *ngFor="let question of _extraQuestions">
         <div class="d-flex w-100">
           {{ question.text }}
         </div>
