@@ -1,13 +1,7 @@
 <div class="bags-wrapper">
   <div class="bag">
-    <h1 class="display-5">Available Questions</h1>
+    <h5 class="display-5">Available Questions</h5>
     <div class="all-questions list-group" [dragula]="'questions-bag'" [dragulaModel]="_questions">
-      <div class="list-group-item list-group-item-action extra"  *ngFor="let question of _extraQuestions">
-        <div class="d-flex w-100">
-          {{ question.text }}
-        </div>
-        <small><b>Question Type:</b> {{ question.question_type.friendly_name }}</small>
-      </div>
       <div class="list-group-item list-group-item-action" *ngFor="let question of _questions">
         <div class="d-flex w-100">
           {{ question.text }}
@@ -17,7 +11,7 @@
     </div>
   </div>
   <div class="bag">
-    <h1 class="display-5">Form Questions</h1>
+    <h5 class="display-5">Form Questions</h5>
     <div class="form-questions list-group" [dragula]="'questions-bag'" [dragulaModel]="formQuestions">
       <div class="list-group-item list-group-item-action"  *ngFor="let question of formQuestions">
         <div class="d-flex w-100">
@@ -27,7 +21,6 @@
       </div>
     </div>
   </div>
-
+  <!--<button (click)="debug()">Debug</button>-->
 </div>
-<!--<button (click)="debug()">Debug</button>-->
 

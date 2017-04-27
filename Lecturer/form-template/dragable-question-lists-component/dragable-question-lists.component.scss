@@ -10,28 +10,27 @@
       width: 50%;
 
       .all-questions {
-        border: 2px solid black;
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        border-radius: 0.25rem;
         min-height: 50px;
         max-height: 300px;
         overflow-y: auto;
         height: 100%;
+        margin: 0.4rem;
 
         .list-group-item {
           display: block;
-
-          &.extra {
-            background-color: #4CAF50;
-            color: white;
-          }
         }
       }
 
       .form-questions {
-        border: 2px solid black;
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        border-radius: 0.25rem;
         min-height: 50px;
         max-height: 300px;
         overflow-y: auto;
         height: 100%;
+        margin: 0.4rem;
 
         .list-group-item {
           display: block;

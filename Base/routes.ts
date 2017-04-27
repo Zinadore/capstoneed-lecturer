@@ -20,6 +20,9 @@ import { RegisterComponent } from './register-component/register.component';
 import { IterationsBarComponent } from '../Lecturer/iteration/iterations-bar-component/iterations-bar.component';
 import { EditIterationsComponent } from '../Lecturer/iteration/edit-iterations-component/edit-iterations.component';
 import { NewPeerAssessmentFormComponent } from "../Lecturer/assessment/new-pa-form-component/new-pa-form.component";
+import { NewFormTemplateComponent } from '../Lecturer/form-template/new-form-template-component/new-form-template.component';
+import { FormTemplateListComponent } from '../Lecturer/form-template/form-template-list-component/form-template-list.component';
+import { EditFormTemplateComponent } from '../Lecturer/form-template/edit-form-template-component/edit-form-template.component';
 
 export const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
@@ -54,6 +57,11 @@ export const ROUTES: Routes = [
     ] },
     { path: 'peer-assessments', children: [
       { path: 'new-form', component: NewPeerAssessmentFormComponent }
+    ] },
+    { path: 'form-templates', children: [
+      { path: '', pathMatch: 'full', component: FormTemplateListComponent },
+      { path: 'new', component: NewFormTemplateComponent },
+      { path: ':id/edit', pathMatch: 'full', component: EditFormTemplateComponent }
     ] }
   ]
   },

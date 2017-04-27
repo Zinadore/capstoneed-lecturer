@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { isNullOrUndefined, isUndefined } from 'util';
 import { AssignmentService } from '../../../../shared/Services/assignment.service';
 import { ProjectService } from '../../../../shared/Services/project.service';
+import { TimeHelpers } from '../../../../shared/Helpers/time.helpers';
 
 @Component({
   selector: 'ced-assignment-details',
@@ -18,7 +19,7 @@ import { ProjectService } from '../../../../shared/Services/project.service';
 export class AssignmentDetailsComponent extends ComponentBase {
   private assignment$: Observable<Assignment>;
   private projects: Observable<Project[]>;
-  private assignment: Assignment
+  private assignment: Assignment;
 
   constructor(store: Store<IAppState>, route: ActivatedRoute, private assignmentService: AssignmentService, private projectService: ProjectService) {
     super();
@@ -37,8 +38,13 @@ export class AssignmentDetailsComponent extends ComponentBase {
       .do((a: Assignment) => this.projectService.getAllActiveForAssignment(a.id))
       .switchMap(assignment => store.select((state: IAppState) => state.projects)
         .map((projects: Project[]) => projects.filter((p: Project) => p.assignment_id == assignment.id))
-      )
+      );
 
     this.disposeOnDestroy(this.assignment$.filter((a: Assignment) => !isUndefined(a)).subscribe(a => this.assignment = a));
   }
+
+  public getAssignmentTimespan(assignment: Assignment): number {
+    return TimeHelpers.getTimeSpanInDays(assignment.start_date, assignment.end_date);
+  }
+
 }

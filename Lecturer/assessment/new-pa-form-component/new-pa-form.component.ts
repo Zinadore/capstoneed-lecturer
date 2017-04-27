@@ -69,15 +69,15 @@ export class NewPeerAssessmentFormComponent extends ComponentBase implements OnI
       })
     );
 
-    let start = this.fb.control(['0', Validators.compose([
+    let start = this.fb.control(0, Validators.compose([
       Validators.required,
       UniversalValidators.isNumber
-      ])]
+      ])
     );
 
     this.offsetsForm = this.fb.group({
       startOffset: start,
-      endOffset: ['1', Validators.compose([Validators.required, UniversalValidators.isNumber, CedValidators.hasGreaterNumericValueThan(start)])]
+      endOffset: [1, Validators.compose([Validators.required, UniversalValidators.isNumber, CedValidators.hasGreaterNumericValueThan(start)])]
     });
 
 

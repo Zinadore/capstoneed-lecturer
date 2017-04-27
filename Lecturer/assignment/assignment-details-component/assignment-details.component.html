@@ -5,7 +5,7 @@
       <div class="breadcrumb-step">
         <a [routerLink]="['/units']">Units</a>
       </div>
-      <div class="breadcrumb-divider"> / </div>   
+      <div class="breadcrumb-divider"> / </div>
       <div class="breadcrumb-step">
         <a [routerLink]="['/units', assignment.unit.id]" *ngIf="assignment">
           {{ assignment.unit.name }}
@@ -17,11 +17,11 @@
           {{ assignment?.name }}
         </a>
       </div>
-      <div class="breadcrumb-divider"> / </div>       
+      <div class="breadcrumb-divider"> / </div>
       <div class="breadcrumb-step">
         Projects
       </div>
-      <div class="breadcrumb-divider"> / </div>           
+      <div class="breadcrumb-divider"> / </div>
     </div>
   </div>
 </div>
@@ -30,7 +30,7 @@
   <!--Page Title-->
   <div class="page-title-row">
     <div class="col-12 ">
-      <h3 class="page-title">{{ ass.name }} Projects</h3>
+      <h3 class="page-title">{{ ass.name }}</h3>
       <div class="gear-settings" ngbDropdown>
         <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
           <i class="fa fa-cog" aria-hidden="true"></i>
@@ -39,7 +39,22 @@
           <a class="dropdown-item" [routerLink]="['edit']">Edit Assignment</a>
           <a class="dropdown-item" [routerLink]="['/projects/new']">Add Project..</a>
         </div>
-      </div>      
+      </div>
+    </div>
+
+    <div class="col-3 info">
+      <dl class="row">
+        <dt class="col-3">Start Date:</dt>
+        <dd class="col-9">{{ ass.start_date | date:'dd/MM/yyyy' }}</dd>
+        <dt class="col-3">End Date:</dt>
+        <dd class="col-9">{{ ass.end_date| date:'dd/MM/yyyy' }}</dd>
+      </dl>
+    </div>
+    <div class="col-9 iteration-bar">
+      <ced-iterations-bar [height-em]="3"
+                          [iterations]="ass.iterations"
+                          [project-timespan]="getAssignmentTimespan(ass)">
+      </ced-iterations-bar>
     </div>
   </div>
 
@@ -55,7 +70,7 @@
           </div>
           <div class="col-2">
             <h6>Team Name</h6>
-          </div>          
+          </div>
           <div class="col-3">
             <h6>Members</h6>
           </div>
@@ -73,7 +88,7 @@
           </div>
           <div class="col-sm-2">
             <a [routerLink]="['/projects', project.id]" class="project-title">{{ project.team_name }}</a>
-          </div>          
+          </div>
           <div class="col-sm-3 team-avatars">
             <img *ngFor="let student of project.students" [src]="student.avatar_url" placement="top" ngbTooltip="{{student.nickname}}">
           </div>

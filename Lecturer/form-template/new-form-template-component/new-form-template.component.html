@@ -1,0 +1,38 @@
+<h3 class="display-5 heading">Create Form Template</h3>
+
+<form [formGroup]="templateForm">
+  <div class="name-and-submit">
+    <div class="form-group">
+      <label for="templateName">Template Name</label>
+      <input type="text" id="templateName" class="form-control" formControlName="formName">
+      <div class="errors" ngxErrors="formName">
+        <span class="text-danger" ngxError="required" [when]="['touched', 'dirty']">* The template name is required.</span>
+        <span class="text-danger" ngxError="notNullOrWhitespace" [when]="['touched', 'dirty']">* The template name cannot be an empty string.</span>
+      </div>
+    </div>
+    <button class="btn btn-success" (click)="submitForm()" [disabled]="!(templateForm.valid && areQuestionsValid)">Submit</button>
+  </div>
+
+
+
+  <div class="question-selector">
+    <h3 class="display-5 heading">Select questions</h3>
+    <p class="lead">
+      You can drag and drop questions from the left column to the right column to add them to the form. You can also drag around the questions on the right form
+      to reorder them.
+    </p>
+    <ced-dragable-question-lists (new-form-questions)="onQuestionsReceived($event)"
+                                 [extra-questions]="newQuestionSubject | async"
+                                 [questions]="questions">
+    </ced-dragable-question-lists>
+  </div>
+
+  <div class="question-creator">
+    <h3 class="display-5 heading">Create new question</h3>
+    <p class="lead">
+      Use the form below to add new questions to the form directly. The questions will <b>NOT</b> be saved until the form is submitted
+    </p>
+    <ced-new-pa-question (newQuestion)="onNewQuestionReceived($event)">
+    </ced-new-pa-question>
+  </div>
+</form>

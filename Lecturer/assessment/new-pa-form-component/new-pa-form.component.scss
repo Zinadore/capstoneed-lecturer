@@ -27,22 +27,33 @@
   .offsets-selector {
     margin-top: 2em;
     display: flex;
+    flex-direction: column;
     border-bottom: 2px solid black;
+    padding-bottom: 1em;
+
+
     form {
-      width: 25%;
+      width: 100%;
 
       h3 {
         white-space: nowrap;
       }
-    }
 
-    .hint {
-      padding: 2em;
-      flex: 1;
-      .btn {
+      .form-control {
+        display: inline-block;
+        width: 6em;
+      }
+
+      .btn{
         display: block;
       }
+      .errors {
+        span {
+          display: block;
+        }
+      }
     }
+
   }
 
   .questions-selector {

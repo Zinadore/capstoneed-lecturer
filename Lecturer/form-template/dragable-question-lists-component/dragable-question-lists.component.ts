@@ -14,22 +14,27 @@ export class DragableQuestionListsComponent extends ComponentBase implements OnI
   public _questions: Question[];
   @Input('questions') set DragableQuestionListsComponent__Questions(value) {
     this._questions = [];
-    this.formQuestions = [];
-
     for(let q of value) {
       this._questions.push(q);
     }
   }
-  public _extraQuestions: Question[];
-  @Input('extras') set DragableQuestionListsComponent__ExtraQuestions(value) {
-    console.log(value);
-    this._extraQuestions = [];
-    for(let q of value) {
-      this._extraQuestions.push(q);
-    }
+
+  @Input('extra-questions') set DragableQuestionListsComponent__ExtraQuestions(value) {
+    if(!value) return;
+    this.formQuestions.push(value);
+    this.questionsEventEmitter.emit(this.formQuestions);
   }
 
-  @Output('form-questions') questionsEventEmitter: EventEmitter<Question[]>;
+  @Input('form-questions') set DragableQuestionListsComponent__FormQuestions(value) {
+    if(!value) return;
+    this.formQuestions = [];
+    for(let q of value) {
+      this.formQuestions.push(q);
+    }
+    this.questionsEventEmitter.emit(this.formQuestions);
+  }
+
+  @Output('new-form-questions') questionsEventEmitter: EventEmitter<Question[]>;
 
   public formQuestions: Question[];
 

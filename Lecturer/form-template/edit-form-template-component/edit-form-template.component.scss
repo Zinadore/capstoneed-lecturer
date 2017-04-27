@@ -1,0 +1,45 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 2em;
+
+  .heading {
+    border-bottom: 1px solid #333333;
+    padding-bottom: 0.75rem;
+  }
+
+  form {
+
+    .name-and-submit {
+      display: flex;
+      align-items: center;
+
+      & > .form-group {
+        flex: 1;
+      }
+
+      & > .btn {
+        width: 25%;
+      }
+
+      #templateName {
+        width: 35%;
+      }
+    }
+
+    .errors {
+      span {
+        display: block;
+      }
+    }
+
+    .question-selector {
+      margin-top: 2em;
+    }
+
+    .question-creator {
+      margin-top: 2em
+    }
+  }
+}

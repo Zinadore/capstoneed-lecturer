@@ -1,6 +1,20 @@
 @import "../../../../style/global-variables";
 @import "../../../../style/lecturer-common";
 
+.page-title-row {
+  .info {
+    margin-top: 1em;
+
+    dt {
+      white-space: nowrap;
+    }
+  }
+
+  .iteration-bar {
+    margin-top: 1em;
+  }
+}
+
 .projects-table-header {
   h6 {
     font-size: $font-size-units-table-headers;

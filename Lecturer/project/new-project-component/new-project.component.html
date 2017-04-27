@@ -17,11 +17,6 @@
         </select>
       </div>
     </form>
-    <p class="lead">Couldn't find what you were looking for? Try one of these:</p>
-    <div class="btn-group" role="group" aria-label="Create new">
-      <button type="button" class="btn btn-secondary" [routerLink]="['/units', 'new']">Create new unit</button>
-      <button type="button" class="btn btn-secondary">Create new assignment</button>
-    </div>
   </ced-form-wizard-step>
 
   <ced-form-wizard-step [canGoNext]="detailsStep_canGoNext()" [onNext]="detailsStep_onNext" [title]="'New Project Details'">

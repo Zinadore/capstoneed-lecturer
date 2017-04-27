@@ -30,8 +30,11 @@ import { IterationsBarComponent } from './iteration/iterations-bar-component/ite
 import { EditIterationsComponent } from './iteration/edit-iterations-component/edit-iterations.component';
 import { NewPeerAssessmentFormComponent } from "./assessment/new-pa-form-component/new-pa-form.component";
 import { DragulaModule } from 'ng2-dragula';
-import { DragableQuestionListsComponent } from './assessment/dragable-question-lists-component/dragable-question-lists.component';
-import { NewPaQuestionComponent } from './assessment/new-pa-question-component/new-pa-question.component';
+import { DragableQuestionListsComponent } from './form-template/dragable-question-lists-component/dragable-question-lists.component';
+import { NewPaQuestionComponent } from './form-template/new-pa-question-component/new-pa-question.component';
+import { NewFormTemplateComponent } from './form-template/new-form-template-component/new-form-template.component';
+import { FormTemplateListComponent } from './form-template/form-template-list-component/form-template-list.component';
+import { EditFormTemplateComponent } from './form-template/edit-form-template-component/edit-form-template.component';
 
 @NgModule({
   imports: [
@@ -68,7 +71,10 @@ import { NewPaQuestionComponent } from './assessment/new-pa-question-component/n
     EditIterationsComponent,
     NewPeerAssessmentFormComponent,
     DragableQuestionListsComponent,
-    NewPaQuestionComponent
+    NewPaQuestionComponent,
+    NewFormTemplateComponent,
+    FormTemplateListComponent,
+    EditFormTemplateComponent
   ],
   providers: [NgxMyDatePickerModule],
   exports: [
