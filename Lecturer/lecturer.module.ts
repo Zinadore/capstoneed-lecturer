@@ -25,6 +25,7 @@ import { AssignmentDetailsComponent } from './assignment/assignment-details-comp
 import { NewAssignmentComponent } from './assignment/new-assignment-component/new-assignment.component';
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ChartModule } from 'angular2-highcharts';
 
 @NgModule({
   imports: [
@@ -34,7 +35,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     SharedDirectivesModule,
     ReactiveFormsModule,
     NgxMyDatePickerModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    ChartModule.forRoot(require('highcharts'),
+                        require('highcharts/modules/exporting'))
   ],
   declarations: [
     SidenavComponent,
