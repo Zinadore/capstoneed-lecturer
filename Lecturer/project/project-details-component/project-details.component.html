@@ -116,3 +116,9 @@
     <ced-hours-worked [projectId]="project_id"></ced-hours-worked>
   </div>
 </div>
+
+<div class="row row-component" style="margin-top: 20px">
+  <div class="col-12" *ngIf="project_id">
+    <ced-percent-completion [projectId]="project_id"></ced-percent-completion>
+  </div>
+</div>
