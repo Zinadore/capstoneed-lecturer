@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ComponentBase } from '../../../../shared/Directives/componentBase';
 import { FormTemplate } from '../../../../shared/Store/Models/form-template';
 import { Store } from '@ngrx/store';
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
   templateUrl: 'form-template-list.component.html',
   styleUrls: ['form-template-list.component.scss']
 })
-export class FormTemplateListComponent extends ComponentBase implements OnInit {
+export class FormTemplateListComponent extends ComponentBase implements OnInit, AfterViewInit {
 
   public formTemplates: FormTemplate[];
   public selectedFormTemplate: FormTemplate;

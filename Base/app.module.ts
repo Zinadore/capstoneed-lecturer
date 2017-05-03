@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { createNewHosts, removeNgStyles } from '@angularclass/hmr';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToastContainerModule, ToastrConfig, ToastrModule } from 'ngx-toastr';
+import { ToastContainerModule, ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { ROUTES } from './routes';
 import { CedStoreModule } from '../../shared/Store/cedStore.module';
@@ -17,10 +17,8 @@ import { GuardsModule } from '../../shared/Guards/guards.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './register-component/register.component';
 import { RegisterSuccessComponent } from './register-success-component/register-success.component';
-import { IterationsBarComponent } from '../Lecturer/iteration/iterations-bar-component/iterations-bar.component';
-import { EditIterationsComponent } from '../Lecturer/iteration/edit-iterations-component/edit-iterations.component';
-import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
-import { NgxErrorsModule } from '@ultimate/ngxerrors';
+import { ProjectEvaluationComponent } from '../Lecturer/project-evaluation/project-evaluation-component/project-evaluation.component';
+import { RoundProgressModule } from 'angular-svg-round-progressbar';
 
 
 const ToastrGlobalConf: any = {
@@ -65,13 +63,14 @@ const ToastrGlobalConf: any = {
     LecturerModule,
     GuardsModule,
     BrowserAnimationsModule,
-
+    RoundProgressModule
   ],
   declarations: [
     AppComponent,
     HeaderComponent,
     RegisterComponent,
-    RegisterSuccessComponent
+    RegisterSuccessComponent,
+    ProjectEvaluationComponent,
   ],
   providers: [
   ],

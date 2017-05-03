@@ -10,6 +10,7 @@ import { PeerAssessmentService } from '../../../../shared/Services/peer-assessme
 import { QUESTION_TYPE_TEXT } from '../../../../shared/Store/Models/question-type';
 import { FormTemplate } from '../../../../shared/Store/Models/form-template';
 import { FormTemplateService } from '../../../../shared/Services/form-template.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ced-new-form-template',
@@ -24,7 +25,7 @@ export class NewFormTemplateComponent extends ComponentBase implements OnInit {
   public areQuestionsValid: boolean;
   private formQuestions: Question[];
 
-  constructor(store: Store<IAppState>, private fb: FormBuilder, private assessmentService: PeerAssessmentService, private templateService: FormTemplateService) {
+  constructor(store: Store<IAppState>, private fb: FormBuilder, private assessmentService: PeerAssessmentService, private templateService: FormTemplateService, private router: Router) {
     super();
 
     this.areQuestionsValid = false;
@@ -60,7 +61,12 @@ export class NewFormTemplateComponent extends ComponentBase implements OnInit {
       questions: this.formQuestions
     };
 
-    this.templateService.create(newForm);
+    this.disposeOnDestroy(this.templateService.create$(newForm)
+      .subscribe(
+        (res) => { this.router.navigate(['form-templates']) },
+        (err) => console.log(err)
+      )
+    );
   }
 
   private checkQuestionsValidity(): void {

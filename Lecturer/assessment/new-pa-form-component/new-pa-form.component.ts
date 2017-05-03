@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ComponentBase } from '../../../../shared/Directives/componentBase';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../../../shared/Store/Reducers/index';
@@ -14,6 +14,9 @@ import { UniversalValidators } from 'ng2-validators';
 import { TimeHelpers } from '../../../../shared/Helpers/time.helpers';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { FormTemplate } from '../../../../shared/Store/Models/form-template';
+import { FormTemplateService } from "../../../../shared/Services/form-template.service";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ced-new-pa-form',
@@ -27,30 +30,45 @@ export class NewPeerAssessmentFormComponent extends ComponentBase implements OnI
   public selectedAssignment: Assignment;
   public selectForm: FormGroup;
   public offsetsForm: FormGroup;
-
-  public questions: Question[];
-  public formQuestions: Question[];
-  public extraQuestions: Question[];
+  public formTemplates: FormTemplate[];
+  public filteredFormTemplates: FormTemplate[];
+  public selectedFormTemplate: FormTemplate;
   public canShowQuestions: boolean;
 
-  constructor(store: Store<IAppState>, private assignmentService: AssignmentService, private assessmentService: PeerAssessmentService, private fb: FormBuilder, private toastService: ToastrService, private router: Router) {
+  private haveSearchObservable: boolean;
+
+  private searchTextBoxRef: ElementRef;
+  @ViewChild('search_input') set searchTextBox(el: ElementRef) {
+    this.searchTextBoxRef = el;
+  }
+
+  constructor(store: Store<IAppState>, private assignmentService: AssignmentService, private assessmentService: PeerAssessmentService,
+              private fb: FormBuilder, private toastService: ToastrService, private router: Router, templateService: FormTemplateService) {
     super();
 
     this.assignmentService.getAll();
-    this.assessmentService.getQuestions();
-    this.formQuestions = [];
-    this.extraQuestions= [];
+    templateService.getAll();
     this.canShowQuestions = false;
+    this.haveSearchObservable = false;
+
+    this.selectedFormTemplate = {
+      id: 0,
+      questions: [],
+      name: ''
+    };
 
     this.disposeOnDestroy(store.select((state: IAppState) => state.assignments).subscribe(value => {
         this.assignments = value;
       })
     );
 
-    this.disposeOnDestroy(store.select((state: IAppState) => state.questions).subscribe(value => {
-        this.questions = value;
+    this.disposeOnDestroy(store.select((state: IAppState) => state.form_templates).subscribe(value => {
+        this.formTemplates = value;
+        this.filteredFormTemplates = [...value];
       })
-    )
+    );
+
+
   }
 
   ngOnInit() {
@@ -83,8 +101,24 @@ export class NewPeerAssessmentFormComponent extends ComponentBase implements OnI
 
   }
 
+  ngAfterViewChecked() {
+    if(this.canShowQuestions && !this.haveSearchObservable) {
+      this.haveSearchObservable = true;
+      let textInputObservable = Observable.fromEvent(this.searchTextBoxRef.nativeElement, 'keyup');
+      this.disposeOnDestroy(textInputObservable
+        .map((event: any) => event.target.value)
+        .map(term => term.toLowerCase())
+        .subscribe(searchTerm => {
+          this.filteredFormTemplates = searchTerm ? this.formTemplates.filter(t => t.name.toLowerCase().indexOf(searchTerm) != -1) : this.formTemplates;
+        })
+      )
+    }
+  }
+
   public debug(): void {
-    console.log(this.formQuestions);
+    console.log("Assignment Form: ", this.selectForm.valid);
+    console.log("Offset Form: ", this.offsetsForm.valid);
+    console.log("Selected Template: ", this.selectedFormTemplate)
   }
 
   public offsetsDone(): void {
@@ -97,10 +131,15 @@ export class NewPeerAssessmentFormComponent extends ComponentBase implements OnI
     this.canShowQuestions = this.offsetsForm.valid;
   }
 
+  public selectTemplate(index: number): void {
+    console.log(`Selecting: ${index}`);
+    this.selectedFormTemplate = this.formTemplates[index];
+  }
+
   public submitQuestions(): void {
     let data = {
       end_offset: TimeHelpers.daysToMilliseconds(this.offsetsForm.controls['endOffset'].value),
-      questions: this.formQuestions,
+      questions: this.selectedFormTemplate.questions,
       start_offset: TimeHelpers.daysToMilliseconds(this.offsetsForm.controls['startOffset'].value),
       assignment_id: this.selectedAssignment.id
     };
@@ -118,13 +157,4 @@ export class NewPeerAssessmentFormComponent extends ComponentBase implements OnI
       )
     );
   }
-
-  public onFormQuestionsReceived(questions: Question[]) {
-    this.formQuestions = questions;
-  }
-
-  public newQuestionReceived(newQuestion: Question): void {
-    this.extraQuestions = [newQuestion, ...this.extraQuestions];
-  }
-
 }

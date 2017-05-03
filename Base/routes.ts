@@ -23,11 +23,12 @@ import { NewPeerAssessmentFormComponent } from "../Lecturer/assessment/new-pa-fo
 import { NewFormTemplateComponent } from '../Lecturer/form-template/new-form-template-component/new-form-template.component';
 import { FormTemplateListComponent } from '../Lecturer/form-template/form-template-list-component/form-template-list.component';
 import { EditFormTemplateComponent } from '../Lecturer/form-template/edit-form-template-component/edit-form-template.component';
+import { ProjectEvaluationComponent } from '../Lecturer/project-evaluation/project-evaluation-component/project-evaluation.component';
 
 export const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'beta-test', component: HomeComponent },
+  { path: 'beta-test', component: ProjectEvaluationComponent },
   { path: 'register', pathMatch: 'full', component: RegisterComponent },
   { path: 'register_success', pathMatch: 'full', component: RegisterSuccessComponent },
   { path: '', canActivate: [IsAuthenticatedGuard], children: [
@@ -56,7 +57,7 @@ export const ROUTES: Routes = [
       { path: 'edit', pathMatch: 'full', component: EditProfileComponent }
     ] },
     { path: 'peer-assessments', children: [
-      { path: 'new-form', component: NewPeerAssessmentFormComponent }
+      { path: 'new', component: NewPeerAssessmentFormComponent }
     ] },
     { path: 'form-templates', children: [
       { path: '', pathMatch: 'full', component: FormTemplateListComponent },

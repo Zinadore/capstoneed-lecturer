@@ -1,0 +1,65 @@
+<!--Breadcrumbs-->
+<div class="row">
+  <div class="col-12">
+    <div class="breadcrumb-custom">
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/projects']">Projects</a>
+      </div>
+      <div class="breadcrumb-divider" *ngIf="_project"> / </div>
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/projects', _project.id]" *ngIf="_project">{{ _project.project_name }}</a>
+      </div>
+      <div class="breadcrumb-divider"> / </div>
+      <div class="breadcrumb-step">
+        <a>Evaluation</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="page-title-row" *ngIf="_project">
+  <div class="col-12 ">
+    <h3 class="page-title">Evaluating {{ _project.project_name }}</h3>
+  </div>
+</div>
+
+
+<div class="completion-answer row-component">
+  <div class="slider">
+    <h4 class="display-5">Project Completion</h4>
+    <p class="lead">In your opinion, how much of the project's work has been completed so far? (0 - 100)</p>
+    <input #slider class="progress-slider" type="range" value="0" min="0" max="100">
+  </div>
+  <div class="graph">
+    <round-progress
+      [current]="projectProgress"
+      [max]="100"
+      [responsive]="true"
+      [radius]="90"
+      [stroke]="30"
+      >
+      40
+    </round-progress>
+    <span class="project-completed-text">{{projectProgress}}%</span>
+  </div>
+  <div class="student-answers">
+    <h4 class="display-5">Your students have answered</h4>
+    <div class="answers">
+      <div class="answer" *ngFor="let student of _project.students">
+        <div class="top-row">
+          <span class="text">45%</span>
+          <img [src]="student.avatar_url" alt="" class="student-avatar">
+        </div>
+        <span class="student-name">{{ student.first_name + ' ' + student.last_name }}</span>
+      </div>
+      <div class="average">
+        <span>45%</span>
+        <span>Average</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

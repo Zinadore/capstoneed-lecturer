@@ -44,23 +44,57 @@
 </div>
 
 <div class="questions-selector" *ngIf="canShowQuestions">
-  <h3 class="display-5">Step 3: Select questions</h3>
+  <h3 class="display-5">Step 3: Select an existing form</h3>
   <p class="lead">
-    Drag questions from the left column to the right column to add them to the form. You can reorder the right column by dragging the questions around as well.
-    You need to add at least one question. Please note that comment style questions are optional for the students.
+    Select one of your existing forms.
   </p>
+
+  <div class="form-group search-group">
+    <input #search_input type="text" placeholder="Filter by template name..." class="form-control search">
+    <span class="lead">You can use the search on the left to filter through your templates. Clicking on a template will show a preview. Use the pencil button to edit the template.</span>
+  </div>
+
+  <div class="list-and-display">
+
+    <div class="template-list">
+      <h4>My Templates</h4>
+      <hr>
+      <div class="list-group template-list-group" *ngIf="filteredFormTemplates.length > 0">
+        <div *ngFor="let template of filteredFormTemplates; let i = index"
+             class="list-group-item list-group-item-action template-item"
+             [ngClass]="{ 'active': template.id == selectedFormTemplate.id }"
+             (click)="selectTemplate(i)">
+          <span class="template-name">{{ template.name }}</span>
+        </div>
+      </div>
+      <p *ngIf="filteredFormTemplates.length == 0">No templates found</p>
+    </div>
+
+
+    <div class="template-preview">
+      <h4>Template Preview</h4>
+      <hr>
+      <div class="template-details" *ngIf="selectedFormTemplate.id != 0">
+        <dl class="template-details--name">
+          <dt class="template-details--name-label">Name</dt>
+          <dd class="template-details--name-text">{{selectedFormTemplate.name}}</dd>
+        </dl>
+        <h5>Questions</h5>
+        <div class="list-group">
+          <div *ngFor="let question of selectedFormTemplate.questions" class="list-group-item">
+            <div class="d-flex w-100">
+              {{ question.text }}
+            </div>
+            <small><b>Question Type:</b> {{ question.question_type.friendly_name }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
 
   <!--<button (click)="debug()">Debug</button>-->
-  <button [disabled]="formQuestions.length == 0" (click)="submitQuestions()" class="btn btn-outline-success">Submit</button>
+  <button [disabled]="!selectedFormTemplate || !offsetsForm.valid || !selectForm.valid" (click)="submitQuestions()" class="btn btn-success">Submit</button>
+  <button (click)="debug()">Debug</button>
 </div>
-
-<div class="question-creator" *ngIf="canShowQuestions">
-  <h3 class="display-5">Create new question</h3>
-  <p class="lead">
-    You can use the form below to create a new question. New questions will <b>NOT</b> be saved by the system until the form is submitted.
-  </p>
-
-</div>
-
-
