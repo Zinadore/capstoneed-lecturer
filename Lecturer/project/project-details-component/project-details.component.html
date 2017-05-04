@@ -137,3 +137,12 @@
     <ced-percent-completion [projectId]="project_id"></ced-percent-completion>
   </div>
 </div>
+
+<div class="row row-component" style="margin-top: 20px">
+  <div class="col-12">
+    <h4>Logs heatmap for project</h4>
+  </div>    
+  <div class="col-12" *ngIf="project_id">
+    <ced-logs-heatmap [projectId]="project_id"></ced-logs-heatmap>
+  </div>
+</div>

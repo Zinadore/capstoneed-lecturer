@@ -1,6 +1,7 @@
 import { HoursWorkedProjectComponent } from './stats/hours-worked-project-component/hours-worked-project.component';
 import { HoursWorkedAssignmentComponent } from './stats/hours-worked-assignment-component/hours-worked-assignment.component';
 import { PercentCompletionComponent } from './stats/percent-completion-component/percent-completion.component';
+import { LogsHeatmapComponent } from './stats/logs-heatmap-component/logs-heatmap.component';
 import { EditUnitComponent } from './unit/edit-unit-component/edit-unit.component';
 import { EditAssignmentComponent } from './assignment/edit-assignment-component/edit-assignment.component';
 import { NgModule } from '@angular/core';
@@ -39,7 +40,8 @@ import { ChartModule } from 'angular2-highcharts';
     NgxMyDatePickerModule,
     NgxDatatableModule,
     ChartModule.forRoot(require('highcharts'),
-                        require('highcharts/modules/exporting'))
+                        require('highcharts/modules/exporting'),
+                        require('highcharts/modules/heatmap'))
   ],
   declarations: [
     SidenavComponent,
@@ -61,7 +63,8 @@ import { ChartModule } from 'angular2-highcharts';
     EditUnitComponent,
     HoursWorkedProjectComponent,
     HoursWorkedAssignmentComponent,
-    PercentCompletionComponent
+    PercentCompletionComponent,
+    LogsHeatmapComponent
   ],
   providers: [NgxMyDatePickerModule],
   exports: [

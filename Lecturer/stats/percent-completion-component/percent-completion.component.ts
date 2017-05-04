@@ -32,14 +32,7 @@ export class PercentCompletionComponent extends ComponentBase implements OnInit 
                     },                    
                     title : { text : 'Project Completion Estimation' },
                     xAxis: {                    
-                      type: 'category',
-                      // labels: {
-                      //     rotation: -45,
-                      //     style: {
-                      //         fontSize: '13px',
-                      //         fontFamily: 'Verdana, sans-serif'
-                      //     }
-                      // }
+                      type: 'category'
                     },
                     yAxis: {
                       min: 0,

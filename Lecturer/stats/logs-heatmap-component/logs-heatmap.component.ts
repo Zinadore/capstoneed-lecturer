@@ -4,11 +4,11 @@ import { CustomHttp } from './../../../../shared/Services/customHttp';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'ced-hours-worked-project',
-  templateUrl: './hours-worked-project.component.html',
-  styleUrls: ['./hours-worked-project.component.css']
+  selector: 'ced-logs-heatmap',
+  templateUrl: './logs-heatmap.component.html',
+  styleUrls: ['./logs-heatmap.component.scss']
 })
-export class HoursWorkedProjectComponent extends ComponentBase implements OnInit {
+export class LogsHeatmapComponent extends ComponentBase implements OnInit {
 
   @Input() projectId: Number;
   options;
@@ -21,32 +21,48 @@ export class HoursWorkedProjectComponent extends ComponentBase implements OnInit
     if (!this.projectId)
       console.log('No project_id')
 
-    this.chttp.get(`${BASE_URL}/stats?graph=hours_worked&project_id=${this.projectId}`)
+    this.chttp.get(`${BASE_URL}/stats?graph=logs_heatmap&project_id=${this.projectId}`)
               .map(res => res.json())
               .subscribe(
                 data => {
-                  console.log(data.hours_worked_graph);
-                  this.options = {
+                    let categories = [];
+                    data.logs_heatmap.forEach( (e) => categories.push(e.name));
+                    console.log(data.logs_heatmap)
+
+                    this.options = {
                     chart: {
-                      type: 'spline',
-                      zoomType: 'x'
+                        type: 'heatmap',
+                        zoomType: 'x'
                     },                    
-                    title : { text : 'Hours Worked / Time' },
+                    title : { text : 'Logs Date Submitted Heatmap' },
                     xAxis: {                    
-                        type: 'datetime'               
+                        type: 'datetime',  
+                        labels: {
+                            format: '{value:%e. %b}'
+                        },                                                          
                     },
                     yAxis: {
+                        categories: categories,
                         title: {
-                            text: 'Hours Worked'
+                            text: 'Students'
                         }
-                    },                        
+                    }, 
+                    colorAxis: {
+                        min: 0,
+                        minColor: '#FFFFFF'
+                    },                           
                     tooltip: {
                         headerFormat: '<b>{series.name}</b><br>',
-                        pointFormat: '{point.x:%e. %b}: {point.y} hours worked'
+                        pointFormat: '{point.x:%e. %b}: {point.value} logs submitted.'
                     },
                     legend: {
-                        layout: 'vertical'
-                    },                
+                        align: 'right',
+                        layout: 'vertical',
+                        margin: 0,
+                        verticalAlign: 'top',
+                        y: 25,
+                        symbolHeight: 280
+                    },            
                     plotOptions: {
                         spline: {
                             marker: {
@@ -63,11 +79,11 @@ export class HoursWorkedProjectComponent extends ComponentBase implements OnInit
                             shadow: true
                         }                                              
                     },                                  
-                    series: data.hours_worked_graph                   
-                  }
+                    series: data.logs_heatmap                   
+                    }
                 },
                 err => console.log(err)
-              );    
+                );    
   }
 
 }
