@@ -4,26 +4,24 @@ import { CustomHttp } from './../../../../shared/Services/customHttp';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'ced-hours-worked',
-  templateUrl: './hours-worked.component.html',
-  styleUrls: ['./hours-worked.component.css']
+  selector: 'ced-hours-worked-assignment',
+  templateUrl: './hours-worked-assignment.component.html',
+  styleUrls: ['./hours-worked-assignment.component.css']
 })
-export class HoursWorkedComponent extends ComponentBase implements OnInit {
+export class HoursWorkedAssignmentComponent extends ComponentBase implements OnInit {
 
-  @Input() projectId: Number;
+  @Input() assignmentId: Number;
   options;
 
   constructor(private chttp: CustomHttp) {
     super();
-
- 
   }
 
   ngOnInit() {
-    if (!this.projectId)
-      console.log('No project_id')
+    if (!this.assignmentId)
+      console.log('No assignmentId')
 
-    this.chttp.get(`${BASE_URL}/stats?graph=hours_worked&project_id=${this.projectId}`)
+    this.chttp.get(`${BASE_URL}/stats?graph=hours_worked&assignment_id=${this.assignmentId}`)
               .map(res => res.json())
               .subscribe(
                 data => {
@@ -35,9 +33,7 @@ export class HoursWorkedComponent extends ComponentBase implements OnInit {
                     },                    
                     title : { text : 'Hours Worked / Time' },
                     xAxis: {                    
-                        type: 'datetime'
-                        //min: data.hours_worked_graph[0][0],
-                        //max: data.hours_worked_graph[data.hours_worked_graph.length - 1][0],                   
+                        type: 'datetime'               
                     },
                     yAxis: {
                         title: {
@@ -49,12 +45,7 @@ export class HoursWorkedComponent extends ComponentBase implements OnInit {
                         pointFormat: '{point.x:%e. %b}: {point.y} hours worked'
                     },
                     legend: {
-                        layout: 'vertical',
-                        // align: 'left',
-                        // x: 80,
-                        // verticalAlign: 'top',
-                        // y: 55,
-                        // floating: true,
+                        layout: 'vertical'
                     },                
                     plotOptions: {
                         spline: {
@@ -62,9 +53,6 @@ export class HoursWorkedComponent extends ComponentBase implements OnInit {
                                 enabled: true
                             }
                         },
-                        column: {
-                            pointStart:  data.hours_worked_graph[0][0]// feb 12, 2015
-                        }  ,
                         series: {
                             lineWidth: 1,
                             turboThreshold: 100000,

@@ -1,4 +1,5 @@
-import { HoursWorkedComponent } from '../../stats/hours-worked-component/hours-worked.component';
+import { HoursWorkedProjectComponent } from '../../stats/hours-worked-project-component/hours-worked-project.component';
+import { HoursWorkedAssignmentComponent } from '../../stats/hours-worked-assignment-component/hours-worked-assignment.component';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../../../shared/Store/Reducers/index';

@@ -112,12 +112,27 @@
 
 
 <div class="row row-component" style="margin-top: 20px">
+  <div class="col-12">
+    <h4>Hours worked for each Student and Average</h4>
+  </div>
   <div class="col-12" *ngIf="project_id">
-    <ced-hours-worked [projectId]="project_id"></ced-hours-worked>
+    <ced-hours-worked-project [projectId]="project_id"></ced-hours-worked-project>
   </div>
 </div>
 
 <div class="row row-component" style="margin-top: 20px">
+  <div class="col-12">
+    <h4>Hours worked for each Project. (move to Assignment page)</h4>
+  </div>  
+  <div class="col-12" *ngIf="project">
+    <ced-hours-worked-assignment [assignmentId]="project.assignment_id"></ced-hours-worked-assignment>
+  </div>
+</div>
+
+<div class="row row-component" style="margin-top: 20px">
+  <div class="col-12">
+    <h4>Estimated current Project completion by each student and Lecturer</h4>
+  </div>    
   <div class="col-12" *ngIf="project_id">
     <ced-percent-completion [projectId]="project_id"></ced-percent-completion>
   </div>

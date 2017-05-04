@@ -1,4 +1,5 @@
-import { HoursWorkedComponent } from './stats/hours-worked-component/hours-worked.component';
+import { HoursWorkedProjectComponent } from './stats/hours-worked-project-component/hours-worked-project.component';
+import { HoursWorkedAssignmentComponent } from './stats/hours-worked-assignment-component/hours-worked-assignment.component';
 import { PercentCompletionComponent } from './stats/percent-completion-component/percent-completion.component';
 import { EditUnitComponent } from './unit/edit-unit-component/edit-unit.component';
 import { EditAssignmentComponent } from './assignment/edit-assignment-component/edit-assignment.component';
@@ -58,7 +59,8 @@ import { ChartModule } from 'angular2-highcharts';
     NewAssignmentComponent,
     EditAssignmentComponent,
     EditUnitComponent,
-    HoursWorkedComponent,
+    HoursWorkedProjectComponent,
+    HoursWorkedAssignmentComponent,
     PercentCompletionComponent
   ],
   providers: [NgxMyDatePickerModule],
