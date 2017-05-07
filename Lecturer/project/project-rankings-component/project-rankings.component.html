@@ -1,0 +1,15 @@
+<div class="rankings-display" *ngIf="_rankings">
+  <ced-project-ranking-bar *ngFor="let ranking of _rankings"
+                           [max]="target"
+                           [color]="ranking.color"
+                           [logo]="ranking.logo || '/img/angular.png'"
+                           [min]="min"
+                           [points]="ranking.total">
+    <span class="team-name">{{ ranking.project_name }}</span>
+  </ced-project-ranking-bar>
+</div>
+
+<div *ngIf="!_rankings">
+  Loading data
+</div>
+

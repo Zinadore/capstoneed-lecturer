@@ -26,16 +26,16 @@ export class ProjectDetailsComponent extends ComponentBase implements OnInit {
   // private projectObservable: Observable<Project>;
   private project_id: number;
 
-  constructor(private store: Store<IAppState>, 
-              private route: ActivatedRoute, 
-              private projectService: ProjectService, 
-              private unitService: UnitService, 
+  constructor(private store: Store<IAppState>,
+              route: ActivatedRoute,
+              private projectService: ProjectService,
+              private unitService: UnitService,
               private assignmentService: AssignmentService) {
 
     super();
     let removeStudentMode = false;
     // Observable that emits the project id from route params
-    let idObservable = this.route.params
+    let idObservable = route.params
       .filter(params => params['id'])
       .map(params => params['id']);
 

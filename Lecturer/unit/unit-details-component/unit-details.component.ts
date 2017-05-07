@@ -1,15 +1,11 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { isUndefined } from 'util';
 import { Assignment } from '../../../../shared/Store/Models/assignment';
 import { ComponentBase } from '../../../../shared/Directives/componentBase';
-import { Observable } from 'rxjs';
 import { Unit } from '../../../../shared/Store/Models/unit';
 import { IAppState } from '../../../../shared/Store/Reducers/index';
-import { AssignmentService } from '../../../../shared/Services/assignment.service';
 import { Project } from '../../../../shared/Store/Models/project';
-import { ProjectService } from '../../../../shared/Services/project.service';
 
 @Component({
   selector: 'ced-unit-details',
@@ -17,44 +13,45 @@ import { ProjectService } from '../../../../shared/Services/project.service';
   styleUrls: ['unit-details.component.scss']
 })
 export class UnitDetailsComponent extends ComponentBase {
-  private unitObservable: Observable<Unit>
-  private loadedUnit: Unit
-  private loadedAssignments: Assignment[] = []
-  private projects: Project[] = []
+  private unit: Unit;
+  private assignments: Assignment[];
+  private projects: Project[];
 
-  constructor(private route: ActivatedRoute, private store: Store<IAppState>, private assignmentService: AssignmentService, private projectsService: ProjectService) {
+  constructor(private route: ActivatedRoute, store: Store<IAppState>) {
     super();
-    this.unitObservable = this.route.params
+
+    this.assignments = [];
+    this.projects = [];
+
+    let unitObservable = this.route.params
       .filter(params => params['id'])
       .map(params => params['id'])
-      .switchMap(id => this.store.select('units')
+      .switchMap(id => store.select('units')
         .filter((units: Unit[]) => units.length > 0)
         .map((units: Unit[]) => units.find(u => u.id == id))
       );
 
-    this.disposeOnDestroy(this.unitObservable.subscribe((u: Unit) => {
-      this.loadedUnit = u
-      this.assignmentService.getAllForUnit(u.id)
-      this.projectsService.getAllActiveForUnit(u.id)
-
-    this.disposeOnDestroy(this.store.select('assignments')
-        .filter((as: Assignment[]) => as.length > 0)
-        .map((as: Assignment[]) => as.filter((a: Assignment) => a.unit_id == this.loadedUnit.id))
-        .subscribe((as: Assignment[]) => {
-          this.loadedAssignments = as
-        })
-      );
-
-    this.disposeOnDestroy(this.store.select('projects')
-        .filter((ps: Project[]) => ps.length > 0)
-        .map((ps: Project[]) => ps.filter((p: Project) => p.unit_id == this.loadedUnit.id))
-        .subscribe((ps: Project[]) => {
-          this.projects = ps
-        })
-      );
+    this.disposeOnDestroy(unitObservable.subscribe((unit: Unit) => {
+      this.unit = unit;
     }));
 
+    this.disposeOnDestroy(unitObservable.switchMap((unit:Unit)=>
+      store.select((state: IAppState) => state.assignments)
+        .map((as: Assignment[]) => as.filter((a: Assignment) => a.unit_id == unit.id))
+      )
+      .subscribe((assignments: Assignment[]) => {
+        this.assignments = assignments;
+      })
+    );
 
+    this.disposeOnDestroy(unitObservable.switchMap((unit:Unit)=>
+        store.select((state: IAppState) => state.projects)
+          .map((ps: Project[]) => ps.filter((p: Project) => p.unit_id == unit.id))
+        )
+        .subscribe((projects: Project[]) => {
+          this.projects = projects;
+        })
+    );
   }
 
   ngOnInit() {

@@ -1,4 +1,3 @@
-import { Iteration } from '../../../../shared/Store/Models/iteration';
 import { Unit } from '../../../../shared/Store/Models';
 import { isUndefined } from 'util';
 import { Component, OnInit } from '@angular/core';
@@ -6,12 +5,11 @@ import { Store } from '@ngrx/store';
 import { IAppState } from '../../../../shared/Store/Reducers/index';
 import { ComponentBase } from '../../../../shared/Directives/componentBase';
 import { CedValidators } from '../../../../shared/Directives/ced.validators';
-import { Subject, Observable } from 'rxjs';
 import { Assignment } from '../../../../shared/Store/Models/assignment';
 import { Project } from '../../../../shared/Store/Models/project';
 import { ProjectService } from '../../../../shared/Services/project.service';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from "@angular/router";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ced-edit-project',
@@ -23,13 +21,13 @@ export class EditProjectComponent extends ComponentBase implements OnInit {
   private editGroupForm: FormGroup;
   private project: Project;
   private unit: Unit;
-  private iterations: Iteration[];
   private assignment: Assignment;
   private project_id: number;
+  private image;
 
-  constructor(private formBuilder: FormBuilder, 
+  constructor(private formBuilder: FormBuilder,
               private store: Store<IAppState>,
-              private route: ActivatedRoute,              
+              private route: ActivatedRoute,
               private projectService: ProjectService) {
     super();
 
@@ -51,18 +49,25 @@ export class EditProjectComponent extends ComponentBase implements OnInit {
         .map((projects: Project[]) => projects.find((p:Project) => p.id == id))
       );
 
-    // If the Project observable emits a project that is not undefined, 
+    // If the Project observable emits a project that is not undefined,
     // cacke it to the local project object to use in the component
-    this.disposeOnDestroy(projectObservable.filter((p: Project) => 
-      !isUndefined(p)).subscribe(p => 
-        this.project = p
-      )
+    this.disposeOnDestroy(projectObservable.filter((p: Project) => !isUndefined(p)).subscribe(p => {
+        this.project = p;
+        if(this.editGroupForm) {
+          this.editGroupForm.patchValue({
+            project_name: p.project_name,
+            team_name: p.team_name,
+            description: p.description,
+            enrollment_key: p.enrollment_key,
+          })
+        }
+      })
     );
-    
-    // Sanity check mainly, if the project emitted by the observable is undefined, 
+
+    // Sanity check mainly, if the project emitted by the observable is undefined,
     // then the the project from the server and put it in store
-    this.disposeOnDestroy(projectObservable.filter((p: Project) => isUndefined(p) || p == null).subscribe((_) => this.projectService.get(this.project_id)));            
-    
+    this.disposeOnDestroy(projectObservable.filter((p: Project) => isUndefined(p) || p == null).subscribe((_) => this.projectService.get(this.project_id)));
+
     let unitObservable = projectObservable
       .filter((p: Project) => !isUndefined(p))
       .switchMap((p: Project) => this.store.select((state: IAppState) => state.units)
@@ -70,52 +75,42 @@ export class EditProjectComponent extends ComponentBase implements OnInit {
       );
 
     this.disposeOnDestroy(unitObservable.filter((u: Unit) => !isUndefined(u)).subscribe(u => this.unit = u));
-    
+
     let assignmentObservable = projectObservable
       .filter((p: Project) => !isUndefined(p))
       .switchMap((p: Project) => this.store.select((state: IAppState) => state.assignments)
         .map((assignments: Assignment[]) => assignments.find((a: Assignment) => a.id == this.project.assignment_id))
       );
 
-    this.disposeOnDestroy(assignmentObservable.filter((a: Assignment) => 
-      !isUndefined(a)).subscribe(a => {
-        this.assignment = a
-        this.iterations = a.iterations
+    this.disposeOnDestroy(assignmentObservable.filter((a: Assignment) => !isUndefined(a)).subscribe(a => {
+        this.assignment = a;
       })
     )
   }
 
   ngOnInit() {
     this.editGroupForm = this.formBuilder.group({
-        project_name: [''],
-        team_name: [''],
-        description: [''],
-        enrollment_key: [''],
-        logo: ['']                 
+        project_name: ['', Validators.compose([Validators.required, CedValidators.notNullOrWhitespace])],
+        team_name: ['', Validators.compose([Validators.required, CedValidators.notNullOrWhitespace])],
+        description: ['', Validators.compose([Validators.required, CedValidators.notNullOrWhitespace])],
+        enrollment_key: ['', Validators.compose([Validators.required, CedValidators.notNullOrWhitespace])],
+        logo: ['']
     });
-    
-    // this.unitSelectionForm = this.fb.group({
-    //   unitSelect: [0, CedValidators.notSelectedValue("0")],
-    //   assignmentSelect: [{ value: "0", disabled: true}, CedValidators.notSelectedValue("0")]
-    // });
+  }
 
-    // this.selectionStep_setup();
-
-    // this.projectDetailsForm = this.fb.group({
-    //   projectName: ['', Validators.compose([Validators.required, CedValidators.notNullOrWhitespace])],
-    //   projectDescription: [''],
-    //   teamName: [''],
-    //   projectKey: ['', Validators.compose([Validators.required, CedValidators.notNullOrWhitespace])],
-    //   autoGenerateKey: [false]
-    // });
-
-    // this.detailsStep_setup();
+  public onSubmit(): void  {
 
   }
 
-  submit({ value, valid }: { value: Project, valid: boolean }) {
-    console.log(value);
-        console.log(valid);
+  public onNewImage(event): void {
+    let file:File = event.target.files[0];
+    let myReader:FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      this.image = myReader.result;
+      console.log(this.image)
+    };
+    myReader.readAsDataURL(file);
   }
 
 }

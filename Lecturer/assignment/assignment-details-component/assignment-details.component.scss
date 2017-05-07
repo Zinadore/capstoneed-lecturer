@@ -1,86 +1,72 @@
 @import "../../../../style/global-variables";
 @import "../../../../style/lecturer-common";
 
-.page-title-row {
-  .info {
-    margin-top: 1em;
+.row-component {
+  .component-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    dt {
-      white-space: nowrap;
+  .component-body {
+
+  }
+}
+
+.iterations-and-details {
+  display: flex;
+  padding: 0.75em 1.25em;
+  justify-content: flex-start;
+
+  .iterations {
+    display: flex;
+    flex-basis: 20%;
+    flex-direction: column;
+    margin-right: 1em;
+    .name {
+      font-weight: bold;
+    }
+    .dates {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      margin-bottom: 0.4em;
+
+      span {
+        font-size: 0.8rem;
+      }
     }
   }
 
-  .iteration-bar {
+  .projects {
+    flex-basis: 20%;
+  }
+
+  .chart {
+    border: 1px solid black;
+    height: 800px;
+    width: 100%;
+  }
+
+}
+
+.game-settings {
+  padding: 2em;
+
+  fieldset {
     margin-top: 1em;
-  }
-}
 
-.projects-table-header {
-  h6 {
-    font-size: $font-size-units-table-headers;
-    color: $burger-button-color;
-  }
-}
-
-.project-row {
-  padding: 20px 0;
-  border-bottom: 1px solid $units-project-list-border-color;
-
-  &:hover {
-    border-left: 2px solid $units-project-list-border-color;
-    border-right: 2px solid $units-project-list-border-color;
-    border-left-width: 6px;
-    border-right-width: 6px;
-    transition: border-width 0.2s ease;
-  }
-
-  a:hover {
-    text-decoration: none;
-  }
-
-  .project-image {
-    padding-right: 20px;
-  }
-
-  .project-title {
-    line-height: 60px;
-    margin-bottom: 0;
-  }
-
-  .team-avatars {
-    padding-top: 10px;
-
-    & > img {
-      $img-size: 40px;
-
-      width: $img-size;
-      height: $img-size;
+    legend {
+      font-size: 1.3rem;
     }
   }
+
+  .form-control {
+    display: inline-block;
+    width: 5%;
+  }
 }
-// .row.row-component {
-//   background-color: white;
-//   margin-left: 0;
-//   margin-right: 0;
-//   border-radius: 3px;
-//   padding: 20px;
-//   margin-bottom: 25px;
 
-//   .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xs, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
-//     padding-left: 0;
-//     padding-right: 0;
-//   }
-// }
-
-// .row.row-component-no-padding {
-//   background-color: white;
-//   margin-left: 0;
-//   margin-right: 0;
-//   border-radius: 3px;
-//   margin-bottom: 25px;
-
-//   .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xs, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
-//     padding-left: 0;
-//     padding-right: 0;
-//   }
-// }
+.assessment-form {
+  padding: 2em;
+}

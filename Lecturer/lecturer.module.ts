@@ -35,6 +35,9 @@ import { NewPaQuestionComponent } from './form-template/new-pa-question-componen
 import { NewFormTemplateComponent } from './form-template/new-form-template-component/new-form-template.component';
 import { FormTemplateListComponent } from './form-template/form-template-list-component/form-template-list.component';
 import { EditFormTemplateComponent } from './form-template/edit-form-template-component/edit-form-template.component';
+import { AssignmentOverviewComponent } from './assignment/assignment-overview-component/assignment-overview.component';
+import { ProjectRankingsComponent } from './project/project-rankings-component/project-rankings.component';
+import { ProjectRankingBarComponent } from './project/project-rankings-component/project-ranking-bar.component';
 
 @NgModule({
   imports: [
@@ -74,7 +77,10 @@ import { EditFormTemplateComponent } from './form-template/edit-form-template-co
     NewPaQuestionComponent,
     NewFormTemplateComponent,
     FormTemplateListComponent,
-    EditFormTemplateComponent
+    EditFormTemplateComponent,
+    AssignmentOverviewComponent,
+    ProjectRankingsComponent,
+    ProjectRankingBarComponent,
   ],
   providers: [NgxMyDatePickerModule],
   exports: [

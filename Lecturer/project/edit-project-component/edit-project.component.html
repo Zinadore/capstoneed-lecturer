@@ -20,7 +20,7 @@
       <div class="breadcrumb-divider"> / </div>
       <div class="breadcrumb-step">
         <a [routerLink]="['/projects', project.id]" *ngIf="project">{{ project.project_name }}</a>
-      </div>      
+      </div>
     </div>
   </div>
 </div>
@@ -38,86 +38,67 @@
     <div class="col-12">
       <a [routerLink]="['/projects', project.id]" *ngIf="project">
         <button class="btn btn-default back-button"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>
-      </a>       
+      </a>
     </div>
   </div>
 
   <div class="tabs col-12">
-<ngb-tabset>
-  <ngb-tab title="Project Info">
-    <template ngbTabContent>
-      <form novalidate (ngSubmit)="submit(editGroupForm)" [formGroup]="editGroupForm">
+    <h4>Project Info</h4>
+    <form novalidate (ngSubmit)="onSubmit()" [formGroup]="editGroupForm">
 
-        <div class="form-group row" [class.has-danger]="editGroupForm.get('project_name').errors && (editGroupForm.get('project_name').dirty || editGroupForm.get('project_name').touched)">
-          <label for="example-text-input" class="col-12 col-lg-2 col-form-label">Project Name</label>
-          <div class="col-12 col-md-8 col-lg-4">
-            <input class="form-control form-control-danger" type="text" placeholder="Project Name" formControlName="project_name">
-            <div class="form-control-feedback" *ngIf="editGroupForm.get('project_name').errors && (editGroupForm.get('project_name').dirty || editGroupForm.get('project_name').touched)">
-              Project name is required
-            </div>            
+      <div class="form-group row">
+        <label for="projectName" class="col-12 col-lg-2 col-form-label">Project Name</label>
+        <div class="col-12 col-md-8 col-lg-4">
+          <input class="form-control" id="projectName" type="text" formControlName="project_name">
+          <div class="errors" ngxErrors="project_name">
+            <span class="text-danger" ngxError="required">* The project name is required</span>
+            <span class="text-danger" ngxError="notNullOrWhitespace">* The project name cannot be empty or whitespace</span>
           </div>
-        </div>        
+        </div>
+      </div>
 
-        <div class="form-group row" [class.has-danger]="editGroupForm.get('team_name').errors && (editGroupForm.get('team_name').dirty || editGroupForm.get('team_name').touched)">
-          <label for="example-text-input" class="col-12 col-lg-2 col-form-label">Team Name</label>
-          <div class="col-12 col-md-8 col-lg-4">
-            <input class="form-control form-control-danger" type="text" placeholder="Team Name" formControlName="team_name">
-            <div class="form-control-feedback" *ngIf="editGroupForm.get('team_name').errors && (editGroupForm.get('team_name').dirty || editGroupForm.get('team_name').touched)">
-              Team name is required
-            </div>            
+      <div class="form-group row">
+        <label for="teamName" class="col-12 col-lg-2 col-form-label">Team Name</label>
+        <div class="col-12 col-md-8 col-lg-4">
+          <input class="form-control" id="teamName" type="text" formControlName="team_name">
+          <div class="errors" ngxErrors="team_name">
+            <span class="text-danger" ngxError="required">* The team name is required</span>
+            <span class="text-danger" ngxError="notNullOrWhitespace">* The team name cannot be empty or whitespace</span>
           </div>
-        </div>             
+        </div>
+      </div>
 
-        <div class="form-group row" [class.has-danger]="editGroupForm.get('description').errors && (editGroupForm.get('description').dirty || editGroupForm.get('description').touched)">
-          <label for="example-text-input" class="col-12 col-lg-2 col-form-label">Description</label>
-          <div class="col-12 col-md-8 col-lg-4">
-            <input class="form-control form-control-danger" type="text" placeholder="Description" formControlName="description">
-            <div class="form-control-feedback" *ngIf="editGroupForm.get('description').errors && (editGroupForm.get('description').dirty || editGroupForm.get('description').touched)">
-              Description is required
-            </div>            
+      <div class="form-group row">
+        <label for="description" class="col-12 col-lg-2 col-form-label">Description</label>
+        <div class="col-12 col-md-8 col-lg-4">
+          <textarea class="form-control" type="text" id="description" formControlName="description">
+          </textarea>
+          <div class="errors" ngxErrors="description">
+            <span class="text-danger" ngxError="required">* The team name is required</span>
+            <span class="text-danger" ngxError="notNullOrWhitespace">* The team name cannot be empty or whitespace</span>
           </div>
-        </div>             
-      
-        <div class="form-group row" [class.has-danger]="editGroupForm.get('enrollment_key').errors && (editGroupForm.get('enrollment_key').dirty || editGroupForm.get('enrollment_key').touched)">
-          <label for="example-text-input" class="col-12 col-lg-2 col-form-label">Enrollment key</label>
-          <div class="col-12 col-md-8 col-lg-4">
-            <input class="form-control form-control-danger" type="text" placeholder="Enrollment key" formControlName="enrollment_key">
-            <div class="form-control-feedback" *ngIf="editGroupForm.get('enrollment_key').errors && (editGroupForm.get('enrollment_key').dirty || editGroupForm.get('enrollment_key').touched)">
-              Enrollment key is required
-            </div>            
-          </div>
-        </div>  
+        </div>
+      </div>
 
-        <div class="form-group row" [class.has-danger]="editGroupForm.get('logo').errors && (editGroupForm.get('logo').dirty || editGroupForm.get('logo').touched)">
-          <label for="example-text-input" class="col-12 col-lg-2 col-form-label">Logo</label>
-          <div class="col-12 col-md-8 col-lg-4">
-            <input class="form-control form-control-danger" type="text" placeholder="Logo" formControlName="logo">
-            <div class="form-control-feedback" *ngIf="editGroupForm.get('logo').errors && (editGroupForm.get('logo').dirty || editGroupForm.get('logo').touched)">
-              Logo is required
-            </div>            
+      <div class="form-group row">
+        <label for="enrollmentKey" class="col-12 col-lg-2 col-form-label">Enrollment key</label>
+        <div class="col-12 col-md-8 col-lg-4">
+          <input class="form-control" type="text" id="enrollmentKey" formControlName="enrollment_key">
+          <div class="errors" ngxErrors="enrollment_key">
+            <span class="text-danger" ngxError="required">* The team name is required</span>
+            <span class="text-danger" ngxError="notNullOrWhitespace">* The team name cannot be empty or whitespace</span>
           </div>
-        </div>                         
-        <button type="submit" class="btn btn-primary">Submit</button>          
-      </form>
-    </template>
-  </ngb-tab>
-  <ngb-tab *ngIf="iterations">
-    <template ngbTabTitle>Iterations</template>
-    <template ngbTabContent>
-      <ul *ngFor="let iteration of iterations">
-        <li>{{ iteration.name }}</li>
-      </ul>
-    </template>
-  </ngb-tab> 
-  <ngb-tab *ngIf="project">
-    <template ngbTabTitle>Students</template>
-    <template ngbTabContent>
-      <ul *ngFor="let student of project.students">
-        <li>{{ student.first_name + " " + student.last_name }}</li>
-      </ul>
-    </template>
-  </ngb-tab>   
-</ngb-tabset>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="logo" class="col-12 col-lg-2 col-form-label">Logo</label>
+        <div class="col-12 col-md-8 col-lg-4">
+          <input class="form-control" type="file" id="logo" accept="image/*" (change)="onNewImage($event)">
+        </div>
+      </div>
+      <button type="submit" [disabled]="!editGroupForm.valid && editGroupForm.dirty" class="btn btn-primary">Submit</button>
+    </form>
 </div>
 
 </div>

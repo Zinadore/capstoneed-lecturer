@@ -1,0 +1,26 @@
+$goal-width: 10px;
+
+:host {
+  display: block;
+
+  .rankings-display {
+    display: block;
+    padding-right: 2em;
+    position: relative;
+    background-color: white;
+
+    z-index: 0;
+
+
+    .team-name {
+      font-size: 1.2em;
+      align-self: center;
+      color: white;
+      text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    }
+  }
+}

@@ -2,7 +2,7 @@
 @import "../../../../style/lecturer-common";
 
 .edit-project-container {
-   //padding-top: 0; 
+   //padding-top: 0;
 }
 
 .back-button {
@@ -15,27 +15,8 @@
     padding-bottom: 0;
 }
 
-/deep/ .tabs {
-
-    .tab-content > .tab-pane {
-        padding-top: 31px;
-    }
-
-    ul.nav.nav-tabs {
-        border-bottom: 0;
-
-        .nav-link {
-            border-bottom-right-radius: 0.25rem;
-            border-bottom-left-radius: 0.25rem;
-            border-top-right-radius: 0;
-            border-top-left-radius: 0;
-            color: hsla(217, 89%, 65%, 1);
-
-            &.active {
-                border-color: transparent #ddd #ddd;
-                border-top: 0;
-                color: $lecturer-body-font-color;
-            }        
-        }
-    }
+.errors {
+  span {
+    display: block;
+  }
 }
