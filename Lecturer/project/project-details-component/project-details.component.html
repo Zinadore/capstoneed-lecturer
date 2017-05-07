@@ -6,17 +6,7 @@
   <div class="col-12">
     <div class="breadcrumb-custom">
       <div class="breadcrumb-step">
-        <a [routerLink]="['/units']">Units</a>
-      </div>
-      <div class="breadcrumb-divider"> / </div>
-      <div class="breadcrumb-step">
         <a [routerLink]="['/units', unit.id]" *ngIf="unit">{{ unit.name }}</a>
-      </div>
-      <div class="breadcrumb-divider"> / </div>
-      <div class="breadcrumb-step">
-        <a [routerLink]="['/assignments']" *ngIf="project">
-          Assignments
-        </a>
       </div>
       <div class="breadcrumb-divider"> / </div>
       <div class="breadcrumb-step">
@@ -26,11 +16,10 @@
       </div>
       <div class="breadcrumb-divider"> / </div>
       <div class="breadcrumb-step">
-        <a [routerLink]="['/projects']" *ngIf="project">
-          Projects
+        <a [routerLink]="['/projects', project.id]" *ngIf="project">
+          {{ project.project_name }}
         </a>
       </div>
-      <div class="breadcrumb-divider"> / </div>
     </div>
   </div>
 </div>
@@ -46,7 +35,7 @@
       <div class="dropdown-menu dropdown-menu-right" >
         <a class="dropdown-item" [routerLink]="['edit']">Edit Project</a>
         <a class="dropdown-item" (click)="toggleRemoveStudentMode()">Remove Student</a>
-        <a class="dropdown-item">Give Extension</a>
+        <!--<a class="dropdown-item">Give Extension</a>-->
       </div>
     </div>
   </div>
@@ -104,39 +93,22 @@
   </div> <!-- students-->
 </div>
 
-
-<div class="row row-component" style="margin-top: 20px">
-  <div class="col-12">
+<div class="chart-row">
+  <div class="chart">
     <h4>Hours worked for each Student and Average</h4>
-  </div>
-  <div class="col-12" *ngIf="project_id">
     <ced-hours-worked-project [projectId]="project_id"></ced-hours-worked-project>
   </div>
-</div>
 
-<div class="row row-component" style="margin-top: 20px">
-  <div class="col-12">
-    <h4>Hours worked for each Project. (move to Assignment page)</h4>
-  </div>  
-  <div class="col-12" *ngIf="project">
-    <ced-hours-worked-assignment [assignmentId]="project.assignment_id"></ced-hours-worked-assignment>
-  </div>
-</div>
-
-<div class="row row-component" style="margin-top: 20px">
-  <div class="col-12">
+  <div class="chart">
     <h4>Estimated current Project completion by each student and Lecturer</h4>
-  </div>    
-  <div class="col-12" *ngIf="project_id">
     <ced-percent-completion [projectId]="project_id"></ced-percent-completion>
   </div>
 </div>
 
-<div class="row row-component" style="margin-top: 20px">
-  <div class="col-12">
+<div class="chart-row">
+  <div class="chart">
     <h4>Logs heatmap for project</h4>
-  </div>    
-  <div class="col-12" *ngIf="project_id">
     <ced-logs-heatmap [projectId]="project_id"></ced-logs-heatmap>
   </div>
 </div>
+

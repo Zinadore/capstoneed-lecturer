@@ -10,6 +10,7 @@ import { Project } from '../../../../shared/Store/Models/project';
 import { ProjectService } from '../../../../shared/Services/project.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'ced-edit-project',
@@ -28,6 +29,7 @@ export class EditProjectComponent extends ComponentBase implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private store: Store<IAppState>,
               private route: ActivatedRoute,
+              private toastService: ToastrService,
               private projectService: ProjectService) {
     super();
 
@@ -99,7 +101,19 @@ export class EditProjectComponent extends ComponentBase implements OnInit {
   }
 
   public onSubmit(): void  {
-
+    let newProject = {
+      id: this.project.id,
+      project_name: this.editGroupForm.controls['project_name'].value,
+      team_name: this.editGroupForm.controls['team_name'].value,
+      description: this.editGroupForm.controls['description'].value,
+      enrollment_key: this.editGroupForm.controls['enrollment_key'].value,
+    };
+    this.disposeOnDestroy(this.projectService.updateProject$(newProject)
+      .subscribe(
+        (project) => this.toastService.success('Project updated!', 'Success'),
+        (err) => this.toastService.error('Project could not be updated!', 'Oops')
+      )
+    );
   }
 
   public onNewImage(event): void {

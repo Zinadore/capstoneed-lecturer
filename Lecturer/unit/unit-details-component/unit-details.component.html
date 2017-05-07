@@ -3,13 +3,8 @@
   <div class="col-12">
     <div class="breadcrumb-custom">
       <div class="breadcrumb-step">
-        <a [routerLink]="['/units']">Units</a>
-      </div>
-      <div class="breadcrumb-divider"> / </div>
-      <div class="breadcrumb-step">
         <a [routerLink]="['/units', unit.id]" *ngIf="unit">{{ unit.name }}</a>
       </div>
-      <div class="breadcrumb-divider"> / </div>
     </div>
   </div>
 </div>
