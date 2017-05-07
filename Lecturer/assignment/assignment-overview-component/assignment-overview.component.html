@@ -1,0 +1,42 @@
+<div class="buttons">
+  <button class="btn btn-default" [routerLink]="['/assignments', _assignment.id]">Details</button>
+  <button class="btn btn-default" [routerLink]="['/assignments', _assignment.id, 'edit']">Edit</button>
+</div>
+<div class="iterations-and-progress">
+  <div class="iterations">
+    <h5>Iterations</h5>
+    <ng-container *ngFor="let iteration of _assignment.iterations">
+      <span class="name">{{ iteration.name }}</span>
+      <ngb-progressbar [value]="getIterationProgress(iteration)"></ngb-progressbar>
+      <div class="dates">
+        <span class="start">{{ iteration.start_date | date:'dd/MM/yyyy'}}</span>
+        <span class="end">{{ iteration.deadline | date:'dd/MM/yyyy'}}</span>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="projects-progress">
+    <h5>Teams</h5>
+    <ced-project-rankings *ngIf="_assignment" [rankings]="rankings"></ced-project-rankings>
+  </div>
+</div>
+
+<h4>Projects for {{ _assignment.name }}</h4>
+<div class="projects-container" *ngIf="_projects">
+  <div class="row projects-header">
+    <div class="col-1">Logo</div>
+    <div class="col-5">Name</div>
+    <div class="col-3">ID</div>
+    <div class="col-3">Enrollment Key</div>
+  </div>
+  <div class="projects-body">
+    <div class="row project" *ngFor="let project of _projects">
+      <div class="col-1"><img class="project-logo" [src]="project.logo" alt=""></div>
+      <div class="col-5"><a [routerLink]="['/projects', project.id]">{{project.project_name}}</a></div>
+      <div class="col-3">{{project.id}}</div>
+      <div class="col-3">{{project.enrollment_key}}</div>
+    </div>
+  </div>
+
+</div>
+

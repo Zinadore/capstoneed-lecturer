@@ -26,75 +26,94 @@
   </div>
 </div>
 
-<ng-container *rxContext="let ass on assignment$">
-  <!--Page Title-->
-  <div class="page-title-row">
-    <div class="col-12 ">
-      <h3 class="page-title">{{ ass.name }}</h3>
-      <div class="gear-settings" ngbDropdown>
-        <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
-          <i class="fa fa-cog" aria-hidden="true"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" >
-          <a class="dropdown-item" [routerLink]="['edit']">Edit Assignment</a>
-          <a class="dropdown-item" [routerLink]="['/projects/new']">Add Project..</a>
-        </div>
-      </div>
-    </div>
+<div class="page-title-row">
+  <div class="col-12 ">
+    <h3 class="page-title" *ngIf="assignment">{{ assignment.name }} - {{ assignment.unit.semester }}  {{ assignment.unit.year }}</h3>
+    <h3 class="page-title" *ngIf="!assignment">Loading data...</h3>
+  </div>
+</div>
 
-    <div class="col-3 info">
-      <dl class="row">
-        <dt class="col-3">Start Date:</dt>
-        <dd class="col-9">{{ ass.start_date | date:'dd/MM/yyyy' }}</dd>
-        <dt class="col-3">End Date:</dt>
-        <dd class="col-9">{{ ass.end_date| date:'dd/MM/yyyy' }}</dd>
-      </dl>
-    </div>
-    <div class="col-9 iteration-bar">
-      <ced-iterations-bar [height-em]="3"
-                          [iterations]="ass.iterations"
-                          [project-timespan]="getAssignmentTimespan(ass)">
-      </ced-iterations-bar>
-    </div>
+<div class="row-component  iterations-and-details" *ngIf="assignment">
+  <div class="iterations">
+    <h5>Iterations</h5>
+    <ng-container *ngFor="let iteration of assignment.iterations">
+      <span class="name">{{ iteration.name }}</span>
+      <ngb-progressbar [value]="getIterationProgress(iteration)"></ngb-progressbar>
+      <div class="dates">
+        <span class="start">{{ iteration.start_date | date:'dd/MM/yyyy'}}</span>
+        <span class="end">{{ iteration.deadline | date:'dd/MM/yyyy'}}</span>
+      </div>
+    </ng-container>
   </div>
 
-  <ng-container  *rxContext="let project_list on projects">
-    <!-- Project table-->
-    <div class="row row-component">
-      <div class="col-12"  >
-        <div class="row projects-table-header">
-          <div class="col-1">
-          </div>
-          <div class="col-4">
-            <h6>Project Name</h6>
-          </div>
-          <div class="col-2">
-            <h6>Team Name</h6>
-          </div>
-          <div class="col-3">
-            <h6>Members</h6>
-          </div>
-          <div class="col-2">
-            <h6>Stats</h6>
-          </div>
-        </div>
+  <div class="projects">
+    <h5>Projects</h5>
+    <ul class="list-unstyled" *ngIf="projects">
+      <li *ngFor="let project of projects"><a [routerLink]="['/projects', project.id]">{{project.project_name}}</a></li>
+    </ul>
+  </div>
 
-        <div class="row project-row" *ngFor="let project of project_list">
-          <div class="col-sm-1">
-            <a [routerLink]="['/projects', project.id]"><img class="project-image img-fluid" [src]="project.logo || 'http://lorempixel.com/320/240'" src="http://lorempixel.com/320/240" alt=""></a>
-          </div>
-          <div class="col-sm-4">
-            <a [routerLink]="['/projects', project.id]" class="project-title">{{ project.project_name }}</a>
-          </div>
-          <div class="col-sm-2">
-            <a [routerLink]="['/projects', project.id]" class="project-title">{{ project.team_name }}</a>
-          </div>
-          <div class="col-sm-3 team-avatars">
-            <img *ngFor="let student of project.students" [src]="student.avatar_url" placement="top" ngbTooltip="{{student.nickname}}">
-          </div>
-          <div class="col-sm-2"></div>
+  <div class="chart">
+
+  </div>
+</div>
+
+<div class="game-settings row-component" *ngIf="assignment">
+  <div class="component-header">
+    <h3>Game settings for {{ assignment.name }}</h3>
+    <button class="btn btn-sm" (click)="toggleSettings()"><i class="fa" [ngClass]="{ 'fa-chevron-up': !areSettingsCollapsed , 'fa-chevron-down': areSettingsCollapsed }"></i></button>
+  </div>
+
+  <div class="component-body" [ngbCollapse]="areSettingsCollapsed">
+    <form [formGroup]="settingsForm" (ngSubmit)="onSettingsFormSubmit()">
+      <fieldset formGroupName="assessmentSettings">
+        <legend>Peer Assessment Settings</legend>
+        <hr>
+        <p class="lead">Students will receive <input [(ngModel)]="gameSettings.points_peer_assessment" formControlName="assessmentPoints" class="form-control" type="number" min="0"> points when they submit a Peer Assessment.</p>
+        <p class="lead">The first student in each team to submit, will receive <input [(ngModel)]="gameSettings.points_peer_assessment_first_of_team" formControlName="firstTeamPoints" class="form-control" type="number" min="0"> <b>BONUS</b> points.</p>
+        <p class="lead">The students who submit during the first day of the assessment, will receive <input [(ngModel)]="gameSettings.points_peer_assessment_submitted_first_day" formControlName="firstDayPoints" class="form-control" type="number" min="0"> <b>BONUS</b> points.</p>
+      </fieldset>
+
+      <fieldset formGroupName="evaluationSettings">
+        <legend>Project Evaluation Settings</legend>
+        <hr>
+        <p class="lead">Students will receive <input [(ngModel)]="gameSettings.points_project_evaluation" formControlName="evaluationPoints" class="form-control" type="number" min="0"> points when they submit a Project Evaluation.</p>
+        <p class="lead">The first student in each team to submit, will receive <input [(ngModel)]="gameSettings.points_project_evaluation_first_of_team" formControlName="firstTeamPoints" class="form-control" type="number" min="0"> <b>BONUS</b> points.</p>
+        <p class="lead">The students who submit during the first day of the assessment, will receive <input [(ngModel)]="gameSettings.points_project_evaluation_submitted_first_day" formControlName="firstDayPoints" class="form-control" type="number" min="0"> <b>BONUS</b> points.</p>
+      </fieldset>
+
+      <fieldset formGroupName="logSettings">
+        <legend>Log Settings</legend>
+        <hr>
+        <p class="lead">Students will receive <input [(ngModel)]="gameSettings.points_log" formControlName="logPoints" class="form-control" type="number" min="0"> points when they submit a Log.</p>
+        <p class="lead">
+          Students will receive points for a <b>MAXIMUM</b> of <input [(ngModel)]="gameSettings.max_logs_per_day" formControlName="maxLogsPerDay" class="form-control" type="number" min="0"> Logs per days.
+        </p>
+        <p class="lead">
+          Students will receive <input [(ngModel)]="gameSettings.points_log_first_of_day" formControlName="firstOfDayPoints" class="form-control" type="number" min="0"> <b>BONUS</b> points
+          for their first log of the day.
+        </p>
+      </fieldset>
+      <button type="submit" [disabled]="!settingsForm.dirty || !settingsForm.valid" class="btn btn-success">Save game settings</button>
+    </form>
+  </div>
+</div>
+
+<div class="assessment-form row-component" *ngIf="assignment">
+  <div class="component-header">
+    <h3>Peer Assessment form for {{ assignment.name }}</h3>
+    <button class="btn btn-sm" (click)="togglePAForm()"><i class="fa" [ngClass]="{ 'fa-chevron-up': !isFormCollapsed , 'fa-chevron-down': isFormCollapsed }"></i></button>
+  </div>
+
+  <div class="component-body" [ngbCollapse]="isFormCollapsed">
+    <p class="lead">These are the questions your students will have to answer at each peer assessment</p>
+    <div class="list-group" *ngIf="assignment">
+      <div class="list-group-item list-group-item-action" *ngFor="let question of assignment.pa_form.questions">
+        <div class="d-flex w-100">
+          {{ question.text }}
         </div>
+        <small><b>Question Type:</b> {{ question.question_type.friendly_name }}</small>
       </div>
     </div>
-  </ng-container>
-</ng-container>
+  </div>
+</div>

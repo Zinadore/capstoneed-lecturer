@@ -1,132 +1,56 @@
-<ng-container *rxContext="let unit on unitObservable">
-  <!--Breadcrumbs-->
-  <div class="row">
-    <div class="col-12">
-      <div class="breadcrumb-custom">
-        <div class="breadcrumb-step">
-          <a [routerLink]="['/units']">Units</a>
-        </div>
-        <div class="breadcrumb-divider"> / </div>
-        <div class="breadcrumb-step">
-          <a [routerLink]="['/units', loadedUnit.id]" *ngIf="loadedUnit">{{ loadedUnit?.name }}</a>
-        </div>
-        <div class="breadcrumb-divider"> / </div>           
+<!--Breadcrumbs-->
+<div class="row">
+  <div class="col-12">
+    <div class="breadcrumb-custom">
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/units']">Units</a>
+      </div>
+      <div class="breadcrumb-divider"> / </div>
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/units', unit.id]" *ngIf="unit">{{ unit.name }}</a>
+      </div>
+      <div class="breadcrumb-divider"> / </div>
+    </div>
+  </div>
+</div>
+
+<!--Page Title-->
+<div class="page-title-row">
+  <div class="col-12 ">
+    <h3 class="page-title" *ngIf="unit">{{ unit.code }} {{ unit.name }} - {{ unit.semester }}  {{ unit.year }}</h3>
+    <h3 class="page-title" *ngIf="!unit">Loading data...</h3>
+    <div class="gear-settings" ngbDropdown *ngIf="unit">
+      <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+        <i class="fa fa-cog" aria-hidden="true"></i>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" >
+        <a class="dropdown-item" [routerLink]="['edit']">Edit Unit</a>
+        <a class="dropdown-item" (click)="archiveUnit()">Archive Unit</a>
       </div>
     </div>
   </div>
+</div>
 
-  <!--Page Title-->
-  <div class="page-title-row">
-    <div class="col-12 ">
-      <h3 class="page-title">{{ loadedUnit?.name }}</h3>
-      <div class="gear-settings" ngbDropdown>
-        <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
-          <i class="fa fa-cog" aria-hidden="true"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" >
-          <a class="dropdown-item" [routerLink]="['edit']">Edit Unit</a>
-          <a class="dropdown-item" (click)="archiveUnit()">Archive Unit</a>
-        </div>
-      </div>      
-    </div>
+<div class="row row-component" *ngIf="assignments.length > 0">
+  <div class="col-12 ">
+    <h4>Assignments for unit {{ unit.name }}</h4>
+    <hr>
   </div>
 
-  <div class="row" *ngIf="unit">
-
-    <!-- Unit Details-->
-    <div class="col-4 column-white">
-      <div class="row no-gutters">
-        <div class="panel-title-wrapper">
-            <p class="panel-title">
-              Unit Info
-            </p>
-            <p class="panel-subtitle">
-              <a [routerLink]="['edit']">Edit</a>
-            </p>
-        </div>
-        <div class="panel-body col-12 row">
-          <div class="col-6 col-md-4">Name: </div>
-          <div class="col-6 col-md-6">{{ unit.name }}</div>    
-          <div class="col-6 col-md-4">Code: </div>
-          <div class="col-6 col-md-6">{{ unit.code }}</div>                   
-          <div class="col-6 col-md-4">Semester: </div>
-          <div class="col-6 col-md-6">{{ unit.semester }}</div>   
-          <div class="col-6 col-md-4">Year: </div>
-          <div class="col-6 col-md-6">{{ unit.year }}</div>  
-          <div class="col-6 col-md-4">Department Name: </div>
-          <div class="col-6 col-md-6">{{ unit.department?.name }}</div>   
-          <div class="col-6 col-md-4">University: </div>
-          <div class="col-6 col-md-6">{{ unit.department?.university }}</div> 
-          <div class="col-6 col-md-4" *ngIf="unit.archived_at">Archived At: </div>
-          <div class="col-6 col-md-6" *ngIf="unit.archived_at">{{ unit.archived_at }}</div>                                            
-        </div>        
-      </div>
-    </div>
-
-    <!--Assignments-->
-    <div class="col-8 column-white">
-      <div class="row no-gutters assignments-projects">
-        <!--<div class="panel-title-wrapper">
-            <p class="panel-title">Assignments</p>
-        </div>-->
-        <div class="panel-body col-12 row" *ngIf="unit.assignments">
-          <!--<ul *ngFor="let ass of unit.assignments">
-            <li> 
-              <a [routerLink]="['/assignments', ass.id]"> {{ ass.name }} </a>
-            </li>
-          </ul>-->
-
-          <div class="col-12 tabs-container">
-            <div class="tabs-title">
-              Assignments - Projects
-            </div>
-              <ngb-tabset>
-                <ngb-tab *ngFor="let assignment of unit.assignments" [title]="assignment.name" >
-                  <template ngbTabContent>
-                    <!-- Project table-->
-                    <div class="row project-table" *ngIf="assignment && projects.length > 0">
-                      <div class="col-12"  >
-                        <div class="row projects-table-header">
-                          <div class="col-1">
-                          </div>
-                          <div class="col-5">
-                            Project Name
-                          </div>
-                          <div class="col-3">
-                            Team Name
-                          </div>          
-                          <div class="col-3">
-                            Stats
-                          </div>
-                        </div>
-
-                        <div class="row project-row" *ngFor="let project of filterProjects(assignment)">
-                          <div class="col-sm-1">
-                            <a [routerLink]="['/projects', project.id]"><img class="project-image img-fluid" [src]="project.logo || 'http://lorempixel.com/320/240'" src="http://lorempixel.com/320/240" alt=""></a>
-                          </div>
-                          <div class="col-sm-5">
-                            <a [routerLink]="['/projects', project.id]" class="project-title">{{ project.project_name }}</a>
-                          </div>
-                          <div class="col-sm-3">
-                            <a [routerLink]="['/projects', project.id]" class="project-title">{{ project.team_name }}</a>
-                          </div>          
-                          <div class="col-sm-3"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </template>
-                </ngb-tab>
-              </ngb-tabset>    
-          </div>    
-        </div>
-      </div>
-    </div>
+  <div class="col-12 column-white">
+    <ngb-tabset>
+      <ngb-tab *ngFor="let assignment of assignments">
+        <template ngbTabTitle>{{ assignment.name }}</template>
+        <template ngbTabContent>
+          <ced-assignment-overview [assignment]="assignment" [projects]="projects"></ced-assignment-overview>
+        </template>
+      </ngb-tab>
+    </ngb-tabset>
   </div>
+</div>
 
-  <div class="row row-component" *ngIf="!unit">
-    <div class="col-12">
-      There appears to be nothing here. Go back to <a [routerLink]="['/units']">Units</a>
-    </div>
+<div class="row row-component" *ngIf="!unit">
+  <div class="col-12">
+    There appears to be nothing here. Go back to <a [routerLink]="['/units']">Units</a>
   </div>
-
-</ng-container>
+</div>

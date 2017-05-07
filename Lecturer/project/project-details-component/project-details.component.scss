@@ -15,42 +15,35 @@
 .page-title {
   @extend .page-title;
 }
-
-.project-description {
-  font-size: $font-size-project-description;
+.no-white {
+  background-color: transparent!important;
 }
+.details {
+  @extend .col-3;
+  flex-direction: column;
+  padding-top: 20px;
+  background-color: white;
+  border-radius: 3px;
 
-.project-description-column {
-  @extend .col-12;
-  @extend .col-sm-7;
-  @extend .col-md-8;
-}
+  .details-row {
+    display: flex;
+    margin-bottom: 0.3em;
 
-.project-info-column {
-  @extend .col-12;
-  @extend .col-md-3;
-  @extend .col-sm-5;
-  @extend .offset-md-1;
+    span {
+      flex-basis: 50%;
 
-  text-align: right;
-  padding-left: 10px;
-  font-size: $font-size-project-info-column;
-  line-height: 25px;
-
-  .dates {
-    color: $project-info-column-font-color;
-
-    text-align: center;
-    // padding-left: 0;
-    // padding-right: 0;
-    .start-date, .end-date, .semester-year {
-      @extend .col-12;
+      &:first-child {
+        font-weight: bold;
+      }
     }
+  }
+  h6 {
+    font-weight: bold;
   }
 }
 
 .widget {
-  @extend .col-12;  
+  @extend .col-12;
   @extend .col-sm-6;
 
 	margin-bottom: 25px;
@@ -87,60 +80,9 @@
 	}
 }
 
-.stats-container {
-  @extend .col-12;
-  @extend .col-lg-6;
-
-	padding: 0;
-}
-
-##{icon-health} {
-
-	& {
-		color: $red;
-	}
-
-	&-indicator {
-		color: $red;
-	}
-}
-
-##{icon-morale} {
-
-	& {
-		color: $green;
-	}
-
-	&-indicator {
-		color: $green;
-	}
-}
-
-##{icon-completion} {
-
-	& {
-		color: $yellow;
-	}
-
-	&-indicator {
-		color: $yellow;
-	}
-}
-
-##{icon-peer-assessement} {
-
-	& {
-		color: $blue;
-	}
-
-	&-indicator {
-		color: $blue;
-	}
-}
-
 .students-container {
-  @extend .col-12;
-  @extend .col-lg-6;
+  @extend .col-9;
+  padding-right: 0!important;
 
   &.remove-on span.remove-student-button {
 		display: block;
@@ -151,10 +93,10 @@
     @extend .col-xl-3;
 
     z-index: 1001;
-    
+
     .student-name {
       text-align: center;
-    } 
+    }
   }
 
   span.remove-student-button {
@@ -169,7 +111,7 @@
         line-height: 0;
         font-size: 1.7rem;
     }
-  }     
+  }
 
   .student-avatar {
     @extend .mx-auto;
@@ -187,5 +129,5 @@
       transition: .1s ease;
       border: 5px solid rgb(96, 152, 244);
     }
-  }  
+  }
 }
