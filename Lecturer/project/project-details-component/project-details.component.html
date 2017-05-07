@@ -104,44 +104,39 @@
   </div> <!-- students-->
 </div>
 
-<!--Description-->
-<!--<div class="row row-component">-->
-    <!--<div class="project-description-column">-->
-      <!--<h5>Description</h5>-->
-      <!--<p class="project-description">-->
-        <!--{{ project?.description }}-->
-      <!--</p>-->
-    <!--</div>-->
 
-    <!--<div class="project-info-column">-->
-      <!--<div class="dates">-->
-        <!--<div class="start-date">-->
-          <!--<i class="fa fa-hourglass-start" aria-hidden="true"></i> {{ assignment?.start_date }}-->
-        <!--</div>-->
-        <!--<div class="end-date">-->
-          <!--<i class="fa fa-hourglass-end" aria-hidden="true"></i> {{ assignment?.end_date }}-->
-        <!--</div>-->
-        <!--<div class="semester-year">-->
-          <!--<i class="fa fa-calendar" aria-hidden="true"></i> {{ unit?.semester + " " + unit?.year }}-->
-        <!--</div>-->
-      <!--</div> &lt;!&ndash;row-component&ndash;&gt;-->
-    <!--</div> &lt;!&ndash;project-info-column&ndash;&gt;-->
-<!--</div>-->
+<div class="row row-component" style="margin-top: 20px">
+  <div class="col-12">
+    <h4>Hours worked for each Student and Average</h4>
+  </div>
+  <div class="col-12" *ngIf="project_id">
+    <ced-hours-worked-project [projectId]="project_id"></ced-hours-worked-project>
+  </div>
+</div>
 
-<!--&lt;!&ndash; Students and Stats &ndash;&gt;-->
-<!--<div class="row">-->
-  <!--<div class="students-container column-white" *ngIf="project" [class.remove-on]="removeStudentMode">-->
-    <!--<div class="row no-gutters">-->
-        <!--<div class="col-12">-->
-            <!--<h5>Students ({{project.students.length}})</h5>-->
-        <!--</div>-->
-        <!--<div class="student" *ngFor="let student of project.students">-->
-            <!--<img class="student-avatar" [src]="student.avatar_url">-->
-            <!--<span class="remove-student-button animated swing infinite" (click)="removeStudent(student.id)">-->
-                <!--<i class="fa fa-times" aria-hidden="true"></i>-->
-            <!--</span>-->
-            <!--<p class="student-name">{{ student.first_name + " " + student.last_name }}</p>-->
-        <!--</div>-->
-    <!--</div> &lt;!&ndash;row&ndash;&gt;-->
-  <!--</div> &lt;!&ndash; students&ndash;&gt;-->
-<!--</div> &lt;!&ndash; row &ndash;&gt;-->
+<div class="row row-component" style="margin-top: 20px">
+  <div class="col-12">
+    <h4>Hours worked for each Project. (move to Assignment page)</h4>
+  </div>  
+  <div class="col-12" *ngIf="project">
+    <ced-hours-worked-assignment [assignmentId]="project.assignment_id"></ced-hours-worked-assignment>
+  </div>
+</div>
+
+<div class="row row-component" style="margin-top: 20px">
+  <div class="col-12">
+    <h4>Estimated current Project completion by each student and Lecturer</h4>
+  </div>    
+  <div class="col-12" *ngIf="project_id">
+    <ced-percent-completion [projectId]="project_id"></ced-percent-completion>
+  </div>
+</div>
+
+<div class="row row-component" style="margin-top: 20px">
+  <div class="col-12">
+    <h4>Logs heatmap for project</h4>
+  </div>    
+  <div class="col-12" *ngIf="project_id">
+    <ced-logs-heatmap [projectId]="project_id"></ced-logs-heatmap>
+  </div>
+</div>
