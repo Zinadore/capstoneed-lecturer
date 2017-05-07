@@ -29,13 +29,29 @@ import { NewAssignmentComponent } from './assignment/new-assignment-component/ne
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ChartModule } from 'angular2-highcharts';
+import { EditProfileComponent } from './edit-profile-component/edit-profile.component';
+import { IterationsBarComponent } from "./iteration/iterations-bar-component/iterations-bar.component";
+import { EditIterationsComponent } from './iteration/edit-iterations-component/edit-iterations.component';
+import { NewPeerAssessmentFormComponent } from './assessment/new-pa-form-component/new-pa-form.component';
+import { DragableQuestionListsComponent } from './form-template/dragable-question-lists-component/dragable-question-lists.component';
+import { NewPaQuestionComponent } from './form-template/new-pa-question-component/new-pa-question.component';
+import { NewFormTemplateComponent } from './form-template/new-form-template-component/new-form-template.component';
+import { FormTemplateListComponent } from './form-template/form-template-list-component/form-template-list.component';
+import { EditFormTemplateComponent } from './form-template/edit-form-template-component/edit-form-template.component';
+import { AssignmentOverviewComponent } from './assignment/assignment-overview-component/assignment-overview.component';
+import { ProjectRankingsComponent } from './project/project-rankings-component/project-rankings.component';
+import { ProjectRankingBarComponent } from './project/project-rankings-component/project-ranking-bar.component';
+import { NgxErrorsModule } from '@ultimate/ngxerrors';
+import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
   imports: [
     CommonModule,
     NgbModule,
+    NgxErrorsModule,
     RouterModule.forChild(ROUTES),
     SharedDirectivesModule,
+    DragulaModule,
     ReactiveFormsModule,
     NgxMyDatePickerModule,
     NgxDatatableModule,
@@ -73,7 +89,7 @@ import { ChartModule } from 'angular2-highcharts';
     AssignmentOverviewComponent,
     ProjectRankingsComponent,
     ProjectRankingBarComponent,
-    LogsHeatmapComponent
+    LogsHeatmapComponent,
     PercentCompletionComponent,
     HoursWorkedAssignmentComponent,
     HoursWorkedProjectComponent,

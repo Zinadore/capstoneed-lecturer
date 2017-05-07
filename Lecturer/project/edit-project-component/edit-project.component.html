@@ -7,19 +7,25 @@
   <div class="col-12">
     <div class="breadcrumb-custom">
       <div class="breadcrumb-step">
-        <a [routerLink]="['/units']">Units</a>
-      </div>
-      <div class="breadcrumb-divider"> / </div>
-      <div class="breadcrumb-step">
         <a [routerLink]="['/units', unit.id]" *ngIf="unit">{{ unit.name }}</a>
       </div>
       <div class="breadcrumb-divider"> / </div>
       <div class="breadcrumb-step">
-        <a [routerLink]="['/units', unit.id]" *ngIf="unit">Projects</a>
+        <a [routerLink]="['/assignments', assignment.id]" *ngIf="assignment">
+          {{ assignment.name }}
+        </a>
       </div>
       <div class="breadcrumb-divider"> / </div>
       <div class="breadcrumb-step">
-        <a [routerLink]="['/projects', project.id]" *ngIf="project">{{ project.project_name }}</a>
+        <a [routerLink]="['/projects', project.id]" *ngIf="project">
+          {{ project.project_name }}
+        </a>
+      </div>
+      <div class="breadcrumb-divider"> / </div>
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/projects', project.id, 'edit']" *ngIf="project">
+          edit
+        </a>
       </div>
     </div>
   </div>
@@ -33,7 +39,7 @@
       <h4 class="page-title">{{ project?.project_name }}</h4>
     </div>
     <div class="col-12">
-      <p class="page-subtitle">Edit Project information, Iterations, and Students</p>
+      <p class="page-subtitle">Edit Project information</p>
     </div>
     <div class="col-12">
       <a [routerLink]="['/projects', project.id]" *ngIf="project">

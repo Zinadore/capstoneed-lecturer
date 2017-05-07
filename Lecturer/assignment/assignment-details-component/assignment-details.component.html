@@ -3,10 +3,6 @@
   <div class="col-12">
     <div class="breadcrumb-custom">
       <div class="breadcrumb-step">
-        <a [routerLink]="['/units']">Units</a>
-      </div>
-      <div class="breadcrumb-divider"> / </div>
-      <div class="breadcrumb-step">
         <a [routerLink]="['/units', assignment.unit.id]" *ngIf="assignment">
           {{ assignment.unit.name }}
         </a>
@@ -14,14 +10,9 @@
       <div class="breadcrumb-divider"> / </div>
       <div class="breadcrumb-step">
         <a [routerLink]="['/assignments', assignment.id]" *ngIf="assignment">
-          {{ assignment?.name }}
+          {{ assignment.name }}
         </a>
       </div>
-      <div class="breadcrumb-divider"> / </div>
-      <div class="breadcrumb-step">
-        Projects
-      </div>
-      <div class="breadcrumb-divider"> / </div>
     </div>
   </div>
 </div>
@@ -54,7 +45,26 @@
   </div>
 
   <div class="chart">
+    <ced-hours-worked-assignment [assignmentId]="assignment.id"></ced-hours-worked-assignment>
+  </div>
+</div>
 
+<div class="assessment-form row-component" *ngIf="assignment">
+  <div class="component-header">
+    <h3>Peer Assessment form for {{ assignment.name }}</h3>
+    <button class="btn btn-sm" (click)="togglePAForm()"><i class="fa" [ngClass]="{ 'fa-chevron-up': !isFormCollapsed , 'fa-chevron-down': isFormCollapsed }"></i></button>
+  </div>
+
+  <div class="component-body" [ngbCollapse]="isFormCollapsed">
+    <p class="lead">These are the questions your students will have to answer at each peer assessment</p>
+    <div class="list-group" *ngIf="assignment">
+      <div class="list-group-item list-group-item-action" *ngFor="let question of assignment.pa_form.questions">
+        <div class="d-flex w-100">
+          {{ question.text }}
+        </div>
+        <small><b>Question Type:</b> {{ question.question_type.friendly_name }}</small>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -99,21 +109,4 @@
   </div>
 </div>
 
-<div class="assessment-form row-component" *ngIf="assignment">
-  <div class="component-header">
-    <h3>Peer Assessment form for {{ assignment.name }}</h3>
-    <button class="btn btn-sm" (click)="togglePAForm()"><i class="fa" [ngClass]="{ 'fa-chevron-up': !isFormCollapsed , 'fa-chevron-down': isFormCollapsed }"></i></button>
-  </div>
 
-  <div class="component-body" [ngbCollapse]="isFormCollapsed">
-    <p class="lead">These are the questions your students will have to answer at each peer assessment</p>
-    <div class="list-group" *ngIf="assignment">
-      <div class="list-group-item list-group-item-action" *ngFor="let question of assignment.pa_form.questions">
-        <div class="d-flex w-100">
-          {{ question.text }}
-        </div>
-        <small><b>Question Type:</b> {{ question.question_type.friendly_name }}</small>
-      </div>
-    </div>
-  </div>
-</div>
