@@ -27,7 +27,7 @@
 <!--Page Title-->
 <div class="page-title-row">
   <div class="col-12 ">
-    <h3 class="page-title">{{ project?.project_name }}</h3>
+    <h3 class="page-title">Project: {{ project?.project_name }}</h3>
     <div class="gear-settings" ngbDropdown>
       <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
         <i class="fa fa-cog" aria-hidden="true"></i>
@@ -93,7 +93,7 @@
   </div> <!-- students-->
 </div>
 
-<div class="chart-row">
+<!--<div class="chart-row">
   <div class="chart">
     <h4>Hours worked for each Student and Average</h4>
     <ced-hours-worked-project [projectId]="project_id"></ced-hours-worked-project>
@@ -110,5 +110,22 @@
     <h4>Logs heatmap for project</h4>
     <ced-logs-heatmap [projectId]="project_id"></ced-logs-heatmap>
   </div>
-</div>
+</div>-->
 
+<div class="row row-component charts">
+  <div class="col-12">
+    <h3 style="padding-bottom: 20px;">Statistics</h3>
+  </div>
+  <div class="col-6">
+    <h4>Hours worked for each Student and Average</h4>
+    <ced-hours-worked-project [projectId]="project_id"></ced-hours-worked-project>    
+  </div>
+  <div class="col-6">
+    <h4>Estimated current Project completion by each student and Lecturer</h4>
+    <ced-percent-completion [projectId]="project_id"></ced-percent-completion>    
+  </div>
+  <div class="col-6">
+    <h4>Logs heatmap for project</h4>
+    <ced-logs-heatmap [projectId]="project_id"></ced-logs-heatmap>    
+  </div>
+</div>

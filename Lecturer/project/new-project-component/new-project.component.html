@@ -1,15 +1,21 @@
+
+
 <ced-form-wizard [onFinish]="wizard_onFinish">
   <ced-form-wizard-step [canGoNext]="selectionStep_canGoNext()" [onNext]="selectionStep_onNext" [title]="'Selection'">
-    <form [formGroup]="unitSelectionForm">
-      <div class="form-row">
-        <label class="" for="unitSelect">Select existing unit</label>
-        <select class="custom-select" id="unitSelect" formControlName="unitSelect">
-          <option value="0">Select one...</option>
-          <option [value]="unit.id" *ngFor="let unit of units">{{unit.name + ', ' + unit.semester + ' ' + unit.year}}</option>
-        </select>
+    <form [formGroup]="unitSelectionForm" style="margin-top: 20px; margin-left: 20px">
+      <!--<div class="form-row">-->
+      <div class="form-group row">
+        <label class="col-2 col-form-label" for="unitSelect">Select existing unit</label>
+        <div class="col-10">
+          <select class="custom-select" id="unitSelect" formControlName="unitSelect">
+            <option value="0">Select one...</option>
+            <option [value]="unit.id" *ngFor="let unit of units">{{unit.name + ', ' + unit.semester + ' ' + unit.year}}</option>
+          </select>
+        </div>
       </div>
 
-      <div class="form-row">
+      <!--<div class="form-row">-->
+      <div class="form-group">
         <label class="" for="assignmentSelect">Select existing assignment: </label>
         <select class="custom-select" id="assignmentSelect" formControlName="assignmentSelect">
           <option value="0">Select one...</option>

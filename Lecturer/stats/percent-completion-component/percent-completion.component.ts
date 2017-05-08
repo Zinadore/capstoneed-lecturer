@@ -28,7 +28,8 @@ export class PercentCompletionComponent extends ComponentBase implements OnInit 
                   this.options = {
                     chart: {
                       type: 'spline',
-                      zoomType: 'x'
+                      zoomType: 'x',
+                      width: 500
                     },                    
                     title : { text : 'Project Completion Estimation' },
                     xAxis: {                    
