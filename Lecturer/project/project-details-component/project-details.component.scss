@@ -12,6 +12,10 @@
 	left: 0;
 }
 
+.page-title-row {
+  margin-bottom: 0;
+}
+
 .page-title {
   @extend .page-title;
 }
@@ -132,19 +136,30 @@
   }
 }
 
-.chart-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 25px;
-  border-radius: 5px;
+// .chart-row {
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: space-between;
+//   margin-top: 25px;
+//   border-radius: 5px;
 
+//   .chart {
+//     display: flex;
+//     padding: 0.75em 1.25em;
+//     flex-basis: 50%;
+//     flex-direction: column;
+//     align-items: center;
+//     background-color: white;
+//   }
+// }
+
+.charts {
+  h4 {
+    text-align: center;
+  }
+  
   .chart {
-    display: flex;
     padding: 0.75em 1.25em;
-    flex-basis: 50%;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
+    text-align: center;
   }
 }

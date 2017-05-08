@@ -1,11 +1,14 @@
+<h3 style="padding-bottom: 20px;">Create New Peer Assessment Form</h3>
+
 <div class="selector">
   <form [formGroup]="selectForm">
-    <h3 class="display-5">Step 1: Select an assignment</h3>
+    <h5 class="display-5">Step 1: Select an assignment</h5>
     <div class="form-group">
-      <label for="assignmentSelect">Assignment</label>
+      <!--<label for="assignmentSelect">Assignment</label>-->
       <select id="assignmentSelect"
               formControlName="assignmentSelect"
-              class="form-control custom-select">
+              class="form-control custom-select"
+              style="margin-top: 8px">
         <option value="0">Select One...</option>
         <option *ngFor="let a of assignments"
                 value="{{ a.id }}">
@@ -15,7 +18,7 @@
     </div>
   </form>
   <div class="hint">
-    <p class="lead">
+    <p>
       Use the selector on the left to pick one of the available assignments. Alternative you can use the button below to create an assignment first.
     </p>
   </div>
@@ -23,11 +26,11 @@
 
 <div class="offsets-selector" *ngIf="selectedAssignment">
   <form [formGroup]="offsetsForm" class="offsets-form">
-    <h3 class="display-5">Step 2: Set submission period</h3>
-    <p class="lead">
+    <h5 class="display-5">Step 2: Set submission period</h5>
+    <p>
       The assessment will open for submission <input class="form-control" type="number" min="0" id="startOffset" formControlName="startOffset">
       days and close <input class="form-control" type="number" min="1" id="endOffset" formControlName="endOffset"> days after the Iteration deadline.
-      <button class="btn btn-primary" (click)="offsetsDone()">Set</button>
+      <button class="btn btn-primary" (click)="offsetsDone()" style="background-color: #4285f4; border-color: #4285f4">Set</button>
     </p>
     <div class="errors" ngxErrors="startOffset">
       <span class="text-danger" ngxError="required" when="dirty">* The start offset is required</span>
@@ -44,20 +47,20 @@
 </div>
 
 <div class="questions-selector" *ngIf="canShowQuestions">
-  <h3 class="display-5">Step 3: Select an existing form</h3>
-  <p class="lead">
+  <h5 class="display-5" style="margin-top: 20px">Step 3: Select an existing form</h5>
+  <p>
     Select one of your existing forms.
   </p>
 
   <div class="form-group search-group">
     <input #search_input type="text" placeholder="Filter by template name..." class="form-control search">
-    <span class="lead">You can use the search on the left to filter through your templates. Clicking on a template will show a preview. Use the pencil button to edit the template.</span>
+    <span style="padding-left: 40px">You can use the search on the left to filter through your templates. Clicking on a template will show a preview. Use the pencil button to edit the template.</span>
   </div>
 
   <div class="list-and-display">
 
     <div class="template-list">
-      <h4>My Templates</h4>
+      <h5>My Templates</h5>
       <hr>
       <div class="list-group template-list-group" *ngIf="filteredFormTemplates.length > 0">
         <div *ngFor="let template of filteredFormTemplates; let i = index"
@@ -72,7 +75,7 @@
 
 
     <div class="template-preview">
-      <h4>Template Preview</h4>
+      <h5>Template Preview</h5>
       <hr>
       <div class="template-details" *ngIf="selectedFormTemplate.id != 0">
         <dl class="template-details--name">
@@ -96,5 +99,5 @@
 
   <!--<button (click)="debug()">Debug</button>-->
   <button [disabled]="!selectedFormTemplate || !offsetsForm.valid || !selectForm.valid" (click)="submitQuestions()" class="btn btn-success">Submit</button>
-  <button (click)="debug()">Debug</button>
+  <!--<button (click)="debug()">Debug</button>-->
 </div>

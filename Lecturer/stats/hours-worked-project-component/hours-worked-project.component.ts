@@ -29,7 +29,8 @@ export class HoursWorkedProjectComponent extends ComponentBase implements OnInit
                   this.options = {
                     chart: {
                       type: 'spline',
-                      zoomType: 'x'
+                      zoomType: 'x',
+                      width: 500
                     },                    
                     title : { text : 'Hours Worked / Time' },
                     xAxis: {                    
@@ -63,7 +64,37 @@ export class HoursWorkedProjectComponent extends ComponentBase implements OnInit
                             shadow: true
                         }                                              
                     },                                  
-                    series: data.hours_worked_graph                   
+                    series: data.hours_worked_graph ,          
+                    responsive: {
+                        rules: [{
+                            condition: {
+                                maxWidth: 200
+                            },
+                            chartOptions: {
+                                legend: {
+                                    align: 'center',
+                                    verticalAlign: 'bottom',
+                                    layout: 'horizontal'
+                                },
+                                yAxis: {
+                                    labels: {
+                                        align: 'left',
+                                        x: 0,
+                                        y: -5
+                                    },
+                                    title: {
+                                        text: null
+                                    }
+                                },
+                                subtitle: {
+                                    text: null
+                                },
+                                credits: {
+                                    enabled: false
+                                }
+                            }
+                        }]
+                    }                                      
                   }
                 },
                 err => console.log(err)

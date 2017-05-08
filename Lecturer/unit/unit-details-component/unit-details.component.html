@@ -14,7 +14,7 @@
   <div class="col-12 ">
     <h3 class="page-title" *ngIf="unit">{{ unit.code }} {{ unit.name }} - {{ unit.semester }}  {{ unit.year }}</h3>
     <h3 class="page-title" *ngIf="!unit">Loading data...</h3>
-    <div class="gear-settings" ngbDropdown *ngIf="unit">
+    <!--<div class="gear-settings" ngbDropdown *ngIf="unit">
       <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
         <i class="fa fa-cog" aria-hidden="true"></i>
       </a>
@@ -22,7 +22,7 @@
         <a class="dropdown-item" [routerLink]="['edit']">Edit Unit</a>
         <a class="dropdown-item" (click)="archiveUnit()">Archive Unit</a>
       </div>
-    </div>
+    </div>-->
   </div>
 </div>
 
@@ -35,10 +35,10 @@
   <div class="col-12 column-white">
     <ngb-tabset>
       <ngb-tab *ngFor="let assignment of assignments">
-        <template ngbTabTitle>{{ assignment.name }}</template>
-        <template ngbTabContent>
+        <ng-template ngbTabTitle>{{ assignment.name }}</ng-template>
+        <ng-template ngbTabContent>
           <ced-assignment-overview [assignment]="assignment" [projects]="projects"></ced-assignment-overview>
-        </template>
+        </ng-template>
       </ngb-tab>
     </ngb-tabset>
   </div>
