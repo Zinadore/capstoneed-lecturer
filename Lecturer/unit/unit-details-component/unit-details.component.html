@@ -26,8 +26,8 @@
   </div>
 </div>
 
-<div class="row row-component" *ngIf="assignments.length > 0">
-  <div class="col-12 ">
+<div class="row row-component" *ngIf="assignments.length > 0; else noAssignmentsTemplate">
+  <div class="col-12 column-white">
     <h4>Assignments for unit {{ unit.name }}</h4>
     <hr>
   </div>
@@ -43,6 +43,14 @@
     </ngb-tabset>
   </div>
 </div>
+
+<ng-template #noAssignmentsTemplate>
+  <div class="row row-component">
+    <div class="col-12 column-white">
+      <h4>This unit has no assignments.</h4>
+    </div>
+  </div>
+</ng-template>
 
 <div class="row row-component" *ngIf="!unit">
   <div class="col-12">
