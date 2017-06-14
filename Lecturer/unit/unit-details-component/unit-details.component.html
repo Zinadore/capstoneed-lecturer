@@ -14,6 +14,14 @@
   <div class="col-12 ">
     <h3 class="page-title" *ngIf="unit">{{ unit.code }} {{ unit.name }} - {{ unit.semester }}  {{ unit.year }}</h3>
     <h3 class="page-title" *ngIf="!unit">Loading data...</h3>
+    <div class="gear-settings">
+      <a title="Archive Unit" (click)="archiveUnitPopup(unit)">
+        <i class="fa fa-archive" aria-hidden="true"></i>
+      </a>
+      <a title="Edit Unit">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </a>
+    </div>
     <!--<div class="gear-settings" ngbDropdown *ngIf="unit">
       <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
         <i class="fa fa-cog" aria-hidden="true"></i>
