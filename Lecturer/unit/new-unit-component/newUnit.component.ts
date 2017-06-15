@@ -75,16 +75,7 @@ export class NewUnitComponent extends ComponentBase{
     console.log(this.unit);
 
     this.unitService.create$(this.unit).subscribe( unit => {
-      let config: ToastConfig = {
-        enableHtml: true,
-        timeOut: 0,
-        extendedTimeOut: 0,
-        positionClass: 'toast-top-full-width',
-        closeButton: true,
-        tapToDismiss: true
-      };
       this.router.navigate(['/units']);
-      this.toastrService.success("Unit Created Successfuly", 'Success', config);
     });
   }
 

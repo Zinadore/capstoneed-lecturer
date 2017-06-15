@@ -29,6 +29,9 @@ export class UnitDetailsComponent extends ComponentBase {
     let unitObservable = this.route.params
       .filter(params => params['id'])
       .map(params => params['id'])
+      // .switchMap(id => this.unitService.getUnit(id)
+      //   .filter
+      // );
       .switchMap(id => store.select('units')
         .filter((units: Unit[]) => units.length > 0)
         .map((units: Unit[]) => units.find(u => u.id == id))
@@ -64,15 +67,11 @@ export class UnitDetailsComponent extends ComponentBase {
     return this.projects.filter(p => p.assignment_id == assignment.id)
   }
 
-  archiveUnit() {
-    console.log('archive unit called')
-  }
-
   archiveUnitPopup(unit: Unit) {
     if (unit.archived_at != null)
       alert('Unit is already archived!');
 
-    if (confirm("Press a button!") == true) {
+    if (confirm("Are you sure you want to archive unit: \"" + unit.name + "\"?") == true) {
       this.unitService.archive(unit);
     }
   }
