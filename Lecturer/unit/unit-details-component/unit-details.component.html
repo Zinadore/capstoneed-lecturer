@@ -18,19 +18,10 @@
       <a title="Archive Unit" (click)="archiveUnitPopup(unit)">
         <i class="fa fa-archive" aria-hidden="true"></i>
       </a>
-      <a title="Edit Unit">
+      <!--<a title="Edit Unit" [routerLink]="['edit']" >
         <i class="fa fa-pencil" aria-hidden="true"></i>
-      </a>
+      </a>-->
     </div>
-    <!--<div class="gear-settings" ngbDropdown *ngIf="unit">
-      <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
-        <i class="fa fa-cog" aria-hidden="true"></i>
-      </a>
-      <div class="dropdown-menu dropdown-menu-right" >
-        <a class="dropdown-item" [routerLink]="['edit']">Edit Unit</a>
-        <a class="dropdown-item" (click)="archiveUnit()">Archive Unit</a>
-      </div>
-    </div>-->
   </div>
 </div>
 

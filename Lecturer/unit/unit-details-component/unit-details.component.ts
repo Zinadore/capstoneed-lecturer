@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Rx';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -29,15 +30,15 @@ export class UnitDetailsComponent extends ComponentBase {
     let unitObservable = this.route.params
       .filter(params => params['id'])
       .map(params => params['id'])
-      // .switchMap(id => this.unitService.getUnit(id)
-      //   .filter
-      // );
+      // .switchMap(id => { 
+      //   return Observable.of(this.unitService.getUnit$(id))
+      // });
       .switchMap(id => store.select('units')
         .filter((units: Unit[]) => units.length > 0)
         .map((units: Unit[]) => units.find(u => u.id == id))
       );
 
-    this.disposeOnDestroy(unitObservable.subscribe((unit: Unit) => {
+    this.disposeOnDestroy(unitObservable.subscribe(unit => {
       this.unit = unit;
     }));
 
