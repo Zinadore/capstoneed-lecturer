@@ -43,6 +43,10 @@ import { ProjectRankingsComponent } from './project/project-rankings-component/p
 import { ProjectRankingBarComponent } from './project/project-rankings-component/project-ranking-bar.component';
 import { NgxErrorsModule } from '@ultimate/ngxerrors';
 import { DragulaModule } from 'ng2-dragula';
+import { ProjectEvaluationListComponent } from './project-evaluation/project-evaluation-list-component/project-evaluation-list.component';
+import { ScoredPaListComponent } from './assessment/scored-pa-list-component/scored-pa-list.component';
+import { ProjectEvaluationComponent } from './project-evaluation/project-evaluation-component/project-evaluation.component';
+import { RoundProgressModule } from 'angular-svg-round-progressbar';
 
 @NgModule({
   imports: [
@@ -57,7 +61,8 @@ import { DragulaModule } from 'ng2-dragula';
     NgxDatatableModule,
     ChartModule.forRoot(require('highcharts'),
                         require('highcharts/modules/exporting'),
-                        require('highcharts/modules/heatmap'))
+                        require('highcharts/modules/heatmap')),
+    RoundProgressModule
   ],
   declarations: [
     SidenavComponent,
@@ -93,6 +98,9 @@ import { DragulaModule } from 'ng2-dragula';
     PercentCompletionComponent,
     HoursWorkedAssignmentComponent,
     HoursWorkedProjectComponent,
+    ProjectEvaluationComponent,
+    ProjectEvaluationListComponent,
+    ScoredPaListComponent
   ],
   providers: [NgxMyDatePickerModule],
   exports: [

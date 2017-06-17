@@ -1,0 +1,15 @@
+@import "../../../../style/global-variables";
+@import "../../../../style/lecturer-common";
+
+.eval-row {
+  display: flex;
+  justify-content: space-between;
+
+  .evaluation-selector {
+
+  }
+
+  .evaluation-container {
+    flex: 1;
+  }
+}

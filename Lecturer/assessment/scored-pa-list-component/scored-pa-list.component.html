@@ -1,0 +1,72 @@
+<!--Breadcrumbs-->
+<div class="row">
+  <div class="col-12">
+    <div class="breadcrumb-custom">
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/assessments', 'latest']">Latest assessments</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Page Title-->
+<div class="page-title-row">
+  <div class="col-12 ">
+    <h3 class="page-title">Latest assessments</h3>
+  </div>
+</div>
+
+<div class="row row-component">
+
+  <div class="search-column">
+    <input
+      type='text'
+      placeholder='Filter by unit, assignment or iteration name...'
+      class="form-control search"
+      #searchBox
+    />
+  </div>
+
+  <div class="col-12">
+    <ngx-datatable #myTable
+                   (select)="onRowClicked($event)"
+                   [selected]="selected"
+                   [selectionType]="'single'"
+                   [rows]="filteredRows"
+                   [columnMode]="'force'"
+                   class="material">
+     <ngx-datatable-column
+        name="Unit Name"
+        [flexGrow]="2">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row.assignment?.unit.name }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Semester" [flexGrow]="2">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row.assignment?.unit.semester }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Assignment" [flexGrow]="2">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row.assignment?.name }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Iteration" [flexGrow]="2">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row.name }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Finished at" [flexGrow]="2">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row.deadline | date:'dd/MM/yyyy' }}
+        </ng-template>
+      </ngx-datatable-column>
+
+    </ngx-datatable>
+  </div>
+</div>

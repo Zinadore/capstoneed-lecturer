@@ -70,7 +70,6 @@ const ToastrGlobalConf: any = {
     HeaderComponent,
     RegisterComponent,
     RegisterSuccessComponent,
-    ProjectEvaluationComponent,
   ],
   providers: [
   ],
