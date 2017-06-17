@@ -24,6 +24,8 @@ import { NewFormTemplateComponent } from '../Lecturer/form-template/new-form-tem
 import { FormTemplateListComponent } from '../Lecturer/form-template/form-template-list-component/form-template-list.component';
 import { EditFormTemplateComponent } from '../Lecturer/form-template/edit-form-template-component/edit-form-template.component';
 import { ProjectEvaluationComponent } from '../Lecturer/project-evaluation/project-evaluation-component/project-evaluation.component';
+import { ProjectEvaluationListComponent } from '../Lecturer/project-evaluation/project-evaluation-list-component/project-evaluation-list.component';
+import { ScoredPaListComponent } from '../Lecturer/assessment/scored-pa-list-component/scored-pa-list.component';
 
 export const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
@@ -57,12 +59,17 @@ export const ROUTES: Routes = [
       { path: 'edit', pathMatch: 'full', component: EditProfileComponent }
     ] },
     { path: 'peer-assessments', children: [
-      { path: 'new', component: NewPeerAssessmentFormComponent }
+      { path: 'new', component: NewPeerAssessmentFormComponent },
+      { path: 'latest', component: ScoredPaListComponent }
     ] },
     { path: 'form-templates', children: [
       { path: '', pathMatch: 'full', component: FormTemplateListComponent },
       { path: 'new', component: NewFormTemplateComponent },
       { path: ':id/edit', pathMatch: 'full', component: EditFormTemplateComponent }
+    ] },
+    { path: 'project-evaluations', children: [
+      { path: '', pathMatch: 'full' , component: ProjectEvaluationListComponent },
+      { path: ':id', component: ProjectEvaluationComponent }
     ] }
   ]
   },

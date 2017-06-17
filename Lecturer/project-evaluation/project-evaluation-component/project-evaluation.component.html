@@ -1,22 +1,22 @@
-<!--Breadcrumbs-->
-<div class="row">
-  <div class="col-12">
-    <div class="breadcrumb-custom">
-      <div class="breadcrumb-step">
-        <a [routerLink]="['/projects']">Projects</a>
-      </div>
-      <div class="breadcrumb-divider" *ngIf="_project"> / </div>
-      <div class="breadcrumb-step">
-        <a [routerLink]="['/projects', _project.id]" *ngIf="_project">{{ _project.project_name }}</a>
-      </div>
-      <div class="breadcrumb-divider"> / </div>
-      <div class="breadcrumb-step">
-        <a>Evaluation</a>
-      </div>
+<!--&lt;!&ndash;Breadcrumbs&ndash;&gt;-->
+<!--<div class="row">-->
+  <!--<div class="col-12">-->
+    <!--<div class="breadcrumb-custom">-->
+      <!--<div class="breadcrumb-step">-->
+        <!--<a [routerLink]="['/projects']">Projects</a>-->
+      <!--</div>-->
+      <!--<div class="breadcrumb-divider" *ngIf="_project"> / </div>-->
+      <!--<div class="breadcrumb-step">-->
+        <!--<a [routerLink]="['/projects', _project.id]" *ngIf="_project">{{ _project.project_name }}</a>-->
+      <!--</div>-->
+      <!--<div class="breadcrumb-divider"> / </div>-->
+      <!--<div class="breadcrumb-step">-->
+        <!--<a>Evaluation</a>-->
+      <!--</div>-->
 
-    </div>
-  </div>
-</div>
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
 
 <div class="page-title-row" *ngIf="_project">
   <div class="col-12 ">
@@ -46,19 +46,47 @@
   <div class="student-answers">
     <h4 class="display-5">Your students have answered</h4>
     <div class="answers">
-      <div class="answer" *ngFor="let student of _project.students">
+      <div class="answer" *ngFor="let answer of _teamAnswers">
         <div class="top-row">
-          <span class="text">45%</span>
-          <img [src]="student.avatar_url" alt="" class="student-avatar">
+          <span class="text" *ngIf="answer.percent_completed"> {{answer.percent_completed}} %</span>
+          <span class="text" *ngIf="!answer.percent_completed"> N/A</span>
+          <img [src]="answer.user.avatar_url" alt="" class="student-avatar">
         </div>
-        <span class="student-name">{{ student.first_name + ' ' + student.last_name }}</span>
+        <span class="student-name">{{ answer.user.first_name + ' ' + answer.user.last_name }}</span>
       </div>
       <div class="average">
-        <span>45%</span>
+        <span>{{average}} %</span>
         <span>Average</span>
       </div>
     </div>
   </div>
+</div>
+
+
+<div class="feeling-answer row-component">
+  <h4 class="display-5">How do you feel about the project?</h4>
+  <p class="lead">Tap any of the emojis you think matches this project. You can tap them again to deselect them.</p>
+  <div class="feelings-container">
+    <div class="available">
+      <h6>Available Emojis</h6>
+      <div class="emoji-container">
+        <div [@fadeInOut] (click)="selectEmoji(i, $event)" class="emoji" *ngFor="let emoji of emojis; let i = index">
+          <span class="{{emoji.em_class}}"></span>
+          <span class="emoji-text">{{emoji.label}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="selected">
+      <h6>Selected Emojis</h6>
+      <div class="emoji-container">
+        <div [@fadeInOut] (click)="deselectEmoji(i)" class="emoji" *ngFor="let emoji of selectedEmojis; let i = index">
+          <span class="{{emoji.em_class}}"></span>
+          <span class="emoji-text">{{emoji.label}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-success" [disabled]="projectProgress == 0 || selectedEmojis.length == 0" (click)="submitEvaluation()">Submit evaluation</button>
 </div>
 
 

@@ -1,0 +1,42 @@
+<button (click)="debug()">Debug</button>
+<!--Breadcrumbs-->
+<div class="row">
+  <div class="col-12">
+    <div class="breadcrumb-custom">
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/project-evaluations']">Project Evaluations</a>
+      </div>
+      <div class="breadcrumb-divider"> / </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Page Title-->
+<div class="page-title-row">
+  <div class="col-12 ">
+    <h3 class="page-title">Pending Project Evaluations</h3>
+  </div>
+</div>
+
+<div class="eval-row row-component">
+  <div class="evaluation-selector">
+    <div class="list-group project-list-group" *ngIf="projects.length > 0">
+      <div *ngFor="let project of projects; let i = index"
+           class="list-group-item list-group-item-action project-item"
+           [ngClass]="{ 'active': project.id == selectedProject?.id }"
+           (click)="selectProject(i)">
+        <span class="project-name">{{ project.project_name }}</span>
+      </div>
+    </div>
+    <p *ngIf="projects.length == 0">No pending evaluations found</p>
+  </div>
+  <div class="evaluation-container" *ngIf="selectedProject">
+    <ced-project-evaluation [project]="selectedProject"
+                            [iteration_id]="selectedEvalution.iteration_id"
+                            [team_answers]="selectedEvalution.team_answers"
+                            [project_id]="selectedProject.id">
+
+    </ced-project-evaluation>
+  </div>
+</div>
