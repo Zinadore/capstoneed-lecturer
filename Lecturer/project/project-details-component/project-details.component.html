@@ -79,7 +79,7 @@
   <div class="students-container column-white" *ngIf="project" [class.remove-on]="removeStudentMode">
     <div class="row no-gutters">
       <div class="col-12">
-        <h5>Students ({{project.students.length}})</h5>
+        <h5>Students {{"(" + project.students.length + ")"}}</h5>
         <hr>
       </div>
       <div class="student" *ngFor="let student of project.students">

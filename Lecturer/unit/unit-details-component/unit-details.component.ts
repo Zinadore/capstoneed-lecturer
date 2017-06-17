@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Rx';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -6,6 +7,7 @@ import { ComponentBase } from '../../../../shared/Directives/componentBase';
 import { Unit } from '../../../../shared/Store/Models/unit';
 import { IAppState } from '../../../../shared/Store/Reducers/index';
 import { Project } from '../../../../shared/Store/Models/project';
+import { UnitService } from '../../../../shared/Services/unit.service';
 
 @Component({
   selector: 'ced-unit-details',
@@ -16,22 +18,27 @@ export class UnitDetailsComponent extends ComponentBase {
   private unit: Unit;
   private assignments: Assignment[];
   private projects: Project[];
+  private unitService: UnitService;
 
-  constructor(private route: ActivatedRoute, store: Store<IAppState>) {
+  constructor(private route: ActivatedRoute, store: Store<IAppState>, unitService: UnitService) {
     super();
 
     this.assignments = [];
     this.projects = [];
+    this.unitService = unitService;
 
     let unitObservable = this.route.params
       .filter(params => params['id'])
       .map(params => params['id'])
+      // .switchMap(id => { 
+      //   return Observable.of(this.unitService.getUnit$(id))
+      // });
       .switchMap(id => store.select('units')
         .filter((units: Unit[]) => units.length > 0)
         .map((units: Unit[]) => units.find(u => u.id == id))
       );
 
-    this.disposeOnDestroy(unitObservable.subscribe((unit: Unit) => {
+    this.disposeOnDestroy(unitObservable.subscribe(unit => {
       this.unit = unit;
     }));
 
@@ -61,7 +68,12 @@ export class UnitDetailsComponent extends ComponentBase {
     return this.projects.filter(p => p.assignment_id == assignment.id)
   }
 
-  archiveUnit() {
-    console.log('archive unit called')
+  archiveUnitPopup(unit: Unit) {
+    if (unit.archived_at != null)
+      alert('Unit is already archived!');
+
+    if (confirm("Are you sure you want to archive unit: \"" + unit.name + "\"?") == true) {
+      this.unitService.archive(unit);
+    }
   }
 }

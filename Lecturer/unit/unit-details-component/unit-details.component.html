@@ -14,20 +14,19 @@
   <div class="col-12 ">
     <h3 class="page-title" *ngIf="unit">{{ unit.code }} {{ unit.name }} - {{ unit.semester }}  {{ unit.year }}</h3>
     <h3 class="page-title" *ngIf="!unit">Loading data...</h3>
-    <!--<div class="gear-settings" ngbDropdown *ngIf="unit">
-      <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
-        <i class="fa fa-cog" aria-hidden="true"></i>
+    <div class="gear-settings">
+      <a title="Archive Unit" (click)="archiveUnitPopup(unit)">
+        <i class="fa fa-archive" aria-hidden="true"></i>
       </a>
-      <div class="dropdown-menu dropdown-menu-right" >
-        <a class="dropdown-item" [routerLink]="['edit']">Edit Unit</a>
-        <a class="dropdown-item" (click)="archiveUnit()">Archive Unit</a>
-      </div>
-    </div>-->
+      <!--<a title="Edit Unit" [routerLink]="['edit']" >
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </a>-->
+    </div>
   </div>
 </div>
 
-<div class="row row-component" *ngIf="assignments.length > 0">
-  <div class="col-12 ">
+<div class="row row-component" *ngIf="assignments.length > 0; else noAssignmentsTemplate">
+  <div class="col-12 column-white">
     <h4>Assignments for unit {{ unit.name }}</h4>
     <hr>
   </div>
@@ -35,14 +34,22 @@
   <div class="col-12 column-white">
     <ngb-tabset>
       <ngb-tab *ngFor="let assignment of assignments">
-        <template ngbTabTitle>{{ assignment.name }}</template>
-        <template ngbTabContent>
+        <ng-template ngbTabTitle>{{ assignment.name }}</ng-template>
+        <ng-template ngbTabContent>
           <ced-assignment-overview [assignment]="assignment" [projects]="projects"></ced-assignment-overview>
-        </template>
+        </ng-template>
       </ngb-tab>
     </ngb-tabset>
   </div>
 </div>
+
+<ng-template #noAssignmentsTemplate>
+  <div class="row row-component">
+    <div class="col-12 column-white">
+      <h4>This unit has no assignments.</h4>
+    </div>
+  </div>
+</ng-template>
 
 <div class="row row-component" *ngIf="!unit">
   <div class="col-12">

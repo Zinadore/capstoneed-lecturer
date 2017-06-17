@@ -25,7 +25,7 @@
         <h4 class="page-title">{{ unit?.name }}</h4>
       </div>
       <div class="col-12">
-        <p class="page-subtitle">Edit Assignment Details</p>
+        <p class="page-subtitle">Edit Unit Details</p>
       </div>
       <div class="col-12">
         <a [routerLink]="['/units', unit.id]" *ngIf="unit">
@@ -33,6 +33,43 @@
         </a>       
       </div>
     </div>  
+
+    <div class="col-12">
+      <form [formGroup]="editGroupForm" class="form-step-wizard">
+        <div class="form-group form-row row">
+          <label class="col-2" for="unitNameInput">Name:</label>
+          <input type="text" class="col-6 form-control" id="unitNameInput" placeholder="Unit Name" formControlName="name">
+        </div>
+        <div class="form-group form-row row">
+          <label class="col-2" for="unitCodeInput">Code:</label>
+          <input type="text" class="col-6 form-control" id="unitCodeInput" placeholder="Unit Code" formControlName="code">
+        </div>
+        <div class="form-group form-row row">
+          <label class="col-2" for="unitSemesterInput">Semester:</label>
+          <input type="text" class="col-6 form-control" id="unitSemesterInput" placeholder="e.g. Autumn, Spring" formControlName="semester">
+        </div>
+        <div class="form-group form-row row">
+          <label class="col-2" for="unitYearInput">Year:</label>
+          <input type="number" class="col-6" name="unitYearInput" id="unitYearInput" min="{{ currentYear - 2 }}" max="{{ currentYear }}" step="1" value="{{ currentYear }}" formControlName="year">
+        </div>
+
+        <div class="form-group form-row row">
+          <div class="col-12">
+            <h5>Department Details</h5>
+          </div>
+        </div>
+
+        <div class="form-group form-row row">
+          <label class="col-2" for="unitDepartmentNameInput">Deparment Name:</label>
+          <input type="text" formControlName="departmentName" class="col-6 form-control" id="unitDepartmentNameInput" placeholder="e.g. Computer Science">
+        </div>
+
+        <div class="form-group form-row row">
+          <label class="col-2" for="unitDepartmentNameInput">University Name:</label>
+          <input type="text" formControlName="departmentUniversity" class="col-6 form-control" id="unitDeparmentUniversityInput" placeholder="e.g. University of Sheffield">
+        </div>
+      </form>
+    </div>
   </div>
 
   <template #noUnit>No Unit was found here. Go back to <a [routerLink]="['/units']">units</a></template>
