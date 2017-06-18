@@ -1,3 +1,27 @@
+<!--Breadcrumbs-->
+<div class="row">
+  <div class="col-12">
+    <div class="breadcrumb-custom">
+      <div class="breadcrumb-step">
+        <a [routerLink]="['/assessments', 'latest']">Latest assessments</a>
+      </div>
+      <div class="breadcrumb-divider"> / </div>
+      <div class="breadcrumb-step" *ngIf="_iteration">
+          {{ _iteration.name}}
+      </div>      
+    </div>
+  </div>
+</div>
+
+<!--Page Title-->
+<div class="page-title-row">
+  <div class="col-12 ">
+    <h3 class="page-title" *ngIf="_iteration">Iteration "{{ _iteration.name }}" Peer Assessments</h3>
+  </div>
+</div>
+
+<div class="row row-component">
+  <div class="col-12">
 <div class="project" *ngFor="let m of _marks">
   <h3>{{m.project_name}}</h3>
   <table class="table table-hover table-bordered">
@@ -14,4 +38,8 @@
       </tr>
     </tbody>
   </table>
+</div>
+  </div>
+
+
 </div>
