@@ -137,14 +137,7 @@ export class ProjectEvaluationComponent extends ComponentBase implements OnInit,
 
     console.log(evaluation);
 
-    this.disposeOnDestroy(this.projectService.submitProjectEvaluation(evaluation)
-      .subscribe(
-        res => {
-          this.toastService.success('Project Evaluation submitted!', 'Success');
-        },
-        err => console.log(err)
-      )
-    );
+    this.disposeOnDestroy(this.projectService.submitProjectEvaluation(evaluation));
   }
 
 

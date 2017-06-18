@@ -26,6 +26,7 @@ import { EditFormTemplateComponent } from '../Lecturer/form-template/edit-form-t
 import { ProjectEvaluationComponent } from '../Lecturer/project-evaluation/project-evaluation-component/project-evaluation.component';
 import { ProjectEvaluationListComponent } from '../Lecturer/project-evaluation/project-evaluation-list-component/project-evaluation-list.component';
 import { ScoredPaListComponent } from '../Lecturer/assessment/scored-pa-list-component/scored-pa-list.component';
+import { ScoredPaDetailsComponent } from "../Lecturer/assessment/scored-pa-details-component/scored-pa-details.component";
 
 export const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
@@ -60,7 +61,8 @@ export const ROUTES: Routes = [
     ] },
     { path: 'peer-assessments', children: [
       { path: 'new', component: NewPeerAssessmentFormComponent },
-      { path: 'latest', component: ScoredPaListComponent }
+      { path: 'latest', component: ScoredPaListComponent },
+      { path: ':id', component: ScoredPaDetailsComponent }
     ] },
     { path: 'form-templates', children: [
       { path: '', pathMatch: 'full', component: FormTemplateListComponent },

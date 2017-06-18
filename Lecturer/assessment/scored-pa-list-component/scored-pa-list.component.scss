@@ -1,2 +1,8 @@
 @import "../../../../style/global-variables";
 @import "../../../../style/lecturer-common";
+
+:host {
+  & /deep/ datatable-row-wrapper:hover {
+    cursor: pointer;
+  }
+}

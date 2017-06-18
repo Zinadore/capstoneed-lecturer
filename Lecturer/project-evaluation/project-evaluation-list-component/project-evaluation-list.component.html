@@ -1,4 +1,4 @@
-<button (click)="debug()">Debug</button>
+<!--<button (click)="debug()">Debug</button>-->
 <!--Breadcrumbs-->
 <div class="row">
   <div class="col-12">
@@ -33,8 +33,8 @@
   </div>
   <div class="evaluation-container" *ngIf="selectedProject">
     <ced-project-evaluation [project]="selectedProject"
-                            [iteration_id]="selectedEvalution.iteration_id"
-                            [team_answers]="selectedEvalution.team_answers"
+                            [iteration_id]="selectedEvaluation.iteration_id"
+                            [team_answers]="selectedEvaluation.team_answers"
                             [project_id]="selectedProject.id">
 
     </ced-project-evaluation>

@@ -15,7 +15,7 @@ export class ProjectEvaluationListComponent extends ComponentBase implements OnI
   public pendingEvaluations: ProjectEvaluation[];
   public projects: Project[];
   public selectedProject: Project;
-  public selectedEvalution: ProjectEvaluation;
+  public selectedEvaluation: ProjectEvaluation;
 
   private allProjects: Project[];
 
@@ -24,6 +24,7 @@ export class ProjectEvaluationListComponent extends ComponentBase implements OnI
 
     this.disposeOnDestroy(store.select(state => state.project_evaluations).subscribe(evals => {
       this.pendingEvaluations = evals;
+      this.selectedEvaluation = this.selectedProject = null;
       if(this.allProjects) {
         this.extractRelevantProjects();
       }
@@ -34,7 +35,7 @@ export class ProjectEvaluationListComponent extends ComponentBase implements OnI
       if(this.pendingEvaluations) {
         this.extractRelevantProjects();
       }
-    }))
+    }));
   }
 
   ngOnInit() {
@@ -47,7 +48,7 @@ export class ProjectEvaluationListComponent extends ComponentBase implements OnI
 
   public selectProject(index: number) {
     this.selectedProject = this.projects[index];
-    this.selectedEvalution = this.pendingEvaluations.find(ev => ev.project_id == this.selectedProject.id);
+    this.selectedEvaluation = this.pendingEvaluations.find(ev => ev.project_id == this.selectedProject.id);
   }
 
   private extractRelevantProjects() {

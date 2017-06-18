@@ -47,6 +47,7 @@ import { ProjectEvaluationListComponent } from './project-evaluation/project-eva
 import { ScoredPaListComponent } from './assessment/scored-pa-list-component/scored-pa-list.component';
 import { ProjectEvaluationComponent } from './project-evaluation/project-evaluation-component/project-evaluation.component';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
+import { ScoredPaDetailsComponent } from './assessment/scored-pa-details-component/scored-pa-details.component';
 
 @NgModule({
   imports: [
@@ -100,7 +101,8 @@ import { RoundProgressModule } from 'angular-svg-round-progressbar';
     HoursWorkedProjectComponent,
     ProjectEvaluationComponent,
     ProjectEvaluationListComponent,
-    ScoredPaListComponent
+    ScoredPaListComponent,
+    ScoredPaDetailsComponent
   ],
   providers: [NgxMyDatePickerModule],
   exports: [

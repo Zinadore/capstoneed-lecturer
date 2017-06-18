@@ -1,0 +1,17 @@
+<div class="project" *ngFor="let m of _marks">
+  <h3>{{m.project_name}}</h3>
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Peer Assessment Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of m.students">
+        <td>{{ student.full_name }}</td>
+        <td>{{ student.pa_score }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

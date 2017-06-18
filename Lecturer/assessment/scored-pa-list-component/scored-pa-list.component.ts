@@ -69,16 +69,13 @@ export class ScoredPaListComponent extends ComponentBase implements OnInit, Afte
     }));
   }
 
-  private setUp(): void {
-
-  }
-
   public debug() {
     console.log(this.rows)
   }
 
   public onRowClicked({ selected }) {
-    console.log("Selected: ", selected);
+    let it: Iteration = selected[0];
+    this.router.navigate(['/peer-assessments', it.id])
   }
 
   private findLatestIterations(iterations: Iteration[]) {
